@@ -278,23 +278,28 @@ jobs:
         run: |
           set -uo pipefail
           IPA="$EXPORT_PATH/App.ipa"
-          LOG="$(mktemp)/altool.log"
+          # mktemp -d 生成目录，再在其下建日志文件（mktemp 默认生成的是文件，不能再拼路径）
+          LOG_DIR="$(mktemp -d)"
+          LOG="$LOG_DIR/altool.log"
 
           # 统一的结果判定：altool 在校验失败(如 bundle 结构非法)时可能仍返回 0，
-          # 不能只看退出码，必须解析输出中的成功/失败关键词，避免“假绿”。
+          # 不能只看退出码，必须解析输出中的成功/失败关键词，避免“假绿/假红”。
           judge_result() {
             echo "----- altool 输出尾部 -----"; tail -40 "$LOG"
-            if grep -qiE "No errors uploading|No errors validating" "$LOG"; then
-              echo "==> altool 判定成功"
+            # 成功标志(先判成功): 覆盖 UPLOAD SUCCEEDED 与各类 "No errors ..." 文案
+            #   - "UPLOAD SUCCEEDED with no errors"
+            #   - "No errors uploading ..." / "No errors, N warnings, uploading ..."
+            if grep -qiE "UPLOAD SUCCEEDED|No errors" "$LOG"; then
+              echo "==> altool 判定成功（如含 warning 仅为提醒，不影响上传）"
               return 0
             fi
             # 命中任一失败特征即明确报错并让步骤红叉
-            if grep -qiE "Validation failed|Failed to upload|error:|STATE_ERROR|Unable to authenticate|No suitable application records" "$LOG"; then
+            if grep -qiE "Validation failed|Failed to upload|STATE_ERROR|Unable to authenticate|No suitable application records" "$LOG"; then
               echo "::error::altool 上传/校验失败，详见上方日志"
               return 1
             fi
             # 既无成功标志也无已知失败标志，保守判定为失败，避免误报成功
-            echo "::error::未能从 altool 输出中确认成功（缺少 'No errors uploading' 标志）"
+            echo "::error::未能从 altool 输出中确认成功（缺少 UPLOAD SUCCEEDED / No errors 标志）"
             return 1
           }
 
