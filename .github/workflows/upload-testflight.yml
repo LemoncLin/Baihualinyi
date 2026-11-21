@@ -122,17 +122,20 @@ jobs:
           du -sh ios
 
       # -----------------------------------------------------------------------
-      # 3. 构建号自动递增：读取当前 CURRENT_PROJECT_VERSION 并 +1
-      #    通过 xcconfig 覆盖，不直接改动工程文件，保持仓库干净
+      # 3. 构建号自动递增
+      #    使用 GitHub 仓库级单调递增的 run_number 作为构建号，保证每次运行
+      #    唯一且递增，天然满足 TestFlight 对 CURRENT_PROJECT_VERSION 的要求，
+      #    且无需回写工程文件、保持仓库干净。
       # -----------------------------------------------------------------------
       - name: 计算递增构建号
         id: build_number
         run: |
-          # 从工程文件中提取当前构建号（取第一个匹配值）
+          # GITHUB_RUN_NUMBER：该仓库工作流的累计运行序号，单调递增不重复
+          NEXT="${GITHUB_RUN_NUMBER}"
+          # 读取工程内当前值仅用于日志对照
           CURRENT=$(grep -m1 "CURRENT_PROJECT_VERSION" \
             "$PROJECT_PATH/project.pbxproj" | sed 's/[^0-9]//g')
-          NEXT=$((CURRENT + 1))
-          echo "当前构建号=$CURRENT，本次构建号=$NEXT"
+          echo "工程内构建号=$CURRENT，本次 CI 构建号=$NEXT（单调递增，不回写工程）"
           echo "build_number=$NEXT" >> "$GITHUB_OUTPUT"
           # 写入临时 xcconfig，构建时通过 -xcconfig 注入覆盖
           echo "CURRENT_PROJECT_VERSION = $NEXT" > /tmp/ci-override.xcconfig

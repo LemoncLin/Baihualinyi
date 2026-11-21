@@ -223,7 +223,7 @@ A: 描述文件的 Bundle ID 与工程不一致，或 `ExportOptions.plist` 中�
 A: 确认 `.p12` 是 **Apple Distribution** 证书（不是 Development），且 `P12_PASSWORD` 与导出密码一致。
 
 **Q: TestFlight 提示构建号重复？**
-A: 本工具每次运行构建号自动 +1，正常不会重复。若手动改过工程号，可在触发时调整。
+A: 构建号采用 GitHub 仓库级单调递增的 `run_number`，每次工作流运行都唯一且只增不减，正常不会重复。该值通过临时 xcconfig 注入、不改动工程文件；如需更大号段，可在触发时用 `marketing_version` 调整营销版本号。
 
 **Q: 大文件下载步骤失败？**
 A: 确认 Release 的 tag 与 Variable `ASSET_RELEASE_TAG` 完全一致，且资产名严格为 `large-assets.tar.gz`。私有仓库工作流内置 token 已具备下载权限。
