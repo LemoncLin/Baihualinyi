@@ -148,4 +148,5 @@ cd /mnt/c/Users/LQH/Desktop/githubactionsTotestflight
 | Bundle ID | com.megmt.baihualinyi |
 | Team ID | 99289A3HF5 |
 | 大文件 Release Tag | v1.0-assets |
+| SDK 升级提醒（警告 90725） | **2027 年 4 月起**须用 iOS 27 SDK / Xcode 27 构建；工作流动态选最高 Xcode，届时自动满足，无需手动改 |
 | 自动续期时间 | 每季度首月（1/4/7/10 月）1 日 北京时间 09:00 |
