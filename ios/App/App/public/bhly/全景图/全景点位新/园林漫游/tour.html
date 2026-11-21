@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>krpano - 园林漫游</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<style>
+		html { height:100%; }
+		body { height:100%; overflow:hidden; margin:0; padding:0; font-family:"Microsoft YaHei","PingFang SC",Arial,Helvetica,sans-serif; font-size:16px; color:#FFFFFF; background-color:#000000; }
+
+		/* 对齐十里春风 GardenSection 控件样式 */
+		.garden-controls {
+			display: none;
+			position: absolute;
+			left: 28px;
+			right: 28px;
+			bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+			z-index: 20;
+			align-items: center;
+			gap: 14px;
+			pointer-events: auto;
+		}
+		.garden-controls.is-show { display: flex; }
+
+		.garden-progress {
+			flex: 1;
+			min-width: 0;
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			padding: 12px 18px;
+			border: 1px solid rgba(255, 255, 255, 0.12);
+			border-radius: 999px;
+			background: rgba(12, 14, 20, 0.32);
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+			box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+		}
+
+		.garden-time {
+			flex-shrink: 0;
+			min-width: 3.4em;
+			font-size: 13px;
+			font-weight: 500;
+			font-variant-numeric: tabular-nums;
+			letter-spacing: 0.02em;
+			color: rgba(255, 255, 255, 0.88);
+			line-height: 1;
+			text-align: center;
+		}
+
+		.garden-progress-track {
+			position: relative;
+			flex: 1;
+			height: 22px;
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+			touch-action: none;
+			outline: none;
+		}
+		.garden-progress-track::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			height: 5px;
+			border-radius: 999px;
+			background: rgba(255, 255, 255, 0.22);
+		}
+		.garden-progress-fill {
+			position: absolute;
+			left: 0;
+			height: 5px;
+			width: 0%;
+			border-radius: 999px;
+			background: linear-gradient(90deg, rgba(201, 168, 108, 0.85), rgba(230, 205, 150, 0.95));
+			pointer-events: none;
+		}
+		.garden-progress-thumb {
+			position: absolute;
+			top: 50%;
+			left: 0%;
+			width: 16px;
+			height: 16px;
+			margin-left: -8px;
+			border-radius: 50%;
+			background: #f3e6c8;
+			border: 2px solid rgba(201, 168, 108, 0.95);
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+			transform: translateY(-50%);
+			pointer-events: none;
+			transition: transform 0.12s ease;
+		}
+		.garden-progress-thumb.is-dragging,
+		.garden-progress-track:active .garden-progress-thumb {
+			transform: translateY(-50%) scale(1.15);
+		}
+
+		.garden-ctrl-btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			min-height: 44px;
+			padding: 10px 18px;
+			border: 1px solid rgba(255, 255, 255, 0.12);
+			border-radius: 999px;
+			background: rgba(12, 14, 20, 0.32);
+			color: rgba(255, 255, 255, 0.94);
+			cursor: pointer;
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+			box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+			transition: background 0.2s, transform 0.15s, border-color 0.2s;
+			flex-shrink: 0;
+			font-family: inherit;
+		}
+		.garden-ctrl-btn:hover {
+			background: rgba(28, 30, 38, 0.48);
+			border-color: rgba(201, 168, 108, 0.4);
+		}
+		.garden-ctrl-btn:active { transform: scale(0.97); }
+		.garden-ctrl-icon {
+			width: 18px;
+			height: 18px;
+			flex-shrink: 0;
+		}
+		.garden-ctrl-label {
+			font-size: 14px;
+			font-weight: 500;
+			letter-spacing: 0.04em;
+			line-height: 1;
+			white-space: nowrap;
+		}
+	</style>
+</head>
+<body>
+<script src="tour.js"></script>
+<div style="width:100%;height:100%; position:relative;">
+	<div id="landscape-trans-bar" class="garden-controls" aria-label="漫游过渡控制">
+		<div class="garden-progress" aria-label="播放进度">
+			<span id="landscape-trans-cur" class="garden-time">00:00</span>
+			<div
+				id="landscape-trans-track"
+				class="garden-progress-track"
+				role="slider"
+				tabindex="0"
+				aria-valuemin="0"
+				aria-valuemax="0"
+				aria-valuenow="0"
+			>
+				<div id="landscape-trans-fill" class="garden-progress-fill"></div>
+				<div id="landscape-trans-thumb" class="garden-progress-thumb"></div>
+			</div>
+			<span id="landscape-trans-dur" class="garden-time">00:00</span>
+		</div>
+
+		<button type="button" id="landscape-trans-pp" class="garden-ctrl-btn" title="暂停">
+			<svg id="landscape-trans-pp-icon" class="garden-ctrl-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+				<path d="M6 5h4v14H6V5zm8 0h4v14h-4V5z"></path>
+			</svg>
+			<span id="landscape-trans-pp-label" class="garden-ctrl-label">暂停</span>
+		</button>
+
+		<button type="button" id="landscape-trans-replay" class="garden-ctrl-btn" title="重播">
+			<svg class="garden-ctrl-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+				<path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"></path>
+			</svg>
+			<span class="garden-ctrl-label">重播</span>
+		</button>
+
+		<button type="button" id="landscape-trans-skip" class="garden-ctrl-btn" title="跳过">
+			<svg class="garden-ctrl-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+				<path d="M4 5v14l8.5-7L4 5zm9 0v14l8.5-7L13 5z"></path>
+			</svg>
+			<span class="garden-ctrl-label">跳过</span>
+		</button>
+	</div>
+	<script>
+		var landscapeKrpano = null;
+		var landscapeViewDebugTimer = null;
+		var landscapeProgressTimer = null;
+		var landscapeBar = document.getElementById('landscape-trans-bar');
+		var landscapePpBtn = document.getElementById('landscape-trans-pp');
+		var landscapePpIcon = document.getElementById('landscape-trans-pp-icon');
+		var landscapePpLabel = document.getElementById('landscape-trans-pp-label');
+		var landscapeReplayBtn = document.getElementById('landscape-trans-replay');
+		var landscapeSkipBtn = document.getElementById('landscape-trans-skip');
+		var landscapeTrack = document.getElementById('landscape-trans-track');
+		var landscapeFill = document.getElementById('landscape-trans-fill');
+		var landscapeThumb = document.getElementById('landscape-trans-thumb');
+		var landscapeCur = document.getElementById('landscape-trans-cur');
+		var landscapeDur = document.getElementById('landscape-trans-dur');
+		var LANDSCAPE_DEBUG_VIEW = false;
+		var isSeeking = false;
+		var seekRatio = 0;
+
+		var ICON_PAUSE = 'M6 5h4v14H6V5zm8 0h4v14h-4V5z';
+		var ICON_PLAY = 'M8 5v14l11-7L8 5z';
+
+		function pad2(n) {
+			n = Math.floor(Math.max(0, n));
+			return (n < 10 ? '0' : '') + n;
+		}
+		function formatTime(sec) {
+			sec = Number(sec) || 0;
+			if (!isFinite(sec) || sec < 0) sec = 0;
+			var s = Math.floor(sec);
+			var m = Math.floor(s / 60);
+			var r = s % 60;
+			return pad2(m) + ':' + pad2(r);
+		}
+		function getActiveTransLayer() {
+			if (!landscapeKrpano) return '';
+			var name = String(landscapeKrpano.get('trans_active_layer') || '');
+			if (name) return name;
+			try {
+				if (landscapeKrpano.get('layer[trans_video_shou_wei].visible') && Number(landscapeKrpano.get('layer[trans_video_shou_wei].alpha')) > 0.5) {
+					return 'trans_video_shou_wei';
+				}
+				if (landscapeKrpano.get('layer[trans_video_wei_shou].visible') && Number(landscapeKrpano.get('layer[trans_video_wei_shou].alpha')) > 0.5) {
+					return 'trans_video_wei_shou';
+				}
+			} catch (e) {}
+			return '';
+		}
+		function setProgressVisual(pct) {
+			pct = Math.min(100, Math.max(0, pct));
+			if (landscapeFill) landscapeFill.style.width = pct + '%';
+			if (landscapeThumb) landscapeThumb.style.left = pct + '%';
+		}
+		function setPlayPauseUi(paused) {
+			if (landscapePpLabel) landscapePpLabel.textContent = paused ? '播放' : '暂停';
+			if (landscapePpBtn) landscapePpBtn.title = paused ? '播放' : '暂停';
+			if (landscapePpIcon) {
+				landscapePpIcon.innerHTML = '<path d="' + (paused ? ICON_PLAY : ICON_PAUSE) + '"></path>';
+			}
+		}
+		function updateProgressUi() {
+			var name = getActiveTransLayer();
+			if (!landscapeKrpano || !name) {
+				setProgressVisual(0);
+				if (landscapeCur) landscapeCur.textContent = '00:00';
+				if (landscapeDur) landscapeDur.textContent = '00:00';
+				setPlayPauseUi(false);
+				return;
+			}
+			var t = Number(landscapeKrpano.get('layer[' + name + '].time')) || 0;
+			var total = Number(landscapeKrpano.get('layer[' + name + '].totaltime')) || 0;
+			var pct;
+			if (isSeeking) {
+				pct = Math.min(100, Math.max(0, seekRatio * 100));
+				t = total * seekRatio;
+			} else {
+				pct = total > 0 ? Math.min(100, Math.max(0, (t / total) * 100)) : 0;
+			}
+			setProgressVisual(pct);
+			if (landscapeTrack) {
+				landscapeTrack.setAttribute('aria-valuemax', String(Math.floor(total) || 0));
+				landscapeTrack.setAttribute('aria-valuenow', String(Math.floor(t)));
+				landscapeTrack.setAttribute('aria-valuetext', formatTime(t) + ' / ' + formatTime(total));
+			}
+			if (landscapeCur) landscapeCur.textContent = formatTime(t);
+			if (landscapeDur) landscapeDur.textContent = formatTime(total);
+			var paused = !!landscapeKrpano.get('layer[' + name + '].ispaused');
+			setPlayPauseUi(paused);
+		}
+		function startProgressLoop() {
+			if (landscapeProgressTimer) clearInterval(landscapeProgressTimer);
+			updateProgressUi();
+			landscapeProgressTimer = setInterval(updateProgressUi, 200);
+		}
+		function stopProgressLoop() {
+			if (landscapeProgressTimer) {
+				clearInterval(landscapeProgressTimer);
+				landscapeProgressTimer = null;
+			}
+			isSeeking = false;
+			if (landscapeThumb) landscapeThumb.classList.remove('is-dragging');
+			setProgressVisual(0);
+			if (landscapeCur) landscapeCur.textContent = '00:00';
+			if (landscapeDur) landscapeDur.textContent = '00:00';
+			setPlayPauseUi(false);
+		}
+		function landscapeShowTransSkip() {
+			if (landscapeBar) landscapeBar.classList.add('is-show');
+			startProgressLoop();
+		}
+		function landscapeHideTransSkip() {
+			if (landscapeBar) landscapeBar.classList.remove('is-show');
+			stopProgressLoop();
+		}
+		window.landscapeShowTransSkip = landscapeShowTransSkip;
+		window.landscapeHideTransSkip = landscapeHideTransSkip;
+
+		function seekToRatio(ratio) {
+			var name = getActiveTransLayer();
+			if (!landscapeKrpano || !name) return;
+			ratio = Math.max(0, Math.min(1, ratio));
+			var pct = (ratio * 100).toFixed(2) + '%';
+			landscapeKrpano.call('layer[' + name + '].seek(' + pct + ');');
+			updateProgressUi();
+		}
+		function ratioFromClientX(clientX) {
+			if (!landscapeTrack) return 0;
+			var rect = landscapeTrack.getBoundingClientRect();
+			if (!rect.width) return 0;
+			return Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+		}
+
+		if (landscapePpBtn) {
+			landscapePpBtn.addEventListener('click', function () {
+				var name = getActiveTransLayer();
+				if (!landscapeKrpano || !name) return;
+				var paused = !!landscapeKrpano.get('layer[' + name + '].ispaused');
+				if (paused) {
+					landscapeKrpano.set('trans_user_paused', false);
+					landscapeKrpano.call('layer[' + name + '].play();');
+				} else {
+					landscapeKrpano.set('trans_user_paused', true);
+					landscapeKrpano.call('layer[' + name + '].pause();');
+				}
+				updateProgressUi();
+			});
+		}
+		if (landscapeReplayBtn) {
+			landscapeReplayBtn.addEventListener('click', function () {
+				var name = getActiveTransLayer();
+				if (!landscapeKrpano || !name) return;
+				landscapeKrpano.set('trans_user_paused', false);
+				landscapeKrpano.call('layer[' + name + '].seek(0);');
+				landscapeKrpano.call('layer[' + name + '].play();');
+				updateProgressUi();
+			});
+		}
+		if (landscapeSkipBtn) {
+			landscapeSkipBtn.addEventListener('click', function () {
+				if (landscapeKrpano) landscapeKrpano.call('trans_finish();');
+			});
+		}
+		if (landscapeTrack) {
+			landscapeTrack.addEventListener('pointerdown', function (e) {
+				var name = getActiveTransLayer();
+				if (!landscapeKrpano || !name) return;
+				var total = Number(landscapeKrpano.get('layer[' + name + '].totaltime')) || 0;
+				if (!total) return;
+				e.preventDefault();
+				isSeeking = true;
+				seekRatio = ratioFromClientX(e.clientX);
+				if (landscapeThumb) landscapeThumb.classList.add('is-dragging');
+				updateProgressUi();
+				try { landscapeTrack.setPointerCapture(e.pointerId); } catch (err) {}
+
+				var onMove = function (ev) {
+					seekRatio = ratioFromClientX(ev.clientX);
+					updateProgressUi();
+				};
+				var onUp = function (ev) {
+					seekRatio = ratioFromClientX(ev.clientX);
+					seekToRatio(seekRatio);
+					isSeeking = false;
+					if (landscapeThumb) landscapeThumb.classList.remove('is-dragging');
+					window.removeEventListener('pointermove', onMove);
+					window.removeEventListener('pointerup', onUp);
+					window.removeEventListener('pointercancel', onUp);
+				};
+				window.addEventListener('pointermove', onMove);
+				window.addEventListener('pointerup', onUp);
+				window.addEventListener('pointercancel', onUp);
+			});
+		}
+
+		function landscapeLogCurrentView() {
+			if (!landscapeKrpano) return;
+			var scene = String(landscapeKrpano.get('xml.scene') || '');
+			var h = Number(landscapeKrpano.get('view.hlookat'));
+			var v = Number(landscapeKrpano.get('view.vlookat'));
+			var fov = Number(landscapeKrpano.get('view.fov'));
+			var line = '[garden view] ' + scene + '  h=' + h.toFixed(2) + '  v=' + v.toFixed(2) + '  fov=' + fov.toFixed(2);
+			console.log(line);
+			if (window.parent && window.parent !== window) {
+				try { window.parent.console.log(line); } catch (e) {}
+			}
+		}
+		function landscapeStartViewDebug() {
+			if (landscapeViewDebugTimer) clearInterval(landscapeViewDebugTimer);
+			landscapeLogCurrentView();
+			landscapeViewDebugTimer = setInterval(landscapeLogCurrentView, 2000);
+		}
+		embedpano({
+			xml: 'tour.xml?v=' + (new URLSearchParams(location.search).get('v') || '22'),
+			id: 'krpanoSWFObject',
+			passQueryParameters: 'startscene,startlookat',
+			onready: function (krpano) {
+				landscapeKrpano = krpano;
+				window.landscapeKrpano = krpano;
+				landscapeHideTransSkip();
+				if (LANDSCAPE_DEBUG_VIEW) landscapeStartViewDebug();
+			}
+		});
+	</script>
+</div>
+</body>
+</html>

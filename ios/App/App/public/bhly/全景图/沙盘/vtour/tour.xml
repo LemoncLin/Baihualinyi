@@ -1,0 +1,486 @@
+<krpano version="1.23" title="Virtual Tour">
+
+	<include url="skin/vtourskin.xml" />
+	<include url="../../bhly_large_ui.xml?v=3" />
+
+	<skin_settings maps="false"
+	               maps_type="openstreetmaps"
+	               maps_bing_api_key=""
+	               maps_google_api_key=""
+	               maps_zoombuttons="false"
+	               maps_loadonfirstuse="true"
+	               gyro="true"
+	               gyro_keeplookingdirection="false"
+	               webvr="true"
+	               webvr_keeplookingdirection="true"
+	               webvr_prev_next_hotspots="true"
+	               autotour="false"
+	               littleplanetintro="false"
+	               followmousecontrol="false"
+	               title="false"
+	               thumbs="false"
+	               thumbs_width="120" thumbs_height="80" thumbs_padding="10" thumbs_crop="0|40|240|160"
+	               thumbs_opened="false"
+	               thumbs_text="false"
+	               thumbs_dragging="true"
+	               thumbs_onhoverscrolling="false"
+	               thumbs_scrollbuttons="false"
+	               thumbs_scrollindicator="false"
+	               thumbs_loop="false"
+	               tooltips_buttons="false"
+	               tooltips_thumbs="false"
+	               tooltips_hotspots="false"
+	               tooltips_mapspots="false"
+	               deeplinking="false"
+	               loadscene_flags="MERGE"
+	               loadscene_blend="OPENBLEND(0.5, 0.0, 0.75, 0.05, linear)"
+	               loadscene_blend_prev="SLIDEBLEND(0.5, 180, 0.75, linear)"
+	               loadscene_blend_next="SLIDEBLEND(0.5,   0, 0.75, linear)"
+	               loadingtext=""
+	               layout_width="100%"
+	               layout_maxwidth="814"
+	               controlbar_width="-24"
+	               controlbar_height="40"
+	               controlbar_offset="20"
+	               controlbar_offset_closed="-40"
+	               controlbar_overlap.no-fractionalscaling="10"
+	               controlbar_overlap.fractionalscaling="0"
+	               design_skin_images="vtourskin.png"
+	               design_bgcolor="0x2D3E50"
+	               design_bgalpha="0.8"
+	               design_bgborder="0"
+	               design_bgroundedge="1"
+	               design_bgshadow="0 4 10 0x000000 0.3"
+	               design_thumbborder_bgborder="3 0xFFFFFF 1.0"
+	               design_thumbborder_padding="2"
+	               design_thumbborder_bgroundedge="0"
+	               design_text_css="color:#FFFFFF; font-family:Arial;"
+	               design_text_shadow="1"
+	               />
+
+	<!--
+	  功能开关（由 Sandbox3D.vue 的 SANDBOX_FEATURES 经 URL 传入）
+	  sb_intro=1 开入场；sb_auto=1 开待机旋转
+	  默认关闭：直接显示正常视角，方便调试点位
+	-->
+	<action name="sandbox_apply_feature_cfg" autorun="preinit">
+		set(sandbox_enable_intro, false);
+		set(sandbox_enable_autorotate, false);
+		if(sb_intro == 1 OR sb_intro == '1' OR sb_intro == true OR sb_intro == 'true',
+			set(sandbox_enable_intro, true);
+		);
+		if(sb_auto == 1 OR sb_auto == '1' OR sb_auto == true OR sb_auto == 'true',
+			set(sandbox_enable_autorotate, true);
+		);
+	</action>
+
+	<autorotate enabled="false"
+	            waittime="5.0"
+	            accel="0.5"
+	            speed="2.0"
+	            horizon="0.0"
+	            tofov="off"
+	            oneroundrange="360"
+	            />
+
+	<style name="dir_card_style"
+	       type="container"
+	       align="lefttop"
+	       y="8"
+	       y.mobile="5"
+	       width="108"
+	       width.mobile="78"
+	       height="92"
+	       height.mobile="66"
+	       bgcolor="0x000000"
+	       bgalpha="0.92"
+	       bgborder="0"
+	       bgroundedge="2"
+	       bgcapture="true"
+	       handcursor="true"
+	       />
+
+	<style name="dir_card_label_style"
+	       type="text"
+	       align="bottom"
+	       y="4"
+	       y.mobile="2"
+	       width="100%"
+	       height="22"
+	       height.mobile="16"
+	       css="color:#FFFFFF; font-family:Microsoft YaHei,Arial; font-size:11px; text-align:center;"
+	       css.mobile="color:#FFFFFF; font-family:Microsoft YaHei,Arial; font-size:9px; text-align:center;"
+	       background="false"
+	       enabled="false"
+	       />
+
+	<style name="dir_thumb_style"
+	       align="top"
+	       width="100%"
+	       height="66"
+	       height.mobile="46"
+	       enabled="false"
+	       />
+
+	<style name="ui_tool_btn"
+	       type="container"
+	       align="lefttop"
+	       width="44"
+	       width.mobile="40"
+	       height="44"
+	       height.mobile="40"
+	       bgcolor="0x000000"
+	       bgalpha="0.55"
+	       bgroundedge="22"
+	       bgcapture="true"
+	       handcursor="true"
+	       />
+
+	<style name="ui_tool_label"
+	       type="text"
+	       align="center"
+	       width="100%"
+	       height="100%"
+	       vcenter="true"
+	       background="false"
+	       enabled="false"
+	       css="color:#FFFFFF; font-family:Microsoft YaHei,Arial; font-size:12px; text-align:center; font-weight:bold;"
+	       css.mobile="color:#FFFFFF; font-family:Microsoft YaHei,Arial; font-size:11px; text-align:center; font-weight:bold;"
+	       />
+
+	<action name="dir_update_active">
+		set(layer[dir_card_1].bgborder, '0');
+		set(layer[dir_card_2].bgborder, '0');
+		if(xml.scene == 'scene_xmgxffyyzzby_0000', set(layer[dir_card_1].bgborder, '2 0xFFFFFF 0.95'); );
+		if(xml.scene == 'scene_bhfzbuyyzzby_0000', set(layer[dir_card_2].bgborder, '2 0xFFFFFF 0.95'); );
+	</action>
+
+	<action name="dir_go_1">
+		stopdelayedcall(sandbox_xiangmu_markers_show);
+		stopdelayedcall(intro_expand);
+		stopdelayedcall(intro_done);
+		set(sandbox_intro_running, false);
+		loadscene(scene_xmgxffyyzzby_0000, null, MERGE, OPENBLEND(0.5, 0.0, 0.75, 0.05, linear));
+	</action>
+	<action name="dir_go_2">
+		stopdelayedcall(sandbox_xiqu_markers_show);
+		stopdelayedcall(intro_expand);
+		stopdelayedcall(intro_done);
+		set(sandbox_intro_running, false);
+		stoptween(view.hlookat);
+		stoptween(view.vlookat);
+		stoptween(view.fov);
+		stoptween(view.distortion);
+		set(view.distortion, 0.0);
+		loadscene(scene_bhfzbuyyzzby_0000, null, MERGE, OPENBLEND(0.5, 0.0, 0.75, 0.05, linear));
+	</action>
+
+	<!-- 区域沙盘：标点延迟 3 秒；每次进入都播小行星（含左下角切换回来） -->
+	<action name="sandbox_xiqu_on_start">
+		set(sandbox_xiqu_markers_ready, false);
+		sandbox_labels_apply_all_pos();
+		sandbox_filter_hide_all_labels();
+		if(hotspot[spot_bhly_logo], set(hotspot[spot_bhly_logo].visible, false); set(hotspot[spot_bhly_logo].alpha, 0); );
+		stopdelayedcall(sandbox_xiqu_markers_show);
+		delayedcall(sandbox_xiqu_markers_show, 3.0,
+			set(sandbox_xiqu_markers_ready, true);
+			sandbox_filter_apply_current();
+		);
+
+		if(sandbox_enable_intro == true,
+			play_intro();
+		);
+	</action>
+
+	<!-- 项目沙盘：楼栋号延迟 0.5 秒再显示 -->
+	<action name="sandbox_xiangmu_on_start">
+		set(sandbox_xiangmu_markers_ready, false);
+		sandbox_buildings_set_visible(false);
+		stopdelayedcall(sandbox_xiangmu_markers_show);
+		delayedcall(sandbox_xiangmu_markers_show, 0.5,
+			set(sandbox_xiangmu_markers_ready, true);
+			sandbox_buildings_set_visible(true);
+		);
+	</action>
+
+	<action name="dir_toggle_bar">
+		stopdelayedcall(dir_hits_enable);
+		if(layer[dir_bar].state == 'opened',
+			set(layer[dir_bar].state, 'closed');
+			set(layer[dir_hit_1].enabled, false);
+			set(layer[dir_hit_2].enabled, false);
+			if(device.mobile,
+				tween(layer[dir_bar].x, -176, 0.45, easeOutCubic);
+			  ,
+				tween(layer[dir_bar].x, -242, 0.45, easeOutCubic);
+			);
+			set(layer[dir_toggle_icon].url, 'skin/dir_chevron_right.png');
+		  ,
+			set(layer[dir_bar].state, 'opened');
+			tween(layer[dir_bar].x, 0, 0.45, easeOutCubic);
+			set(layer[dir_toggle_icon].url, 'skin/dir_chevron_left.png');
+			delayedcall(dir_hits_enable, 0.45,
+				set(layer[dir_hit_1].enabled, true);
+				set(layer[dir_hit_2].enabled, true);
+			);
+		);
+	</action>
+
+	<action name="hide_skin_controlbar">
+		skin_hideskin(instant);
+		set(layer[skin_layer].visible, false);
+		set(layer[skin_layer].enabled, false);
+		set(layer[skin_btn_show].visible, false);
+		set(layer[skin_btn_show].enabled, false);
+		set(layer[skin_btn_prev_fs].visible, false);
+		set(layer[skin_btn_prev_fs].enabled, false);
+		set(layer[skin_btn_next_fs].visible, false);
+		set(layer[skin_btn_next_fs].enabled, false);
+		if(layer[webvr_enterbutton],
+			set(layer[webvr_enterbutton].visible, false);
+			set(layer[webvr_enterbutton].enabled, false);
+		);
+	</action>
+
+	<action name="ui_enter_vr">
+		if(device.fullscreensupport AND fullscreen == false, set(fullscreen, true); );
+		webvr.enterVR();
+	</action>
+
+	<action name="ui_toggle_fs">
+		if(device.fullscreensupport,
+			switch(fullscreen);
+		  ,
+			set(display.iphonefullscreen, 1);
+		);
+	</action>
+
+	<action name="ui_sync_fs_icon">
+		if(fullscreen,
+			set(layer[ui_btn_fs_label].html, '退出');
+		  ,
+			set(layer[ui_btn_fs_label].html, '全屏');
+		);
+	</action>
+
+	<!-- 入场收尾：皮肤隐藏；小行星改由区域沙盘 onstart 触发 -->
+	<action name="sandbox_on_load_complete">
+		hide_skin_controlbar();
+		if(sandbox_enable_intro != true,
+			set(control.usercontrol, all);
+			set(view.distortion, 0.0);
+			set(view.architectural, 0.0);
+			set(view.pannini, 0.0);
+			if(sandbox_enable_autorotate == true, set(autorotate.enabled, true));
+		);
+	</action>
+
+	<action name="play_intro">
+		if(sandbox_enable_intro != true, exit(); );
+
+		set(autorotate.enabled, false);
+		set(control.usercontrol, off);
+		set(sandbox_intro_running, true);
+
+		set(intro_h, -4.8);
+		set(intro_v, 30.7);
+		set(intro_fov, 89);
+		set(intro_fovmax, 140);
+
+		stoptween(view.hlookat);
+		stoptween(view.vlookat);
+		stoptween(view.fov);
+		stoptween(view.distortion);
+
+		set(view.fovmax, 170);
+		set(view.limitview, off);
+		set(view.architectural, 0.0);
+		set(view.pannini, 0.0);
+		lookat(get(intro_h), 90, 150, 1.0, 0, 0);
+
+		stopdelayedcall(intro_expand);
+		stopdelayedcall(intro_done);
+		delayedcall(intro_expand, 0.5,
+			tween(view.hlookat, get(intro_h), 3.0, easeOutQuad);
+			tween(view.vlookat, get(intro_v), 3.0, easeOutQuad);
+			tween(view.fov, get(intro_fov), 3.0, easeOutQuad);
+			tween(view.distortion, 0.0, 3.0, easeOutQuad);
+			delayedcall(intro_done, 3.0,
+				set(view.fovmax, get(intro_fovmax));
+				set(view.limitview, auto);
+				set(control.usercontrol, all);
+				set(sandbox_intro_running, false);
+				if(sandbox_enable_autorotate == true, set(autorotate.enabled, true));
+				hide_skin_controlbar();
+			);
+		);
+	</action>
+
+	<events name="dir_events" keep="true"
+	        onxmlcomplete="delayedcall(0.05, hide_skin_controlbar()); dir_update_active();"
+	        onnewscene="hide_skin_controlbar(); dir_update_active();"
+	        onloadcomplete="sandbox_on_load_complete();"
+	        onenterfullscreen="ui_sync_fs_icon();"
+	        onexitfullscreen="ui_sync_fs_icon();"
+	        />
+
+	<layer name="ui_tools"
+	       keep="true"
+	       type="container"
+	       align="righttop"
+	       x="12"
+	       x.mobile="8"
+	       y="12"
+	       y.mobile="8"
+	       width="100"
+	       width.mobile="90"
+	       height="100"
+	       height.mobile="90"
+	       bgcapture="false"
+	       zorder="70"
+	       vr="false"
+	       visible="false"
+	       >
+
+		<layer name="ui_btn_vr" style="ui_tool_btn" x="48" x.mobile="44" y="0" onclick="ui_enter_vr();">
+			<layer style="ui_tool_label" html="VR" />
+		</layer>
+
+		<layer name="ui_btn_fs" style="ui_tool_btn" x="48" x.mobile="44" y="52" y.mobile="48" onclick="ui_toggle_fs();">
+			<layer name="ui_btn_fs_label" style="ui_tool_label" html="全屏" />
+		</layer>
+	</layer>
+
+	<!-- 两场景：布局比三场景更短 -->
+	<layer name="dir_root"
+	       keep="true"
+	       type="container"
+	       align="leftbottom"
+	       x="0"
+	       y="40"
+	       y.mobile="28"
+	       width="300"
+	       width.mobile="220"
+	       height="110"
+	       height.mobile="80"
+	       bgcapture="false"
+	       zorder="60"
+	       vr="false"
+	       >
+
+		<layer name="dir_bar"
+		       type="container"
+		       state="opened"
+		       align="lefttop"
+		       x="0"
+		       y="0"
+		       width="290"
+		       width.mobile="210"
+		       height="110"
+		       height.mobile="80"
+		       alpha="1.0"
+		       bgcolor="0x000000"
+		       bgalpha="0.45"
+		       bgroundedge="0 55 55 0"
+		       bgroundedge.mobile="0 40 40 0"
+		       bgcapture="true"
+		       >
+
+			<layer name="dir_card_1" style="dir_card_style" x="10" x.mobile="8">
+				<layer url="panos/xmgxffyyzzby_0000.tiles/thumb.jpg" style="dir_thumb_style" />
+				<layer style="dir_card_label_style" html="区域沙盘" />
+				<layer name="dir_hit_1" type="container" align="lefttop" width="100%" height="100%" bgcolor="0x000000" bgalpha="0" bgcapture="true" handcursor="true" zorder="20" onclick="dir_go_1();" />
+			</layer>
+
+			<layer name="dir_card_2" style="dir_card_style" x="126" x.mobile="92">
+				<layer url="panos/bhfzbuyyzzby_0000.tiles/thumb.jpg" style="dir_thumb_style" />
+				<layer style="dir_card_label_style" html="项目沙盘" />
+				<layer name="dir_hit_2" type="container" align="lefttop" width="100%" height="100%" bgcolor="0x000000" bgalpha="0" bgcapture="true" handcursor="true" zorder="20" onclick="dir_go_2();" />
+			</layer>
+
+			<layer name="dir_toggle"
+			       type="container"
+			       align="lefttop"
+			       x="242"
+			       x.mobile="176"
+			       y="12"
+			       y.mobile="8"
+			       width="36"
+			       width.mobile="28"
+			       height="86"
+			       height.mobile="64"
+			       bgcolor="0x000000"
+			       bgalpha="0"
+			       bgroundedge="0"
+			       bgcapture="true"
+			       handcursor="true"
+			       zorder="5"
+			       maskchildren="true"
+			       onclick="dir_toggle_bar();"
+			       >
+				<layer name="dir_toggle_icon"
+				       url="skin/dir_chevron_left.png"
+				       align="center"
+				       width="26"
+				       width.mobile="20"
+				       height="32"
+				       height.mobile="24"
+				       enabled="false"
+				       />
+			</layer>
+
+		</layer>
+	</layer>
+
+	<!-- 默认首场景：区域沙盘 -->
+	<scene name="scene_xmgxffyyzzby_0000" title="区域沙盘" onstart="sandbox_xiqu_on_start();" thumburl="panos/xmgxffyyzzby_0000.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
+
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="-4.8" vlookat="30.7" fovtype="MFOV" fov="89" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/xmgxffyyzzby_0000.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/xmgxffyyzzby_0000.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048,3840" />
+		</image>
+
+		<!-- 白桦林奕项目 logo（整图标点，同春风沙盘logo；点击进项目沙盘） -->
+		<hotspot name="spot_bhly_logo"
+		         url="../../沙盘标签/沙盘logo.png"
+		         edge="bottom"
+		         distorted="false"
+		         zoom="false"
+		         ath="2"
+		         atv="31"
+		         depth="1000.0"
+		         scale="0.45"
+		         zorder="20"
+		         visible="false"
+		         alpha="0"
+		         onclick="dir_go_2();"
+		         />
+
+		<include url="sandbox_labels.xml?v=67" />
+
+	</scene>
+
+	<scene name="scene_bhfzbuyyzzby_0000" title="项目沙盘" onstart="sandbox_xiangmu_on_start();" thumburl="panos/bhfzbuyyzzby_0000.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
+
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<!-- 项目沙盘初始视角 -->
+		<view hlookat="-2.8" vlookat="38.4" fovtype="MFOV" fov="80" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/bhfzbuyyzzby_0000.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/bhfzbuyyzzby_0000.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1024,2048,3840" />
+		</image>
+
+		<include url="project_buildings.xml?v=6" />
+
+	</scene>
+
+
+</krpano>

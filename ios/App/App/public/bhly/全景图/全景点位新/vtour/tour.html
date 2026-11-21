@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>krpano - 景观漫游</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<style>
+		html { height:100%; }
+		body { height:100%; overflow:hidden; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#FFFFFF; background-color:#000000; }
+		/* 与开屏 SplashIntro .splash-intro__skip 同款 */
+		.landscape-trans-skip {
+			display: none;
+			position: absolute;
+			right: calc(20px + env(safe-area-inset-right, 0px));
+			bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+			z-index: 20;
+			min-width: 72px;
+			min-height: 36px;
+			padding: 8px 18px;
+			border: 1px solid rgba(255, 255, 255, 0.35);
+			border-radius: 999px;
+			background: rgba(0, 0, 0, 0.45);
+			color: #fff;
+			font-size: 14px;
+			letter-spacing: 0.12em;
+			cursor: pointer;
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
+			font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+			pointer-events: auto;
+		}
+		.landscape-trans-skip:active {
+			background: rgba(0, 0, 0, 0.65);
+		}
+		@media (min-width: 768px) {
+			.landscape-trans-skip {
+				right: 28px;
+				bottom: 32px;
+				min-height: 40px;
+				padding: 10px 22px;
+				font-size: 15px;
+			}
+		}
+	</style>
+</head>
+<body>
+
+<script src="tour.js"></script>
+
+<div style="width:100%;height:100%; position:relative;">
+	<noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;text-align:center;"><td>ERROR:<br><br>Javascript not activated<br><br></td></tr></table></noscript>
+	<button type="button" id="landscape-trans-skip" class="landscape-trans-skip" aria-label="跳过">跳过</button>
+	<script>
+		var landscapeKrpano = null;
+		var landscapeViewDebugTimer = null;
+		var landscapeSkipBtn = document.getElementById('landscape-trans-skip');
+
+		/**
+		 * 【代码开关】显示当前视角（每 2 秒打 Console，对齐沙盘）
+		 * true  = 开启
+		 * false = 关闭
+		 * 运行时也可：landscapeSetViewDebugEnabled(true/false)
+		 */
+		var LANDSCAPE_DEBUG_VIEW = false;
+
+		var SCENE_LABELS = {
+			scene_zkixgpxjsxucxflxcg: '礼序归家',
+			scene_yexwelwirbxy: '林下休闲',
+			scene_ajhywnakxxbt: '轻氧花园',
+			scene_aqmxugwfqxbt: '萌宠乐园',
+			scene_yiryeebmwxen: '漫游首帧',
+			scene_yiryeexwkxen: '漫游尾帧'
+		};
+
+		function landscapeShowTransSkip() {
+			if (landscapeSkipBtn) landscapeSkipBtn.style.display = 'block';
+		}
+
+		function landscapeHideTransSkip() {
+			if (landscapeSkipBtn) landscapeSkipBtn.style.display = 'none';
+		}
+
+		window.landscapeShowTransSkip = landscapeShowTransSkip;
+		window.landscapeHideTransSkip = landscapeHideTransSkip;
+
+		if (landscapeSkipBtn) {
+			landscapeSkipBtn.addEventListener('click', function () {
+				if (landscapeKrpano) landscapeKrpano.call('trans_finish();');
+			});
+		}
+
+		function landscapeLogCurrentView() {
+			if (!landscapeKrpano) return;
+			var scene = String(landscapeKrpano.get('xml.scene') || '');
+			var label = SCENE_LABELS[scene] || scene || '-';
+			var h = Number(landscapeKrpano.get('view.hlookat'));
+			var v = Number(landscapeKrpano.get('view.vlookat'));
+			var fov = Number(landscapeKrpano.get('view.fov'));
+			var line =
+				'[landscape view] ' + label +
+				'  h=' + h.toFixed(2) +
+				'  v=' + v.toFixed(2) +
+				'  fov=' + fov.toFixed(2) +
+				'   → <view hlookat="' + h.toFixed(1) + '" vlookat="' + v.toFixed(1) + '" fov="' + fov.toFixed(0) + '" ... />';
+			console.log(line);
+			if (window.parent && window.parent !== window) {
+				try { window.parent.console.log(line); } catch (e) { /* ignore */ }
+			}
+		}
+
+		function landscapeStopViewDebug() {
+			if (landscapeViewDebugTimer) {
+				clearInterval(landscapeViewDebugTimer);
+				landscapeViewDebugTimer = null;
+			}
+		}
+
+		function landscapeStartViewDebug() {
+			landscapeStopViewDebug();
+			landscapeLogCurrentView();
+			landscapeViewDebugTimer = setInterval(landscapeLogCurrentView, 2000);
+		}
+
+		function landscapeSetViewDebugEnabled(enabled) {
+			LANDSCAPE_DEBUG_VIEW = !!enabled;
+			if (LANDSCAPE_DEBUG_VIEW) landscapeStartViewDebug();
+			else landscapeStopViewDebug();
+		}
+
+		window.landscapeSetViewDebugEnabled = landscapeSetViewDebugEnabled;
+
+		embedpano({
+			xml: 'tour.xml?v=' + (new URLSearchParams(location.search).get('v') || '16'),
+			id: 'krpanoSWFObject',
+			passQueryParameters: 'startscene,startlookat',
+			onready: function (krpano) {
+				landscapeKrpano = krpano;
+				window.landscapeKrpano = krpano;
+				landscapeHideTransSkip();
+				if (LANDSCAPE_DEBUG_VIEW) landscapeStartViewDebug();
+			}
+		});
+	</script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+	"appId": "com.baihualin.yi",
+	"appName": "白桦林奕",
+	"webDir": "dist",
+	"backgroundColor": "#080a12",
+	"ios": {
+		"contentInset": "never",
+		"backgroundColor": "#080a12",
+		"preferredContentMode": "mobile",
+		"scrollEnabled": false
+	},
+	"packageClassList": []
+}

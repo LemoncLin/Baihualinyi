@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>krpano - 园林全景</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<style>
+		html { height:100%; }
+		body { height:100%; overflow:hidden; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#FFFFFF; background-color:#000000; }
+		.landscape-trans-skip {
+			display: none;
+			position: absolute;
+			right: calc(20px + env(safe-area-inset-right, 0px));
+			bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+			z-index: 20;
+			min-width: 72px;
+			min-height: 36px;
+			padding: 8px 18px;
+			border: 1px solid rgba(255, 255, 255, 0.35);
+			border-radius: 999px;
+			background: rgba(0, 0, 0, 0.45);
+			color: #fff;
+			font-size: 14px;
+			letter-spacing: 0.12em;
+			cursor: pointer;
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
+			font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+		}
+		.landscape-trans-skip:active { background: rgba(0, 0, 0, 0.65); }
+		@media (min-width: 768px) {
+			.landscape-trans-skip {
+				right: 28px; bottom: 32px; min-height: 40px; padding: 10px 22px; font-size: 15px;
+			}
+		}
+	</style>
+</head>
+<body>
+<script src="tour.js"></script>
+<div style="width:100%;height:100%; position:relative;">
+	<button type="button" id="landscape-trans-skip" class="landscape-trans-skip" aria-label="跳过">跳过</button>
+	<script>
+		var landscapeKrpano = null;
+		var landscapeViewDebugTimer = null;
+		var landscapeSkipBtn = document.getElementById('landscape-trans-skip');
+		var LANDSCAPE_DEBUG_VIEW = false;
+		function landscapeShowTransSkip() { if (landscapeSkipBtn) landscapeSkipBtn.style.display = 'block'; }
+		function landscapeHideTransSkip() { if (landscapeSkipBtn) landscapeSkipBtn.style.display = 'none'; }
+		window.landscapeShowTransSkip = landscapeShowTransSkip;
+		window.landscapeHideTransSkip = landscapeHideTransSkip;
+		if (landscapeSkipBtn) {
+			landscapeSkipBtn.addEventListener('click', function () {
+				if (landscapeKrpano) landscapeKrpano.call('trans_finish();');
+			});
+		}
+		function landscapeLogCurrentView() {
+			if (!landscapeKrpano) return;
+			var scene = String(landscapeKrpano.get('xml.scene') || '');
+			var h = Number(landscapeKrpano.get('view.hlookat'));
+			var v = Number(landscapeKrpano.get('view.vlookat'));
+			var fov = Number(landscapeKrpano.get('view.fov'));
+			var line = '[garden view] ' + scene + '  h=' + h.toFixed(2) + '  v=' + v.toFixed(2) + '  fov=' + fov.toFixed(2);
+			console.log(line);
+			if (window.parent && window.parent !== window) {
+				try { window.parent.console.log(line); } catch (e) {}
+			}
+		}
+		function landscapeStartViewDebug() {
+			if (landscapeViewDebugTimer) clearInterval(landscapeViewDebugTimer);
+			landscapeLogCurrentView();
+			landscapeViewDebugTimer = setInterval(landscapeLogCurrentView, 2000);
+		}
+		embedpano({
+			xml: 'tour.xml?v=' + (new URLSearchParams(location.search).get('v') || '14'),
+			id: 'krpanoSWFObject',
+			passQueryParameters: 'startscene,startlookat',
+			onready: function (krpano) {
+				landscapeKrpano = krpano;
+				window.landscapeKrpano = krpano;
+				landscapeHideTransSkip();
+				if (LANDSCAPE_DEBUG_VIEW) landscapeStartViewDebug();
+			}
+		});
+	</script>
+</div>
+</body>
+</html>

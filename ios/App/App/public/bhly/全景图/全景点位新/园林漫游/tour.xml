@@ -1,0 +1,490 @@
+<krpano version="1.23" title="Virtual Tour">
+
+	<include url="skin/vtourskin.xml" />
+
+	<data name="radar_group">roam</data>
+	<include url="../radar.xml" />
+	<include url="../../bhly_large_ui.xml?v=3" />
+
+	<skin_settings maps="false"
+	               maps_type="openstreetmaps"
+	               maps_bing_api_key=""
+	               maps_google_api_key=""
+	               maps_zoombuttons="false"
+	               maps_loadonfirstuse="true"
+	               gyro="true"
+	               gyro_keeplookingdirection="false"
+	               webvr="true"
+	               webvr_keeplookingdirection="true"
+	               webvr_prev_next_hotspots="true"
+	               autotour="false"
+	               littleplanetintro="false"
+	               followmousecontrol="false"
+	               title="false"
+	               thumbs="false"
+	               thumbs_width="120" thumbs_height="80" thumbs_padding="10" thumbs_crop="0|40|240|160"
+	               thumbs_opened="false"
+	               thumbs_text="false"
+	               thumbs_dragging="true"
+	               thumbs_onhoverscrolling="false"
+	               thumbs_scrollbuttons="false"
+	               thumbs_scrollindicator="false"
+	               thumbs_loop="false"
+	               tooltips_buttons="false"
+	               tooltips_thumbs="false"
+	               tooltips_hotspots="false"
+	               tooltips_mapspots="false"
+	               deeplinking="false"
+	               loadscene_flags="MERGE"
+	               loadscene_blend="OPENBLEND(0.5, 0.0, 0.75, 0.05, linear)"
+	               loadscene_blend_prev="SLIDEBLEND(0.5, 180, 0.75, linear)"
+	               loadscene_blend_next="SLIDEBLEND(0.5,   0, 0.75, linear)"
+	               loadingtext=""
+	               layout_width="100%"
+	               layout_maxwidth="814"
+	               controlbar_width="-24"
+	               controlbar_height="40"
+	               controlbar_offset="20"
+	               controlbar_offset_closed="-40"
+	               controlbar_overlap.no-fractionalscaling="10"
+	               controlbar_overlap.fractionalscaling="0"
+	               design_skin_images="vtourskin.png"
+	               design_bgcolor="0x2D3E50"
+	               design_bgalpha="0.8"
+	               design_bgborder="0"
+	               design_bgroundedge="1"
+	               design_bgshadow="0 4 10 0x000000 0.3"
+	               design_thumbborder_bgborder="3 0xFFFFFF 1.0"
+	               design_thumbborder_padding="2"
+	               design_thumbborder_bgroundedge="0"
+	               design_text_css="color:#FFFFFF; font-family:Arial;"
+	               design_text_shadow="1"
+	               />
+
+	<autorotate enabled="true"
+	            waittime="5.0"
+	            accel="0.5"
+	            speed="2.0"
+	            horizon="0.0"
+	            tofov="off"
+	            oneroundrange="360"
+	            />
+
+	<!-- 无左下角点位栏：仅箭头热点跳转 -->
+
+	<!-- 序列帧箭头：right/qian 均为 128x128 × 25 帧竖排 -->
+	<action name="hs_sprite_start">
+		set(hotspot[%1].frame, 0);
+		set(hotspot[%1].framewidth, 128);
+		set(hotspot[%1].frameheight, 128);
+		set(hotspot[%1].lastframe, 24);
+		hs_sprite_loop(%1);
+	</action>
+
+	<action name="hs_sprite_loop">
+		if(hotspot[%1],
+			mul(hotspot[%1].ypos, hotspot[%1].frame, hotspot[%1].frameheight);
+			txtadd(hotspot[%1].crop, '0|', get(hotspot[%1].ypos), '|', get(hotspot[%1].framewidth), '|', get(hotspot[%1].frameheight));
+			inc(hotspot[%1].frame);
+			if(hotspot[%1].frame GT hotspot[%1].lastframe, set(hotspot[%1].frame, 0); );
+			delayedcall(0.04, hs_sprite_loop(%1); );
+		);
+	</action>
+
+	<action name="layer_sprite_start">
+		set(layer[%1].frame, 0);
+		set(layer[%1].framewidth, 128);
+		set(layer[%1].frameheight, 128);
+		set(layer[%1].lastframe, 24);
+		layer_sprite_loop(%1);
+	</action>
+
+	<action name="layer_sprite_loop">
+		if(layer[%1],
+			mul(layer[%1].ypos, layer[%1].frame, layer[%1].frameheight);
+			txtadd(layer[%1].crop, '0|', get(layer[%1].ypos), '|', get(layer[%1].framewidth), '|', get(layer[%1].frameheight));
+			inc(layer[%1].frame);
+			if(layer[%1].frame GT layer[%1].lastframe, set(layer[%1].frame, 0); );
+			delayedcall(0.04, layer_sprite_loop(%1); );
+		);
+	</action>
+
+	<style name="hs_label_style"
+	       type="text"
+	       distorted="false"
+	       zoom="false"
+	       background="false"
+	       enabled="true"
+	       handcursor="true"
+	       css="color:#FFFFFF; font-family:Microsoft YaHei,PingFang SC,sans-serif; font-size:18px; font-weight:700; text-align:center; text-shadow:0 1px 4px rgba(0,0,0,0.75);"
+	       />
+
+	<action name="roam_sync_arrows">
+		<!-- 首帧 / 尾帧：箭头 + 文字热点 -->
+		if(xml.scene == 'scene_yiryeebmwxen',
+			if(hotspot[hs_to_wei], set(hotspot[hs_to_wei].visible, true); set(hotspot[hs_to_wei].enabled, true); );
+			if(hotspot[hs_to_wei_txt], set(hotspot[hs_to_wei_txt].visible, true); set(hotspot[hs_to_wei_txt].enabled, true); );
+			if(hotspot[hs_to_shou], set(hotspot[hs_to_shou].visible, false); set(hotspot[hs_to_shou].enabled, false); );
+			if(hotspot[hs_to_shou_txt], set(hotspot[hs_to_shou_txt].visible, false); set(hotspot[hs_to_shou_txt].enabled, false); );
+		  ,
+			if(xml.scene == 'scene_yiryeexwkxen',
+				if(hotspot[hs_to_wei], set(hotspot[hs_to_wei].visible, false); set(hotspot[hs_to_wei].enabled, false); );
+				if(hotspot[hs_to_wei_txt], set(hotspot[hs_to_wei_txt].visible, false); set(hotspot[hs_to_wei_txt].enabled, false); );
+				if(hotspot[hs_to_shou], set(hotspot[hs_to_shou].visible, true); set(hotspot[hs_to_shou].enabled, true); );
+				if(hotspot[hs_to_shou_txt], set(hotspot[hs_to_shou_txt].visible, true); set(hotspot[hs_to_shou_txt].enabled, true); );
+			  ,
+				if(hotspot[hs_to_wei], set(hotspot[hs_to_wei].visible, false); );
+				if(hotspot[hs_to_wei_txt], set(hotspot[hs_to_wei_txt].visible, false); );
+				if(hotspot[hs_to_shou], set(hotspot[hs_to_shou].visible, false); );
+				if(hotspot[hs_to_shou_txt], set(hotspot[hs_to_shou_txt].visible, false); );
+			);
+		);
+	</action>
+
+	<action name="trans_show_skip">
+		js(landscapeShowTransSkip());
+	</action>
+	<action name="trans_hide_skip">
+		js(landscapeHideTransSkip());
+	</action>
+
+	<!-- videourl ?v= 换片后升版本，避开浏览器/CDN 缓存 -->
+	<layer name="trans_video_shou_wei"
+	       keep="true"
+	       url.html5="plugins/videoplayer.js"
+	       videourl="media/trans_shou_to_wei.mp4?v=21"
+	       align="center" width="100%" height="100%"
+	       enabled="false" visible="false" alpha="0" zorder="120"
+	       pausedonstart="true" loop="false" muted="false" volume="1.0"
+	       bgcolor="0x000000" bgalpha="1.0"
+	       onvideocomplete="trans_finish();"
+	       />
+
+	<layer name="trans_video_wei_shou"
+	       keep="true"
+	       url.html5="plugins/videoplayer.js"
+	       videourl="media/trans_wei_to_shou.mp4?v=21"
+	       align="center" width="100%" height="100%"
+	       enabled="false" visible="false" alpha="0" zorder="120"
+	       pausedonstart="true" loop="false" muted="false" volume="1.0"
+	       bgcolor="0x000000" bgalpha="1.0"
+	       onvideocomplete="trans_finish();"
+	       />
+
+	<action name="hide_skin_controlbar">
+		skin_hideskin(instant);
+		set(layer[skin_layer].visible, false);
+		set(layer[skin_layer].enabled, false);
+		set(layer[skin_btn_show].visible, false);
+		set(layer[skin_btn_show].enabled, false);
+		set(layer[skin_btn_prev_fs].visible, false);
+		set(layer[skin_btn_prev_fs].enabled, false);
+		set(layer[skin_btn_next_fs].visible, false);
+		set(layer[skin_btn_next_fs].enabled, false);
+		if(layer[webvr_enterbutton],
+			set(layer[webvr_enterbutton].visible, false);
+			set(layer[webvr_enterbutton].enabled, false);
+		);
+	</action>
+
+	<!-- 首→尾（去野营地）：缓速转向并放大，再播视频 -->
+	<action name="trans_start_shou_to_wei">
+		if(trans_busy == true, exit(); );
+		set(trans_busy, true);
+		set(trans_target, 'scene_yiryeexwkxen');
+		set(trans_reveal_fov, 75.76);
+		set(trans_default_fov, 120);
+		set(autorotate.enabled, false);
+		set(control.usercontrol, off);
+		if(hotspot[hs_to_wei], set(hotspot[hs_to_wei].visible, false); );
+		if(hotspot[hs_to_wei_txt], set(hotspot[hs_to_wei_txt].visible, false); set(hotspot[hs_to_wei_txt].enabled, false); );
+		stopdelayedcall(trans_unlock);
+		stopdelayedcall(trans_behind_load);
+		stopdelayedcall(trans_zoom_done);
+		stopdelayedcall(trans_settle_done);
+		stoptween(view.hlookat); stoptween(view.vlookat); stoptween(view.fov);
+		set(layer[trans_video_wei_shou].visible, false);
+		set(layer[trans_video_wei_shou].enabled, false);
+		set(layer[trans_video_shou_wei].visible, true);
+		set(layer[trans_video_shou_wei].enabled, true);
+		set(layer[trans_video_shou_wei].alpha, 0);
+		layer[trans_video_shou_wei].seek(0);
+		layer[trans_video_shou_wei].play();
+		delayedcall(trans_unlock, 0.05,
+			layer[trans_video_shou_wei].pause();
+			layer[trans_video_shou_wei].seek(0);
+			set(layer[trans_video_shou_wei].visible, false);
+			set(layer[trans_video_shou_wei].enabled, false);
+		);
+		<!-- 最短路径缓速转到 h=0，再放大（2s） -->
+		mod(trans_dh, calc(0.0 - view.hlookat + 180), 360);
+		sub(trans_dh, 180);
+		set(trans_h_target, calc(view.hlookat + trans_dh));
+		tween(view.hlookat, get(trans_h_target), 2.0, easeInOutSine);
+		tween(view.vlookat, 0.0, 2.0, easeInOutSine);
+		tween(view.fov, 84.63, 2.0, easeInOutSine,
+			delayedcall(trans_zoom_done, 0.05, trans_play_shou_wei(); );
+		);
+	</action>
+
+	<!-- 尾→首（摩卡艺廊）：缓速转向并放大，再播视频 -->
+	<action name="trans_start_wei_to_shou">
+		if(trans_busy == true, exit(); );
+		set(trans_busy, true);
+		set(trans_target, 'scene_yiryeebmwxen');
+		set(trans_reveal_fov, 84.63);
+		set(trans_default_fov, 120);
+		set(autorotate.enabled, false);
+		set(control.usercontrol, off);
+		if(hotspot[hs_to_shou], set(hotspot[hs_to_shou].visible, false); set(hotspot[hs_to_shou].enabled, false); );
+		if(hotspot[hs_to_shou_txt], set(hotspot[hs_to_shou_txt].visible, false); set(hotspot[hs_to_shou_txt].enabled, false); );
+		stopdelayedcall(trans_unlock);
+		stopdelayedcall(trans_behind_load);
+		stopdelayedcall(trans_zoom_done);
+		stopdelayedcall(trans_settle_done);
+		stoptween(view.hlookat); stoptween(view.vlookat); stoptween(view.fov);
+		set(layer[trans_video_shou_wei].visible, false);
+		set(layer[trans_video_shou_wei].enabled, false);
+		set(layer[trans_video_wei_shou].visible, true);
+		set(layer[trans_video_wei_shou].enabled, true);
+		set(layer[trans_video_wei_shou].alpha, 0);
+		layer[trans_video_wei_shou].seek(0);
+		layer[trans_video_wei_shou].play();
+		delayedcall(trans_unlock, 0.05,
+			layer[trans_video_wei_shou].pause();
+			layer[trans_video_wei_shou].seek(0);
+			set(layer[trans_video_wei_shou].visible, false);
+			set(layer[trans_video_wei_shou].enabled, false);
+		);
+		<!-- 最短路径缓速转到 h=0，再放大（约 3.2s） -->
+		mod(trans_dh, calc(0.0 - view.hlookat + 180), 360);
+		sub(trans_dh, 180);
+		set(trans_h_target, calc(view.hlookat + trans_dh));
+		tween(view.hlookat, get(trans_h_target), 3.2, easeInOutSine);
+		tween(view.vlookat, 0.0, 3.2, easeInOutSine);
+		tween(view.fov, 75.76, 3.2, easeInOutSine,
+			delayedcall(trans_zoom_done, 0.05, trans_play_wei_shou(); );
+		);
+	</action>
+
+	<action name="trans_play_shou_wei">
+		if(trans_busy != true, exit(); );
+		set(trans_active_layer, 'trans_video_shou_wei');
+		set(trans_user_paused, false);
+		set(layer[trans_video_shou_wei].visible, true);
+		set(layer[trans_video_shou_wei].enabled, true);
+		set(layer[trans_video_shou_wei].alpha, 1.0);
+		set(layer[trans_video_shou_wei].zorder, 120);
+		layer[trans_video_shou_wei].seek(0);
+		layer[trans_video_shou_wei].play();
+		trans_show_skip();
+		stopdelayedcall(trans_behind_load);
+		delayedcall(trans_behind_load, 0.12, trans_load_behind_shou_wei(); );
+	</action>
+
+	<action name="trans_play_wei_shou">
+		if(trans_busy != true, exit(); );
+		set(trans_active_layer, 'trans_video_wei_shou');
+		set(trans_user_paused, false);
+		set(layer[trans_video_wei_shou].visible, true);
+		set(layer[trans_video_wei_shou].enabled, true);
+		set(layer[trans_video_wei_shou].alpha, 1.0);
+		set(layer[trans_video_wei_shou].zorder, 120);
+		layer[trans_video_wei_shou].seek(0);
+		layer[trans_video_wei_shou].play();
+		trans_show_skip();
+		stopdelayedcall(trans_behind_load);
+		delayedcall(trans_behind_load, 0.12, trans_load_behind_wei_shou(); );
+	</action>
+
+	<action name="trans_load_behind_shou_wei">
+		if(trans_busy != true, exit(); );
+		loadscene(scene_yiryeexwkxen, null, MERGE|NOPREVIEW, NOBLEND);
+		lookat(0.0, 0.0, get(trans_reveal_fov));
+		delayedcall(0.02, lookat(0.0, 0.0, get(trans_reveal_fov)); );
+		set(layer[trans_video_shou_wei].visible, true);
+		set(layer[trans_video_shou_wei].enabled, true);
+		set(layer[trans_video_shou_wei].alpha, 1.0);
+		set(layer[trans_video_shou_wei].zorder, 120);
+		trans_show_skip();
+		set(control.usercontrol, off);
+		set(autorotate.enabled, false);
+		hide_skin_controlbar();
+		<!-- 用户已暂停则不要自动续播 -->
+		if(trans_user_paused != true,
+			if(layer[trans_video_shou_wei].ispaused, layer[trans_video_shou_wei].play(); );
+		);
+	</action>
+
+	<action name="trans_load_behind_wei_shou">
+		if(trans_busy != true, exit(); );
+		loadscene(scene_yiryeebmwxen, null, MERGE|NOPREVIEW, NOBLEND);
+		lookat(0.0, 0.0, get(trans_reveal_fov));
+		delayedcall(0.02, lookat(0.0, 0.0, get(trans_reveal_fov)); );
+		set(layer[trans_video_wei_shou].visible, true);
+		set(layer[trans_video_wei_shou].enabled, true);
+		set(layer[trans_video_wei_shou].alpha, 1.0);
+		set(layer[trans_video_wei_shou].zorder, 120);
+		trans_show_skip();
+		set(control.usercontrol, off);
+		set(autorotate.enabled, false);
+		hide_skin_controlbar();
+		if(trans_user_paused != true,
+			if(layer[trans_video_wei_shou].ispaused, layer[trans_video_wei_shou].play(); );
+		);
+	</action>
+
+	<action name="trans_finish">
+		stopdelayedcall(trans_unlock);
+		stopdelayedcall(trans_behind_load);
+		stopdelayedcall(trans_zoom_done);
+		stopdelayedcall(trans_settle_done);
+		stoptween(view.hlookat); stoptween(view.vlookat); stoptween(view.fov);
+		set(trans_active_layer, '');
+		set(trans_user_paused, false);
+		layer[trans_video_shou_wei].pause();
+		layer[trans_video_wei_shou].pause();
+		set(layer[trans_video_shou_wei].visible, false);
+		set(layer[trans_video_shou_wei].enabled, false);
+		set(layer[trans_video_shou_wei].alpha, 0);
+		set(layer[trans_video_wei_shou].visible, false);
+		set(layer[trans_video_wei_shou].enabled, false);
+		set(layer[trans_video_wei_shou].alpha, 0);
+		trans_hide_skip();
+		if(xml.scene != get(trans_target),
+			loadscene(get(trans_target), null, MERGE|NOPREVIEW, NOBLEND);
+		);
+		lookat(0.0, 0.0, get(trans_reveal_fov));
+		set(control.usercontrol, off);
+		set(autorotate.enabled, false);
+		hide_skin_controlbar();
+		tween(view.hlookat, 0.0, 2.0, easeOutQuad);
+		tween(view.vlookat, 0.0, 2.0, easeOutQuad);
+		tween(view.fov, get(trans_default_fov), 2.0, easeOutQuad,
+			delayedcall(trans_settle_done, 0.05,
+				set(control.usercontrol, all);
+				set(autorotate.enabled, true);
+				set(trans_busy, false);
+				hide_skin_controlbar();
+				roam_sync_arrows();
+			);
+		);
+	</action>
+
+	<!-- 入场：小行星开场（无左右旋转）平滑展开 —— 对齐第二版vtour -->
+	<action name="play_intro">
+		if(intro_played == true, exit(); );
+		set(intro_played, true);
+		set(autorotate.enabled, false);
+		set(control.usercontrol, off);
+
+		set(intro_h, get(view.hlookat));
+		set(intro_v, get(view.vlookat));
+		set(intro_fov, get(view.fov));
+		set(intro_fovmax, get(view.fovmax));
+
+		set(view.fovmax, 170);
+		set(view.limitview, off);
+		set(view.architectural, 0.0);
+		set(view.pannini, 0.0);
+		lookat(get(intro_h), 90, 150, 1.0, 0, 0);
+
+		delayedcall(intro_expand, 0.5,
+			tween(view.vlookat, get(intro_v), 3.0, easeOutQuad);
+			tween(view.fov, get(intro_fov), 3.0, easeOutQuad);
+			tween(view.distortion, 0.0, 3.0, easeOutQuad);
+			delayedcall(intro_done, 3.0,
+				set(view.fovmax, get(intro_fovmax));
+				set(view.limitview, auto);
+				set(control.usercontrol, all);
+				set(autorotate.enabled, true);
+				hide_skin_controlbar();
+			);
+		);
+	</action>
+
+	<events name="garden_roam_events"
+	        keep="true"
+	        onxmlcomplete="delayedcall(0.05, hide_skin_controlbar()); roam_sync_arrows();"
+	        onnewscene="hide_skin_controlbar(); roam_sync_arrows();"
+	        onloadcomplete="if(intro_played != true, play_intro(); ); roam_sync_arrows();"
+	        />
+
+	<!-- 默认首场景：漫游首帧 -->
+
+<scene name="scene_yiryeebmwxen" title="漫游首帧" onstart="" thumburl="panos/yiryeebmwxen.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/yiryeebmwxen.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/yiryeebmwxen.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+
+		<!-- 正下方偏高：向前箭头 qian.png +「去野营地」 -->
+		<hotspot name="hs_to_wei"
+		         url="skin/hs_arrow_qian.png"
+		         crop="0|0|128|128"
+		         ath="0" atv="20"
+		         rotate="0"
+		         scale="0.72"
+		         zoom="false"
+		         distorted="false"
+		         alpha="0.95"
+		         handcursor="true"
+		         onclick="if(trans_busy != true, trans_start_shou_to_wei(); );"
+		         onloaded="hs_sprite_start(hs_to_wei);"
+		         />
+		<hotspot name="hs_to_wei_txt"
+		         style="hs_label_style"
+		         ath="0" atv="20"
+		         oy="42"
+		         html="去野营地"
+		         onclick="if(trans_busy != true, trans_start_shou_to_wei(); );"
+		         />
+
+	</scene>
+
+
+<scene name="scene_yiryeexwkxen" title="漫游尾帧" onstart="" thumburl="panos/yiryeexwkxen.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/yiryeexwkxen.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/yiryeexwkxen.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+
+		<!-- 「摩卡艺廊」：qian 原方向（不翻转） -->
+		<hotspot name="hs_to_shou"
+		         url="skin/hs_arrow_qian.png"
+		         crop="0|0|128|128"
+		         ath="175" atv="12"
+		         rotate="0"
+		         scale="0.72"
+		         zoom="false"
+		         distorted="false"
+		         alpha="0.95"
+		         visible="true"
+		         enabled="true"
+		         handcursor="true"
+		         onclick="if(trans_busy != true, trans_start_wei_to_shou(); );"
+		         onloaded="hs_sprite_start(hs_to_shou);"
+		         />
+		<hotspot name="hs_to_shou_txt"
+		         style="hs_label_style"
+		         ath="175" atv="12"
+		         oy="42"
+		         html="摩卡艺廊"
+		         onclick="if(trans_busy != true, trans_start_wei_to_shou(); );"
+		         />
+
+	</scene>
+
+</krpano>

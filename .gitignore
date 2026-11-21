@@ -1,0 +1,43 @@
+# =============================================================================
+# 仓库级 .gitignore
+# =============================================================================
+
+# ---- macOS / 系统垃圾 ----
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# ---- 大文件资产包与暂存区（不进 Git，托管在 GitHub Release）----
+# tar.gz 体积 1.4GB，禁止提交；仅提交同目录的 manifest 清单
+release-assets/*.tar.gz
+.large-assets-stash/
+
+# ---- 原始压缩包与临时工作区 ----
+ios.rar
+.setup-tmp/
+*.backup.*
+ios.backup.*/
+
+# ---- Xcode 构建产物与用户数据 ----
+ios/DerivedData/
+ios/**/build/
+ios/**/output/
+ios/**/xcuserdata/
+*.xcuserstate
+ios/App/App.xcodeproj/xcuserdata/
+ios/App/App.xcworkspace/xcuserdata/
+
+# ---- 设计源文件（App 运行不需要，避免污染仓库）----
+*.psd
+*.ai
+*.sketch
+*.fig
+
+# ---- 签名敏感材料（严禁入库，一律走 GitHub Secrets）----
+*.p12
+*.mobileprovision
+*.cer
+*.certSigningRequest
+*.p8
+scripts/certificates/

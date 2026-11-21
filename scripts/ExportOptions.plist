@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  ExportOptions.plist
+  作用: 告诉 xcodebuild -exportArchive 以何种方式导出 IPA。
+  说明:
+  - method=app-store 表示用于 App Store / TestFlight 分发。
+  - teamID 需替换为你的 10 位开发者团队 ID。
+  - 描述文件通过名称关联，需与 import_certificate.sh 安装的描述文件一致。
+  - 上传时由 xcodebuild 自动管理 Bitcode（新版 Xcode 已移除 Bitcode，故不配置）。
+-->
+<plist version="1.0">
+<dict>
+    <!-- 分发渠道：App Store / TestFlight -->
+    <key>method</key>
+    <string>app-store</string>
+
+    <!-- 开发者团队 ID（替换为你自己的 Team ID） -->
+    <key>teamID</key>
+    <string>YOUR_TEAM_ID</string>
+
+    <!-- 上传到 App Store Connect 时允许联网自动补全描述文件 -->
+    <key>allowProvisioningUpdates</key>
+    <true/>
+
+    <!-- 手动签名：按 Bundle ID 指定描述文件名称 -->
+    <key>signingStyle</key>
+    <string>manual</string>
+    <key>provisioningProfiles</key>
+    <dict>
+        <!-- key 为 Bundle ID，value 为描述文件名称（非 UUID） -->
+        <key>com.baihualin.yi</key>
+        <string>YOUR_PROVISIONING_PROFILE_NAME</string>
+    </dict>
+
+    <!-- 剥离调试符号，减小 IPA 体积（符号仍在 xcarchive 的 dSYM 中） -->
+    <key>stripSwiftSymbols</key>
+    <true/>
+
+    <!-- 编译产物支持的架构，device 表示真机 -->
+    <key>destination</key>
+    <string>export</string>
+</dict>
+</plist>

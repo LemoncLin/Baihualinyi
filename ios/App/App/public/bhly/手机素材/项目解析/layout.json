@@ -1,0 +1,1053 @@
+{
+  "canvas": {
+    "width": 1242,
+    "height": 2688
+  },
+  "base": "底图.jpg",
+  "modules": {
+    "structure": {
+      "key": "structure",
+      "label": "景观结构",
+      "folder": "景观结构",
+      "panel": {
+        "file": "面板.png",
+        "left": 0.0,
+        "top": 54.9851,
+        "width": 86.9565,
+        "height": 23.6235,
+        "px": {
+          "left": 0,
+          "top": 1478,
+          "width": 1080,
+          "height": 635
+        },
+        "key": "panel"
+      },
+      "path": {
+        "file": "路径.png",
+        "left": 1.8519,
+        "top": 21.8006,
+        "width": 96.5378,
+        "height": 32.3661,
+        "px": {
+          "left": 23,
+          "top": 586,
+          "width": 1199,
+          "height": 870
+        },
+        "key": "path"
+      },
+      "contents": [
+        {
+          "file": "外环.png",
+          "left": 1.4493,
+          "top": 23.1399,
+          "width": 96.9404,
+          "height": 31.064,
+          "px": {
+            "left": 18,
+            "top": 622,
+            "width": 1204,
+            "height": 835
+          },
+          "key": "外环",
+          "label": "外环"
+        },
+        {
+          "file": "漫享城市绿带.png",
+          "left": 91.1433,
+          "top": 26.0417,
+          "width": 4.1063,
+          "height": 7.5149,
+          "px": {
+            "left": 1132,
+            "top": 700,
+            "width": 51,
+            "height": 202
+          },
+          "key": "漫享城市绿带",
+          "label": "漫享城市绿带"
+        },
+        {
+          "file": "内环.png",
+          "left": 38.0837,
+          "top": 29.3899,
+          "width": 27.3752,
+          "height": 14.4717,
+          "px": {
+            "left": 473,
+            "top": 790,
+            "width": 340,
+            "height": 389
+          },
+          "key": "内环",
+          "label": "内环"
+        },
+        {
+          "file": "漫享森环.png",
+          "left": 59.9839,
+          "top": 31.3616,
+          "width": 2.1739,
+          "height": 5.2083,
+          "px": {
+            "left": 745,
+            "top": 843,
+            "width": 27,
+            "height": 140
+          },
+          "key": "漫享森环",
+          "label": "漫享森环"
+        },
+        {
+          "file": "轴线.png",
+          "left": 2.496,
+          "top": 20.6101,
+          "width": 95.6522,
+          "height": 32.7381,
+          "px": {
+            "left": 31,
+            "top": 554,
+            "width": 1188,
+            "height": 880
+          },
+          "key": "轴线",
+          "label": "轴线"
+        },
+        {
+          "file": "臻境.png",
+          "left": 43.8808,
+          "top": 32.6637,
+          "width": 16.3446,
+          "height": 7.5521,
+          "px": {
+            "left": 545,
+            "top": 878,
+            "width": 203,
+            "height": 203
+          },
+          "key": "臻境",
+          "label": "臻·境"
+        },
+        {
+          "file": "邻里悦趣花园.png",
+          "left": 22.7858,
+          "top": 29.6503,
+          "width": 13.6876,
+          "height": 6.3244,
+          "px": {
+            "left": 283,
+            "top": 797,
+            "width": 170,
+            "height": 170
+          },
+          "key": "邻里悦趣花园",
+          "label": "邻里悦趣花园"
+        },
+        {
+          "file": "邻里悦趣花园_2.png",
+          "left": 25.4428,
+          "top": 42.0387,
+          "width": 13.6876,
+          "height": 6.2872,
+          "px": {
+            "left": 316,
+            "top": 1130,
+            "width": 170,
+            "height": 169
+          },
+          "key": "邻里悦趣花园_2",
+          "label": "邻里悦趣花园"
+        },
+        {
+          "file": "邻里悦趣花园_3.png",
+          "left": 65.781,
+          "top": 29.5015,
+          "width": 13.6071,
+          "height": 6.2872,
+          "px": {
+            "left": 817,
+            "top": 793,
+            "width": 169,
+            "height": 169
+          },
+          "key": "邻里悦趣花园_3",
+          "label": "邻里悦趣花园"
+        },
+        {
+          "file": "璞境.png",
+          "left": 28.9855,
+          "top": 36.1607,
+          "width": 12.5604,
+          "height": 5.8036,
+          "px": {
+            "left": 360,
+            "top": 972,
+            "width": 156,
+            "height": 156
+          },
+          "key": "璞境",
+          "label": "璞·境"
+        },
+        {
+          "file": "悦境.png",
+          "left": 45.7327,
+          "top": 38.5789,
+          "width": 12.5604,
+          "height": 5.8036,
+          "px": {
+            "left": 568,
+            "top": 1037,
+            "width": 156,
+            "height": 156
+          },
+          "key": "悦境",
+          "label": "悦·境"
+        },
+        {
+          "file": "赏境.png",
+          "left": 44.686,
+          "top": 45.3125,
+          "width": 14.5733,
+          "height": 6.7336,
+          "px": {
+            "left": 555,
+            "top": 1218,
+            "width": 181,
+            "height": 181
+          },
+          "key": "赏境",
+          "label": "赏·境"
+        },
+        {
+          "file": "萃境.png",
+          "left": 67.4718,
+          "top": 35.6027,
+          "width": 14.5733,
+          "height": 6.7336,
+          "px": {
+            "left": 838,
+            "top": 957,
+            "width": 181,
+            "height": 181
+          },
+          "key": "萃境",
+          "label": "萃·境"
+        },
+        {
+          "file": "萃境_2.png",
+          "left": 67.8744,
+          "top": 42.1503,
+          "width": 16.1031,
+          "height": 6.3244,
+          "px": {
+            "left": 843,
+            "top": 1133,
+            "width": 200,
+            "height": 170
+          },
+          "key": "萃境_2",
+          "label": "【 萃·境 】"
+        },
+        {
+          "file": "尊境.png",
+          "left": 14.3317,
+          "top": 35.4539,
+          "width": 15.781,
+          "height": 7.2917,
+          "px": {
+            "left": 178,
+            "top": 953,
+            "width": 196,
+            "height": 196
+          },
+          "key": "尊境",
+          "label": "【 尊·境 】"
+        },
+        {
+          "file": "尊境_2.png",
+          "left": 45.8132,
+          "top": 27.0833,
+          "width": 12.3994,
+          "height": 5.7292,
+          "px": {
+            "left": 569,
+            "top": 728,
+            "width": 154,
+            "height": 154
+          },
+          "key": "尊境_2",
+          "label": "【 尊·境 】"
+        }
+      ]
+    },
+    "nodes": {
+      "key": "nodes",
+      "label": "景观节点",
+      "folder": "景观节点",
+      "panel": {
+        "file": "面板.png",
+        "left": 0.0,
+        "top": 54.9479,
+        "width": 94.3639,
+        "height": 23.9211,
+        "px": {
+          "left": 0,
+          "top": 1477,
+          "width": 1172,
+          "height": 643
+        },
+        "key": "panel"
+      },
+      "path": null,
+      "contents": [
+        {
+          "file": "01.png",
+          "left": 9.0177,
+          "top": 38.244,
+          "width": 4.7504,
+          "height": 2.6042,
+          "px": {
+            "left": 112,
+            "top": 1028,
+            "width": 59,
+            "height": 70
+          },
+          "key": "01",
+          "label": "01"
+        },
+        {
+          "file": "02.png",
+          "left": 15.3784,
+          "top": 37.686,
+          "width": 4.7504,
+          "height": 2.567,
+          "px": {
+            "left": 191,
+            "top": 1013,
+            "width": 59,
+            "height": 69
+          },
+          "key": "02",
+          "label": "02"
+        },
+        {
+          "file": "03.png",
+          "left": 29.5491,
+          "top": 36.9048,
+          "width": 4.7504,
+          "height": 2.6042,
+          "px": {
+            "left": 367,
+            "top": 992,
+            "width": 59,
+            "height": 70
+          },
+          "key": "03",
+          "label": "03"
+        },
+        {
+          "file": "04.png",
+          "left": 39.8551,
+          "top": 36.9048,
+          "width": 4.7504,
+          "height": 2.567,
+          "px": {
+            "left": 495,
+            "top": 992,
+            "width": 59,
+            "height": 69
+          },
+          "key": "04",
+          "label": "04"
+        },
+        {
+          "file": "05.png",
+          "left": 43.7198,
+          "top": 37.5372,
+          "width": 4.6699,
+          "height": 2.567,
+          "px": {
+            "left": 543,
+            "top": 1009,
+            "width": 58,
+            "height": 69
+          },
+          "key": "05",
+          "label": "05"
+        },
+        {
+          "file": "06.png",
+          "left": 47.343,
+          "top": 35.7515,
+          "width": 4.7504,
+          "height": 2.567,
+          "px": {
+            "left": 588,
+            "top": 961,
+            "width": 59,
+            "height": 69
+          },
+          "key": "06",
+          "label": "06"
+        },
+        {
+          "file": "07.png",
+          "left": 51.8519,
+          "top": 37.314,
+          "width": 4.7504,
+          "height": 2.567,
+          "px": {
+            "left": 644,
+            "top": 1003,
+            "width": 59,
+            "height": 69
+          },
+          "key": "07",
+          "label": "07"
+        },
+        {
+          "file": "08.png",
+          "left": 57.1659,
+          "top": 38.9509,
+          "width": 4.6699,
+          "height": 2.567,
+          "px": {
+            "left": 710,
+            "top": 1047,
+            "width": 58,
+            "height": 69
+          },
+          "key": "08",
+          "label": "08"
+        },
+        {
+          "file": "10.png",
+          "left": 42.2705,
+          "top": 46.3542,
+          "width": 4.7504,
+          "height": 2.6042,
+          "px": {
+            "left": 525,
+            "top": 1246,
+            "width": 59,
+            "height": 70
+          },
+          "key": "10",
+          "label": "10"
+        },
+        {
+          "file": "11.png",
+          "left": 51.6908,
+          "top": 46.6146,
+          "width": 4.7504,
+          "height": 2.567,
+          "px": {
+            "left": 642,
+            "top": 1253,
+            "width": 59,
+            "height": 69
+          },
+          "key": "11",
+          "label": "11"
+        },
+        {
+          "file": "09.png",
+          "left": 69.9678,
+          "top": 42.4851,
+          "width": 4.6699,
+          "height": 2.6042,
+          "px": {
+            "left": 869,
+            "top": 1142,
+            "width": 58,
+            "height": 70
+          },
+          "key": "09",
+          "label": "09"
+        },
+        {
+          "file": "12.png",
+          "left": 80.5153,
+          "top": 42.8199,
+          "width": 4.6699,
+          "height": 2.567,
+          "px": {
+            "left": 1000,
+            "top": 1151,
+            "width": 58,
+            "height": 69
+          },
+          "key": "12",
+          "label": "12"
+        },
+        {
+          "file": "20.png",
+          "left": 83.3333,
+          "top": 38.3929,
+          "width": 4.7504,
+          "height": 2.567,
+          "px": {
+            "left": 1035,
+            "top": 1032,
+            "width": 59,
+            "height": 69
+          },
+          "key": "20",
+          "label": "20"
+        },
+        {
+          "file": "19.png",
+          "left": 80.9179,
+          "top": 36.9792,
+          "width": 4.6699,
+          "height": 2.567,
+          "px": {
+            "left": 1005,
+            "top": 994,
+            "width": 58,
+            "height": 69
+          },
+          "key": "19",
+          "label": "19"
+        },
+        {
+          "file": "19_2.png",
+          "left": 57.5684,
+          "top": 25.2976,
+          "width": 4.6699,
+          "height": 2.567,
+          "px": {
+            "left": 715,
+            "top": 680,
+            "width": 58,
+            "height": 69
+          },
+          "key": "19_2",
+          "label": "19"
+        },
+        {
+          "file": "18.png",
+          "left": 48.3897,
+          "top": 25.1116,
+          "width": 4.7504,
+          "height": 2.567,
+          "px": {
+            "left": 601,
+            "top": 675,
+            "width": 59,
+            "height": 69
+          },
+          "key": "18",
+          "label": "18"
+        },
+        {
+          "file": "17.png",
+          "left": 39.0499,
+          "top": 25.186,
+          "width": 4.7504,
+          "height": 2.6042,
+          "px": {
+            "left": 485,
+            "top": 677,
+            "width": 59,
+            "height": 70
+          },
+          "key": "17",
+          "label": "17"
+        },
+        {
+          "file": "12_2.png",
+          "left": 21.256,
+          "top": 30.4688,
+          "width": 4.6699,
+          "height": 2.567,
+          "px": {
+            "left": 264,
+            "top": 819,
+            "width": 58,
+            "height": 69
+          },
+          "key": "12_2",
+          "label": "12"
+        },
+        {
+          "file": "15.png",
+          "left": 14.4928,
+          "top": 29.5759,
+          "width": 4.7504,
+          "height": 2.567,
+          "px": {
+            "left": 180,
+            "top": 795,
+            "width": 59,
+            "height": 69
+          },
+          "key": "15",
+          "label": "15"
+        },
+        {
+          "file": "16.png",
+          "left": 8.0515,
+          "top": 32.6637,
+          "width": 4.6699,
+          "height": 2.6042,
+          "px": {
+            "left": 100,
+            "top": 878,
+            "width": 58,
+            "height": 70
+          },
+          "key": "16",
+          "label": "16"
+        },
+        {
+          "file": "16_2.png",
+          "left": 13.7681,
+          "top": 44.5685,
+          "width": 4.7504,
+          "height": 2.567,
+          "px": {
+            "left": 171,
+            "top": 1198,
+            "width": 59,
+            "height": 69
+          },
+          "key": "16_2",
+          "label": "16"
+        },
+        {
+          "file": "12_3.png",
+          "left": 25.4428,
+          "top": 43.6756,
+          "width": 4.7504,
+          "height": 2.6042,
+          "px": {
+            "left": 316,
+            "top": 1174,
+            "width": 59,
+            "height": 70
+          },
+          "key": "12_3",
+          "label": "12"
+        },
+        {
+          "file": "09_2.png",
+          "left": 69.8873,
+          "top": 37.0536,
+          "width": 4.7504,
+          "height": 2.6042,
+          "px": {
+            "left": 868,
+            "top": 996,
+            "width": 59,
+            "height": 70
+          },
+          "key": "09_2",
+          "label": "09"
+        },
+        {
+          "file": "14.png",
+          "left": 59.5813,
+          "top": 31.6964,
+          "width": 4.7504,
+          "height": 2.6042,
+          "px": {
+            "left": 740,
+            "top": 852,
+            "width": 59,
+            "height": 70
+          },
+          "key": "14",
+          "label": "14"
+        },
+        {
+          "file": "13.png",
+          "left": 67.1498,
+          "top": 30.6176,
+          "width": 4.6699,
+          "height": 2.567,
+          "px": {
+            "left": 834,
+            "top": 823,
+            "width": 58,
+            "height": 69
+          },
+          "key": "13",
+          "label": "13"
+        }
+      ]
+    },
+    "zoning": {
+      "key": "zoning",
+      "label": "功能分析",
+      "folder": "功能分析",
+      "panel": {
+        "file": "面板.png",
+        "left": 0.0,
+        "top": 55.1339,
+        "width": 82.9308,
+        "height": 22.5074,
+        "px": {
+          "left": 0,
+          "top": 1482,
+          "width": 1030,
+          "height": 605
+        },
+        "key": "panel"
+      },
+      "path": {
+        "file": "路径.png",
+        "left": 3.2206,
+        "top": 24.1815,
+        "width": 92.5121,
+        "height": 29.5387,
+        "px": {
+          "left": 40,
+          "top": 650,
+          "width": 1149,
+          "height": 794
+        },
+        "key": "path"
+      },
+      "contents": [
+        {
+          "file": "绿地公园.png",
+          "left": 13.2045,
+          "top": 48.6607,
+          "width": 82.5282,
+          "height": 5.3571,
+          "px": {
+            "left": 164,
+            "top": 1308,
+            "width": 1025,
+            "height": 144
+          },
+          "key": "绿地公园",
+          "label": "绿地公园"
+        },
+        {
+          "file": "情景化花园商业.png",
+          "left": 5.2335,
+          "top": 23.8839,
+          "width": 79.8712,
+          "height": 3.1622,
+          "px": {
+            "left": 65,
+            "top": 642,
+            "width": 992,
+            "height": 85
+          },
+          "key": "情景化花园商业",
+          "label": "情景化花园商业"
+        },
+        {
+          "file": "情景化花园商业_2.png",
+          "left": 2.5765,
+          "top": 26.5625,
+          "width": 19.0821,
+          "height": 22.3586,
+          "px": {
+            "left": 32,
+            "top": 714,
+            "width": 237,
+            "height": 601
+          },
+          "key": "情景化花园商业_2",
+          "label": "情景化花园商业"
+        },
+        {
+          "file": "1.png",
+          "left": 16.2641,
+          "top": 26.1533,
+          "width": 23.752,
+          "height": 4.9851,
+          "px": {
+            "left": 202,
+            "top": 703,
+            "width": 295,
+            "height": 134
+          },
+          "key": "1",
+          "label": "1"
+        },
+        {
+          "file": "2.png",
+          "left": 17.8744,
+          "top": 32.9613,
+          "width": 23.6715,
+          "height": 4.9851,
+          "px": {
+            "left": 222,
+            "top": 886,
+            "width": 294,
+            "height": 134
+          },
+          "key": "2",
+          "label": "2"
+        },
+        {
+          "file": "3.png",
+          "left": 38.3253,
+          "top": 29.3155,
+          "width": 23.6715,
+          "height": 4.9851,
+          "px": {
+            "left": 476,
+            "top": 788,
+            "width": 294,
+            "height": 134
+          },
+          "key": "3",
+          "label": "3"
+        },
+        {
+          "file": "4.png",
+          "left": 18.6795,
+          "top": 29.7247,
+          "width": 19.0821,
+          "height": 4.9479,
+          "px": {
+            "left": 232,
+            "top": 799,
+            "width": 237,
+            "height": 133
+          },
+          "key": "4",
+          "label": "4"
+        },
+        {
+          "file": "5.png",
+          "left": 21.5781,
+          "top": 42.0759,
+          "width": 19.0821,
+          "height": 4.9851,
+          "px": {
+            "left": 268,
+            "top": 1131,
+            "width": 237,
+            "height": 134
+          },
+          "key": "5",
+          "label": "5"
+        },
+        {
+          "file": "6.png",
+          "left": 66.9082,
+          "top": 42.2247,
+          "width": 19.0016,
+          "height": 4.9851,
+          "px": {
+            "left": 831,
+            "top": 1135,
+            "width": 236,
+            "height": 134
+          },
+          "key": "6",
+          "label": "6"
+        },
+        {
+          "file": "7.png",
+          "left": 61.6747,
+          "top": 29.5759,
+          "width": 19.0016,
+          "height": 4.9851,
+          "px": {
+            "left": 766,
+            "top": 795,
+            "width": 236,
+            "height": 134
+          },
+          "key": "7",
+          "label": "7"
+        },
+        {
+          "file": "5_2.png",
+          "left": 21.1755,
+          "top": 36.1607,
+          "width": 19.0016,
+          "height": 4.9851,
+          "px": {
+            "left": 263,
+            "top": 972,
+            "width": 236,
+            "height": 134
+          },
+          "key": "5_2",
+          "label": "5"
+        },
+        {
+          "file": "6_2.png",
+          "left": 7.1659,
+          "top": 35.7515,
+          "width": 14.4122,
+          "height": 6.25,
+          "px": {
+            "left": 89,
+            "top": 961,
+            "width": 179,
+            "height": 168
+          },
+          "key": "6_2",
+          "label": "6"
+        },
+        {
+          "file": "10.png",
+          "left": 40.2576,
+          "top": 34.003,
+          "width": 19.8068,
+          "height": 9.2262,
+          "px": {
+            "left": 500,
+            "top": 914,
+            "width": 246,
+            "height": 248
+          },
+          "key": "10",
+          "label": "10"
+        },
+        {
+          "file": "11.png",
+          "left": 40.2576,
+          "top": 44.0104,
+          "width": 25.5233,
+          "height": 4.9479,
+          "px": {
+            "left": 500,
+            "top": 1183,
+            "width": 317,
+            "height": 133
+          },
+          "key": "11",
+          "label": "11"
+        },
+        {
+          "file": "12.png",
+          "left": 64.8148,
+          "top": 36.756,
+          "width": 20.7729,
+          "height": 7.6637,
+          "px": {
+            "left": 805,
+            "top": 988,
+            "width": 258,
+            "height": 206
+          },
+          "key": "12",
+          "label": "12"
+        },
+        {
+          "file": "13.png",
+          "left": 56.1997,
+          "top": 36.6815,
+          "width": 10.9501,
+          "height": 6.5104,
+          "px": {
+            "left": 698,
+            "top": 986,
+            "width": 136,
+            "height": 175
+          },
+          "key": "13",
+          "label": "13"
+        }
+      ]
+    },
+    "flow": {
+      "key": "flow",
+      "label": "流线分析",
+      "folder": "流线分析",
+      "panel": {
+        "file": "面板.png",
+        "left": 0.0,
+        "top": 55.1339,
+        "width": 87.4396,
+        "height": 19.3452,
+        "px": {
+          "left": 0,
+          "top": 1482,
+          "width": 1086,
+          "height": 520
+        },
+        "key": "panel"
+      },
+      "path": null,
+      "contents": [
+        {
+          "file": "路径.png",
+          "left": 2.5765,
+          "top": 23.8095,
+          "width": 92.19,
+          "height": 28.5342,
+          "px": {
+            "left": 32,
+            "top": 640,
+            "width": 1145,
+            "height": 767
+          },
+          "key": "路径",
+          "label": "路径"
+        },
+        {
+          "file": "流线.png",
+          "left": 2.5765,
+          "top": 21.6146,
+          "width": 92.7536,
+          "height": 31.1012,
+          "px": {
+            "left": 32,
+            "top": 581,
+            "width": 1152,
+            "height": 836
+          },
+          "key": "流线",
+          "label": "流线"
+        },
+        {
+          "file": "首层架空.png",
+          "left": 22.7053,
+          "top": 27.4926,
+          "width": 9.9034,
+          "height": 1.8601,
+          "px": {
+            "left": 282,
+            "top": 739,
+            "width": 123,
+            "height": 50
+          },
+          "key": "首层架空",
+          "label": "首层架空"
+        },
+        {
+          "file": "首层架空_2.png",
+          "left": 45.2496,
+          "top": 31.1012,
+          "width": 9.9839,
+          "height": 1.8601,
+          "px": {
+            "left": 562,
+            "top": 836,
+            "width": 124,
+            "height": 50
+          },
+          "key": "首层架空_2",
+          "label": "首层架空"
+        },
+        {
+          "file": "首层架空_3.png",
+          "left": 24.3961,
+          "top": 34.5982,
+          "width": 9.9034,
+          "height": 1.8601,
+          "px": {
+            "left": 303,
+            "top": 930,
+            "width": 123,
+            "height": 50
+          },
+          "key": "首层架空_3",
+          "label": "首层架空"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1882 @@
+<krpano>
+	<!--
+	  区域沙盘信息标签（固定线尖，同春风玉祥门站）
+	  【可调·线尖】改该点 7 个 hotspot 的 ath/atv（保持一致）
+	  【可调·卡片】改 label_xxx_apply_pos 的 dx/dy（只挪卡片，勿改线 ox/oy）
+	  黑底总宽 = 17 + mid + 17；左右 ox = ±(mid/2 + 8.5)
+	  素材：../../沙盘标签/
+	-->
+
+	<style name="sandbox_label_img"
+	       distorted="false"
+	       zoom="false"
+	       depth="1000"
+	       scale="0.55"
+	       enabled="false"
+	       capture="false"
+	       visible="false"
+	       />
+
+	<style name="sandbox_label_text"
+	       type="text"
+	       distorted="false"
+	       zoom="false"
+	       depth="1000"
+	       edge="center"
+	       enabled="false"
+	       capture="false"
+	       bg="false"
+	       visible="false"
+	       css="color:#FFFFFF; font-family:Microsoft YaHei,PingFang SC,Arial,sans-serif; font-size:12px; text-align:center; font-weight:bold;"
+	       />
+
+	<!-- 项目周边一圈：字号加大 -->
+	<style name="sandbox_label_text_near"
+	       type="text"
+	       distorted="false"
+	       zoom="false"
+	       depth="1000"
+	       edge="center"
+	       enabled="false"
+	       capture="false"
+	       bg="false"
+	       visible="false"
+	       css="color:#FFFFFF; font-family:Microsoft YaHei,PingFang SC,Arial,sans-serif; font-size:15px; text-align:center; font-weight:bold;"
+	       />
+
+	<!-- ========== apply_pos：线尖固定，只挪卡片 ========== -->
+
+	<action name="label_wjsz_apply_pos">
+		set(label_wjsz_dx, 0); set(label_wjsz_dy, 0);
+		set(hotspot[label_wjsz_line].ox, 0); set(hotspot[label_wjsz_line].oy, 0);
+		calc(hotspot[label_wjsz_bg_l].ox, label_wjsz_dx - 75); calc(hotspot[label_wjsz_bg_l].oy, label_wjsz_dy - 63);
+		calc(hotspot[label_wjsz_bg_m].ox, label_wjsz_dx + 0); calc(hotspot[label_wjsz_bg_m].oy, label_wjsz_dy - 63);
+		calc(hotspot[label_wjsz_bg_r].ox, label_wjsz_dx + 75); calc(hotspot[label_wjsz_bg_r].oy, label_wjsz_dy - 63);
+		calc(hotspot[label_wjsz_circle].ox, label_wjsz_dx - 67); calc(hotspot[label_wjsz_circle].oy, label_wjsz_dy - 63);
+		calc(hotspot[label_wjsz_icon].ox, label_wjsz_dx - 67); calc(hotspot[label_wjsz_icon].oy, label_wjsz_dy - 63);
+		calc(hotspot[label_wjsz_text].ox, label_wjsz_dx + 15); calc(hotspot[label_wjsz_text].oy, label_wjsz_dy - 63);
+	</action>
+
+	<action name="label_wjs_apply_pos">
+		set(label_wjs_dx, 0); set(label_wjs_dy, 0);
+		set(hotspot[label_wjs_line].ox, 0); set(hotspot[label_wjs_line].oy, 0);
+		calc(hotspot[label_wjs_bg_l].ox, label_wjs_dx - 65); calc(hotspot[label_wjs_bg_l].oy, label_wjs_dy - 63);
+		calc(hotspot[label_wjs_bg_m].ox, label_wjs_dx + 0); calc(hotspot[label_wjs_bg_m].oy, label_wjs_dy - 63);
+		calc(hotspot[label_wjs_bg_r].ox, label_wjs_dx + 65); calc(hotspot[label_wjs_bg_r].oy, label_wjs_dy - 63);
+		calc(hotspot[label_wjs_circle].ox, label_wjs_dx - 57); calc(hotspot[label_wjs_circle].oy, label_wjs_dy - 63);
+		calc(hotspot[label_wjs_icon].ox, label_wjs_dx - 57); calc(hotspot[label_wjs_icon].oy, label_wjs_dy - 63);
+		calc(hotspot[label_wjs_text].ox, label_wjs_dx + 12); calc(hotspot[label_wjs_text].oy, label_wjs_dy - 63);
+	</action>
+
+	<action name="label_hhyy_apply_pos">
+		set(label_hhyy_dx, 0); set(label_hhyy_dy, 0);
+		set(hotspot[label_hhyy_line].ox, 0); set(hotspot[label_hhyy_line].oy, 0);
+		calc(hotspot[label_hhyy_bg_l].ox, label_hhyy_dx - 56); calc(hotspot[label_hhyy_bg_l].oy, label_hhyy_dy - 63);
+		calc(hotspot[label_hhyy_bg_m].ox, label_hhyy_dx + 0); calc(hotspot[label_hhyy_bg_m].oy, label_hhyy_dy - 63);
+		calc(hotspot[label_hhyy_bg_r].ox, label_hhyy_dx + 56); calc(hotspot[label_hhyy_bg_r].oy, label_hhyy_dy - 63);
+		calc(hotspot[label_hhyy_circle].ox, label_hhyy_dx - 48); calc(hotspot[label_hhyy_circle].oy, label_hhyy_dy - 63);
+		calc(hotspot[label_hhyy_icon].ox, label_hhyy_dx - 48); calc(hotspot[label_hhyy_icon].oy, label_hhyy_dy - 63);
+		calc(hotspot[label_hhyy_text].ox, label_hhyy_dx + 12); calc(hotspot[label_hhyy_text].oy, label_hhyy_dy - 63);
+	</action>
+
+	<!-- 奥达文景观园 ·公园 · 文景山公园站与红会医院中间 -->
+	<action name="label_adwjgy_apply_pos">
+		set(label_adwjgy_dx, 0); set(label_adwjgy_dy, 0);
+		set(hotspot[label_adwjgy_line].ox, 0); set(hotspot[label_adwjgy_line].oy, 0);
+		calc(hotspot[label_adwjgy_bg_l].ox, label_adwjgy_dx - 65); calc(hotspot[label_adwjgy_bg_l].oy, label_adwjgy_dy - 63);
+		calc(hotspot[label_adwjgy_bg_m].ox, label_adwjgy_dx + 0); calc(hotspot[label_adwjgy_bg_m].oy, label_adwjgy_dy - 63);
+		calc(hotspot[label_adwjgy_bg_r].ox, label_adwjgy_dx + 65); calc(hotspot[label_adwjgy_bg_r].oy, label_adwjgy_dy - 63);
+		calc(hotspot[label_adwjgy_circle].ox, label_adwjgy_dx - 57); calc(hotspot[label_adwjgy_circle].oy, label_adwjgy_dy - 63);
+		calc(hotspot[label_adwjgy_icon].ox, label_adwjgy_dx - 57); calc(hotspot[label_adwjgy_icon].oy, label_adwjgy_dy - 63);
+		calc(hotspot[label_adwjgy_text].ox, label_adwjgy_dx + 12); calc(hotspot[label_adwjgy_text].oy, label_adwjgy_dy - 63);
+	</action>
+
+	<action name="label_jk11_apply_pos">
+		set(label_jk11_dx, 0); set(label_jk11_dy, 0);
+		set(hotspot[label_jk11_line].ox, 0); set(hotspot[label_jk11_line].oy, 0);
+		calc(hotspot[label_jk11_bg_l].ox, label_jk11_dx - 84); calc(hotspot[label_jk11_bg_l].oy, label_jk11_dy - 105);
+		calc(hotspot[label_jk11_bg_m].ox, label_jk11_dx + 0); calc(hotspot[label_jk11_bg_m].oy, label_jk11_dy - 105);
+		calc(hotspot[label_jk11_bg_r].ox, label_jk11_dx + 84); calc(hotspot[label_jk11_bg_r].oy, label_jk11_dy - 105);
+		calc(hotspot[label_jk11_circle].ox, label_jk11_dx - 76); calc(hotspot[label_jk11_circle].oy, label_jk11_dy - 105);
+		calc(hotspot[label_jk11_icon].ox, label_jk11_dx - 76); calc(hotspot[label_jk11_icon].oy, label_jk11_dy - 105);
+		calc(hotspot[label_jk11_text].ox, label_jk11_dx + 15); calc(hotspot[label_jk11_text].oy, label_jk11_dy - 105);
+	</action>
+
+	<!-- 东兴隆商业 ·商场 · 经开第十一幼儿园下面 -->
+	<action name="label_dxlsy_apply_pos">
+		set(label_dxlsy_dx, 0); set(label_dxlsy_dy, 0);
+		set(hotspot[label_dxlsy_line].ox, 0); set(hotspot[label_dxlsy_line].oy, 0);
+		calc(hotspot[label_dxlsy_bg_l].ox, label_dxlsy_dx - 65); calc(hotspot[label_dxlsy_bg_l].oy, label_dxlsy_dy - 63);
+		calc(hotspot[label_dxlsy_bg_m].ox, label_dxlsy_dx + 0); calc(hotspot[label_dxlsy_bg_m].oy, label_dxlsy_dy - 63);
+		calc(hotspot[label_dxlsy_bg_r].ox, label_dxlsy_dx + 65); calc(hotspot[label_dxlsy_bg_r].oy, label_dxlsy_dy - 63);
+		calc(hotspot[label_dxlsy_circle].ox, label_dxlsy_dx - 57); calc(hotspot[label_dxlsy_circle].oy, label_dxlsy_dy - 63);
+		calc(hotspot[label_dxlsy_icon].ox, label_dxlsy_dx - 57); calc(hotspot[label_dxlsy_icon].oy, label_dxlsy_dy - 63);
+		calc(hotspot[label_dxlsy_text].ox, label_dxlsy_dx + 12); calc(hotspot[label_dxlsy_text].oy, label_dxlsy_dy - 63);
+	</action>
+
+	<action name="label_jk8_apply_pos">
+		set(label_jk8_dx, 0); set(label_jk8_dy, 0);
+		set(hotspot[label_jk8_line].ox, 0); set(hotspot[label_jk8_line].oy, 0);
+		calc(hotspot[label_jk8_bg_l].ox, label_jk8_dx - 75); calc(hotspot[label_jk8_bg_l].oy, label_jk8_dy - 63);
+		calc(hotspot[label_jk8_bg_m].ox, label_jk8_dx + 0); calc(hotspot[label_jk8_bg_m].oy, label_jk8_dy - 63);
+		calc(hotspot[label_jk8_bg_r].ox, label_jk8_dx + 75); calc(hotspot[label_jk8_bg_r].oy, label_jk8_dy - 63);
+		calc(hotspot[label_jk8_circle].ox, label_jk8_dx - 67); calc(hotspot[label_jk8_circle].oy, label_jk8_dy - 63);
+		calc(hotspot[label_jk8_icon].ox, label_jk8_dx - 67); calc(hotspot[label_jk8_icon].oy, label_jk8_dy - 63);
+		calc(hotspot[label_jk8_text].ox, label_jk8_dx + 15); calc(hotspot[label_jk8_text].oy, label_jk8_dy - 63);
+	</action>
+
+	<action name="label_jk2x_apply_pos">
+		set(label_jk2x_dx, 0); set(label_jk2x_dy, 0);
+		set(hotspot[label_jk2x_line].ox, 0); set(hotspot[label_jk2x_line].oy, 0);
+		calc(hotspot[label_jk2x_bg_l].ox, label_jk2x_dx - 70); calc(hotspot[label_jk2x_bg_l].oy, label_jk2x_dy - 63);
+		calc(hotspot[label_jk2x_bg_m].ox, label_jk2x_dx + 0); calc(hotspot[label_jk2x_bg_m].oy, label_jk2x_dy - 63);
+		calc(hotspot[label_jk2x_bg_r].ox, label_jk2x_dx + 70); calc(hotspot[label_jk2x_bg_r].oy, label_jk2x_dy - 63);
+		calc(hotspot[label_jk2x_circle].ox, label_jk2x_dx - 62); calc(hotspot[label_jk2x_circle].oy, label_jk2x_dy - 63);
+		calc(hotspot[label_jk2x_icon].ox, label_jk2x_dx - 62); calc(hotspot[label_jk2x_icon].oy, label_jk2x_dy - 63);
+		calc(hotspot[label_jk2x_text].ox, label_jk2x_dx + 15); calc(hotspot[label_jk2x_text].oy, label_jk2x_dy - 63);
+	</action>
+
+	<action name="label_qhd_apply_pos">
+		set(label_qhd_dx, 0); set(label_qhd_dy, 0);
+		set(hotspot[label_qhd_line].ox, 0); set(hotspot[label_qhd_line].oy, 0);
+		calc(hotspot[label_qhd_bg_l].ox, label_qhd_dx - 56); calc(hotspot[label_qhd_bg_l].oy, label_qhd_dy - 63);
+		calc(hotspot[label_qhd_bg_m].ox, label_qhd_dx + 0); calc(hotspot[label_qhd_bg_m].oy, label_qhd_dy - 63);
+		calc(hotspot[label_qhd_bg_r].ox, label_qhd_dx + 56); calc(hotspot[label_qhd_bg_r].oy, label_qhd_dy - 63);
+		calc(hotspot[label_qhd_circle].ox, label_qhd_dx - 48); calc(hotspot[label_qhd_circle].oy, label_qhd_dy - 63);
+		calc(hotspot[label_qhd_icon].ox, label_qhd_dx - 48); calc(hotspot[label_qhd_icon].oy, label_qhd_dy - 63);
+		calc(hotspot[label_qhd_text].ox, label_qhd_dx + 12); calc(hotspot[label_qhd_text].oy, label_qhd_dy - 63);
+	</action>
+
+	<action name="label_cszyg_apply_pos">
+		set(label_cszyg_dx, 0); set(label_cszyg_dy, 0);
+		set(hotspot[label_cszyg_line].ox, 0); set(hotspot[label_cszyg_line].oy, 0);
+		calc(hotspot[label_cszyg_bg_l].ox, label_cszyg_dx - 70); calc(hotspot[label_cszyg_bg_l].oy, label_cszyg_dy - 63);
+		calc(hotspot[label_cszyg_bg_m].ox, label_cszyg_dx + 0); calc(hotspot[label_cszyg_bg_m].oy, label_cszyg_dy - 63);
+		calc(hotspot[label_cszyg_bg_r].ox, label_cszyg_dx + 70); calc(hotspot[label_cszyg_bg_r].oy, label_cszyg_dy - 63);
+		calc(hotspot[label_cszyg_circle].ox, label_cszyg_dx - 62); calc(hotspot[label_cszyg_circle].oy, label_cszyg_dy - 63);
+		calc(hotspot[label_cszyg_icon].ox, label_cszyg_dx - 62); calc(hotspot[label_cszyg_icon].oy, label_cszyg_dy - 63);
+		calc(hotspot[label_cszyg_text].ox, label_cszyg_dx + 15); calc(hotspot[label_cszyg_text].oy, label_cszyg_dy - 63);
+	</action>
+
+	<action name="label_xabz_apply_pos">
+		set(label_xabz_dx, 0); set(label_xabz_dy, 0);
+		set(hotspot[label_xabz_line].ox, 0); set(hotspot[label_xabz_line].oy, 0);
+		calc(hotspot[label_xabz_bg_l].ox, label_xabz_dx - 56); calc(hotspot[label_xabz_bg_l].oy, label_xabz_dy - 63);
+		calc(hotspot[label_xabz_bg_m].ox, label_xabz_dx + 0); calc(hotspot[label_xabz_bg_m].oy, label_xabz_dy - 63);
+		calc(hotspot[label_xabz_bg_r].ox, label_xabz_dx + 56); calc(hotspot[label_xabz_bg_r].oy, label_xabz_dy - 63);
+		calc(hotspot[label_xabz_circle].ox, label_xabz_dx - 48); calc(hotspot[label_xabz_circle].oy, label_xabz_dy - 63);
+		calc(hotspot[label_xabz_icon].ox, label_xabz_dx - 48); calc(hotspot[label_xabz_icon].oy, label_xabz_dy - 63);
+		calc(hotspot[label_xabz_text].ox, label_xabz_dx + 12); calc(hotspot[label_xabz_text].oy, label_xabz_dy - 63);
+	</action>
+
+	<action name="label_golf_apply_pos">
+		set(label_golf_dx, 0); set(label_golf_dy, 0);
+		set(hotspot[label_golf_line].ox, 0); set(hotspot[label_golf_line].oy, 0);
+		calc(hotspot[label_golf_bg_l].ox, label_golf_dx - 102); calc(hotspot[label_golf_bg_l].oy, label_golf_dy - 63);
+		calc(hotspot[label_golf_bg_m].ox, label_golf_dx + 0); calc(hotspot[label_golf_bg_m].oy, label_golf_dy - 63);
+		calc(hotspot[label_golf_bg_r].ox, label_golf_dx + 102); calc(hotspot[label_golf_bg_r].oy, label_golf_dy - 63);
+		calc(hotspot[label_golf_circle].ox, label_golf_dx - 94); calc(hotspot[label_golf_circle].oy, label_golf_dy - 63);
+		calc(hotspot[label_golf_icon].ox, label_golf_dx - 94); calc(hotspot[label_golf_icon].oy, label_golf_dy - 63);
+		calc(hotspot[label_golf_text].ox, label_golf_dx + 15); calc(hotspot[label_golf_text].oy, label_golf_dy - 63);
+	</action>
+
+
+	<action name="label_ysd_apply_pos">
+		set(label_ysd_dx, 0); set(label_ysd_dy, 0);
+		set(hotspot[label_ysd_line].ox, 0); set(hotspot[label_ysd_line].oy, 0);
+		calc(hotspot[label_ysd_bg_l].ox, label_ysd_dx - 56); calc(hotspot[label_ysd_bg_l].oy, label_ysd_dy - 63);
+		calc(hotspot[label_ysd_bg_m].ox, label_ysd_dx + 0); calc(hotspot[label_ysd_bg_m].oy, label_ysd_dy - 63);
+		calc(hotspot[label_ysd_bg_r].ox, label_ysd_dx + 56); calc(hotspot[label_ysd_bg_r].oy, label_ysd_dy - 63);
+		calc(hotspot[label_ysd_circle].ox, label_ysd_dx - 48); calc(hotspot[label_ysd_circle].oy, label_ysd_dy - 63);
+		calc(hotspot[label_ysd_icon].ox, label_ysd_dx - 48); calc(hotspot[label_ysd_icon].oy, label_ysd_dy - 63);
+		calc(hotspot[label_ysd_text].ox, label_ysd_dx + 12); calc(hotspot[label_ysd_text].oy, label_ysd_dy - 63);
+	</action>
+
+	<!-- 未央区中医医院 · 医院 · 元朔大道左边 -->
+	<action name="label_wyqzyyy_apply_pos">
+		set(label_wyqzyyy_dx, 0); set(label_wyqzyyy_dy, 0);
+		set(hotspot[label_wyqzyyy_line].ox, 0); set(hotspot[label_wyqzyyy_line].oy, 0);
+		calc(hotspot[label_wyqzyyy_bg_l].ox, label_wyqzyyy_dx - 64); calc(hotspot[label_wyqzyyy_bg_l].oy, label_wyqzyyy_dy - 63);
+		calc(hotspot[label_wyqzyyy_bg_m].ox, label_wyqzyyy_dx + 0); calc(hotspot[label_wyqzyyy_bg_m].oy, label_wyqzyyy_dy - 63);
+		calc(hotspot[label_wyqzyyy_bg_r].ox, label_wyqzyyy_dx + 64); calc(hotspot[label_wyqzyyy_bg_r].oy, label_wyqzyyy_dy - 63);
+		calc(hotspot[label_wyqzyyy_circle].ox, label_wyqzyyy_dx - 56); calc(hotspot[label_wyqzyyy_circle].oy, label_wyqzyyy_dy - 63);
+		calc(hotspot[label_wyqzyyy_icon].ox, label_wyqzyyy_dx - 56); calc(hotspot[label_wyqzyyy_icon].oy, label_wyqzyyy_dy - 63);
+		calc(hotspot[label_wyqzyyy_text].ox, label_wyqzyyy_dx + 15); calc(hotspot[label_wyqzyyy_text].oy, label_wyqzyyy_dy - 63);
+	</action>
+
+	<action name="label_zx58_apply_pos">
+		set(label_zx58_dx, 0); set(label_zx58_dy, 0);
+		set(hotspot[label_zx58_line].ox, 0); set(hotspot[label_zx58_line].oy, 0);
+		calc(hotspot[label_zx58_bg_l].ox, label_zx58_dx - 93); calc(hotspot[label_zx58_bg_l].oy, label_zx58_dy - 63);
+		calc(hotspot[label_zx58_bg_m].ox, label_zx58_dx + 0); calc(hotspot[label_zx58_bg_m].oy, label_zx58_dy - 63);
+		calc(hotspot[label_zx58_bg_r].ox, label_zx58_dx + 93); calc(hotspot[label_zx58_bg_r].oy, label_zx58_dy - 63);
+		calc(hotspot[label_zx58_circle].ox, label_zx58_dx - 85); calc(hotspot[label_zx58_circle].oy, label_zx58_dy - 63);
+		calc(hotspot[label_zx58_icon].ox, label_zx58_dx - 85); calc(hotspot[label_zx58_icon].oy, label_zx58_dy - 63);
+		calc(hotspot[label_zx58_text].ox, label_zx58_dx + 15); calc(hotspot[label_zx58_text].oy, label_zx58_dy - 63);
+	</action>
+
+	<action name="label_kyxx_apply_pos">
+		set(label_kyxx_dx, 0); set(label_kyxx_dy, 0);
+		set(hotspot[label_kyxx_line].ox, 0); set(hotspot[label_kyxx_line].oy, 0);
+		calc(hotspot[label_kyxx_bg_l].ox, label_kyxx_dx - 56); calc(hotspot[label_kyxx_bg_l].oy, label_kyxx_dy - 105);
+		calc(hotspot[label_kyxx_bg_m].ox, label_kyxx_dx + 0); calc(hotspot[label_kyxx_bg_m].oy, label_kyxx_dy - 105);
+		calc(hotspot[label_kyxx_bg_r].ox, label_kyxx_dx + 56); calc(hotspot[label_kyxx_bg_r].oy, label_kyxx_dy - 105);
+		calc(hotspot[label_kyxx_circle].ox, label_kyxx_dx - 48); calc(hotspot[label_kyxx_circle].oy, label_kyxx_dy - 105);
+		calc(hotspot[label_kyxx_icon].ox, label_kyxx_dx - 48); calc(hotspot[label_kyxx_icon].oy, label_kyxx_dy - 105);
+		calc(hotspot[label_kyxx_text].ox, label_kyxx_dx + 12); calc(hotspot[label_kyxx_text].oy, label_kyxx_dy - 105);
+	</action>
+
+	<action name="label_kd_apply_pos">
+		set(label_kd_dx, 0); set(label_kd_dy, 0);
+		set(hotspot[label_kd_line].ox, 0); set(hotspot[label_kd_line].oy, 0);
+		calc(hotspot[label_kd_bg_l].ox, label_kd_dx - 70); calc(hotspot[label_kd_bg_l].oy, label_kd_dy - 63);
+		calc(hotspot[label_kd_bg_m].ox, label_kd_dx + 0); calc(hotspot[label_kd_bg_m].oy, label_kd_dy - 63);
+		calc(hotspot[label_kd_bg_r].ox, label_kd_dx + 70); calc(hotspot[label_kd_bg_r].oy, label_kd_dy - 63);
+		calc(hotspot[label_kd_circle].ox, label_kd_dx - 62); calc(hotspot[label_kd_circle].oy, label_kd_dy - 63);
+		calc(hotspot[label_kd_icon].ox, label_kd_dx - 62); calc(hotspot[label_kd_icon].oy, label_kd_dy - 63);
+		calc(hotspot[label_kd_text].ox, label_kd_dx + 15); calc(hotspot[label_kd_text].oy, label_kd_dy - 63);
+	</action>
+
+	<action name="label_bs3_apply_pos">
+		set(label_bs3_dx, 0); set(label_bs3_dy, 0);
+		set(hotspot[label_bs3_line].ox, 0); set(hotspot[label_bs3_line].oy, 0);
+		calc(hotspot[label_bs3_bg_l].ox, label_bs3_dx - 47); calc(hotspot[label_bs3_bg_l].oy, label_bs3_dy - 63);
+		calc(hotspot[label_bs3_bg_m].ox, label_bs3_dx + 0); calc(hotspot[label_bs3_bg_m].oy, label_bs3_dy - 63);
+		calc(hotspot[label_bs3_bg_r].ox, label_bs3_dx + 47); calc(hotspot[label_bs3_bg_r].oy, label_bs3_dy - 63);
+		calc(hotspot[label_bs3_circle].ox, label_bs3_dx - 39); calc(hotspot[label_bs3_circle].oy, label_bs3_dy - 63);
+		calc(hotspot[label_bs3_icon].ox, label_bs3_dx - 39); calc(hotspot[label_bs3_icon].oy, label_bs3_dy - 63);
+		calc(hotspot[label_bs3_text].ox, label_bs3_dx + 12); calc(hotspot[label_bs3_text].oy, label_bs3_dy - 63);
+	</action>
+
+	<action name="label_xjwg_apply_pos">
+		set(label_xjwg_dx, 0); set(label_xjwg_dy, 0);
+		set(hotspot[label_xjwg_line].ox, 0); set(hotspot[label_xjwg_line].oy, 0);
+		calc(hotspot[label_xjwg_bg_l].ox, label_xjwg_dx - 65); calc(hotspot[label_xjwg_bg_l].oy, label_xjwg_dy - 63);
+		calc(hotspot[label_xjwg_bg_m].ox, label_xjwg_dx + 0); calc(hotspot[label_xjwg_bg_m].oy, label_xjwg_dy - 63);
+		calc(hotspot[label_xjwg_bg_r].ox, label_xjwg_dx + 65); calc(hotspot[label_xjwg_bg_r].oy, label_xjwg_dy - 63);
+		calc(hotspot[label_xjwg_circle].ox, label_xjwg_dx - 57); calc(hotspot[label_xjwg_circle].oy, label_xjwg_dy - 63);
+		calc(hotspot[label_xjwg_icon].ox, label_xjwg_dx - 57); calc(hotspot[label_xjwg_icon].oy, label_xjwg_dy - 63);
+		calc(hotspot[label_xjwg_text].ox, label_xjwg_dx + 12); calc(hotspot[label_xjwg_text].oy, label_xjwg_dy - 63);
+	</action>
+
+	<action name="label_mgl_apply_pos">
+		set(label_mgl_dx, 0); set(label_mgl_dy, 0);
+		set(hotspot[label_mgl_line].ox, 0); set(hotspot[label_mgl_line].oy, 0);
+		calc(hotspot[label_mgl_bg_l].ox, label_mgl_dx - 47); calc(hotspot[label_mgl_bg_l].oy, label_mgl_dy - 63);
+		calc(hotspot[label_mgl_bg_m].ox, label_mgl_dx + 0); calc(hotspot[label_mgl_bg_m].oy, label_mgl_dy - 63);
+		calc(hotspot[label_mgl_bg_r].ox, label_mgl_dx + 47); calc(hotspot[label_mgl_bg_r].oy, label_mgl_dy - 63);
+		calc(hotspot[label_mgl_circle].ox, label_mgl_dx - 39); calc(hotspot[label_mgl_circle].oy, label_mgl_dy - 63);
+		calc(hotspot[label_mgl_icon].ox, label_mgl_dx - 39); calc(hotspot[label_mgl_icon].oy, label_mgl_dy - 63);
+		calc(hotspot[label_mgl_text].ox, label_mgl_dx + 12); calc(hotspot[label_mgl_text].oy, label_mgl_dy - 63);
+	</action>
+
+	<action name="label_syl_apply_pos">
+		set(label_syl_dx, 0); set(label_syl_dy, 0);
+		set(hotspot[label_syl_line].ox, 0); set(hotspot[label_syl_line].oy, 0);
+		calc(hotspot[label_syl_bg_l].ox, label_syl_dx - 47); calc(hotspot[label_syl_bg_l].oy, label_syl_dy - 63);
+		calc(hotspot[label_syl_bg_m].ox, label_syl_dx + 0); calc(hotspot[label_syl_bg_m].oy, label_syl_dy - 63);
+		calc(hotspot[label_syl_bg_r].ox, label_syl_dx + 47); calc(hotspot[label_syl_bg_r].oy, label_syl_dy - 63);
+		calc(hotspot[label_syl_circle].ox, label_syl_dx - 39); calc(hotspot[label_syl_circle].oy, label_syl_dy - 63);
+		calc(hotspot[label_syl_icon].ox, label_syl_dx - 39); calc(hotspot[label_syl_icon].oy, label_syl_dy - 63);
+		calc(hotspot[label_syl_text].ox, label_syl_dx + 12); calc(hotspot[label_syl_text].oy, label_syl_dy - 63);
+	</action>
+
+	<action name="label_hhbz_apply_pos">
+		set(label_hhbz_dx, 0); set(label_hhbz_dy, 0);
+		set(hotspot[label_hhbz_line].ox, 0); set(hotspot[label_hhbz_line].oy, 0);
+		calc(hotspot[label_hhbz_bg_l].ox, label_hhbz_dx - 84); calc(hotspot[label_hhbz_bg_l].oy, label_hhbz_dy - 63);
+		calc(hotspot[label_hhbz_bg_m].ox, label_hhbz_dx + 0); calc(hotspot[label_hhbz_bg_m].oy, label_hhbz_dy - 63);
+		calc(hotspot[label_hhbz_bg_r].ox, label_hhbz_dx + 84); calc(hotspot[label_hhbz_bg_r].oy, label_hhbz_dy - 63);
+		calc(hotspot[label_hhbz_circle].ox, label_hhbz_dx - 76); calc(hotspot[label_hhbz_circle].oy, label_hhbz_dy - 63);
+		calc(hotspot[label_hhbz_icon].ox, label_hhbz_dx - 76); calc(hotspot[label_hhbz_icon].oy, label_hhbz_dy - 63);
+		calc(hotspot[label_hhbz_text].ox, label_hhbz_dx + 15); calc(hotspot[label_hhbz_text].oy, label_hhbz_dy - 63);
+	</action>
+
+	<action name="label_bcd_apply_pos">
+		set(label_bcd_dx, 0); set(label_bcd_dy, 0);
+		set(hotspot[label_bcd_line].ox, 0); set(hotspot[label_bcd_line].oy, 0);
+		calc(hotspot[label_bcd_bg_l].ox, label_bcd_dx - 56); calc(hotspot[label_bcd_bg_l].oy, label_bcd_dy - 63);
+		calc(hotspot[label_bcd_bg_m].ox, label_bcd_dx + 0); calc(hotspot[label_bcd_bg_m].oy, label_bcd_dy - 63);
+		calc(hotspot[label_bcd_bg_r].ox, label_bcd_dx + 56); calc(hotspot[label_bcd_bg_r].oy, label_bcd_dy - 63);
+		calc(hotspot[label_bcd_circle].ox, label_bcd_dx - 48); calc(hotspot[label_bcd_circle].oy, label_bcd_dy - 63);
+		calc(hotspot[label_bcd_icon].ox, label_bcd_dx - 48); calc(hotspot[label_bcd_icon].oy, label_bcd_dy - 63);
+		calc(hotspot[label_bcd_text].ox, label_bcd_dx + 12); calc(hotspot[label_bcd_text].oy, label_bcd_dy - 63);
+	</action>
+
+	<!-- 西安湖 ·公园 · 渭河南站左上 · 线/卡略抬高贴合 -->
+	<action name="label_xah_apply_pos">
+		set(label_xah_dx, 0); set(label_xah_dy, 0);
+		set(hotspot[label_xah_line].ox, 0); set(hotspot[label_xah_line].oy, 0);
+		calc(hotspot[label_xah_bg_l].ox, label_xah_dx - 47); calc(hotspot[label_xah_bg_l].oy, label_xah_dy - 80);
+		calc(hotspot[label_xah_bg_m].ox, label_xah_dx + 0); calc(hotspot[label_xah_bg_m].oy, label_xah_dy - 80);
+		calc(hotspot[label_xah_bg_r].ox, label_xah_dx + 47); calc(hotspot[label_xah_bg_r].oy, label_xah_dy - 80);
+		calc(hotspot[label_xah_circle].ox, label_xah_dx - 39); calc(hotspot[label_xah_circle].oy, label_xah_dy - 80);
+		calc(hotspot[label_xah_icon].ox, label_xah_dx - 39); calc(hotspot[label_xah_icon].oy, label_xah_dy - 80);
+		calc(hotspot[label_xah_text].ox, label_xah_dx + 12); calc(hotspot[label_xah_text].oy, label_xah_dy - 80);
+	</action>
+
+	<!-- 经开第一中学部 ·学校 · 渭河南站左边 -->
+	<action name="label_jk1zb_apply_pos">
+		set(label_jk1zb_dx, 0); set(label_jk1zb_dy, 0);
+		set(hotspot[label_jk1zb_line].ox, 0); set(hotspot[label_jk1zb_line].oy, 0);
+		calc(hotspot[label_jk1zb_bg_l].ox, label_jk1zb_dx - 84); calc(hotspot[label_jk1zb_bg_l].oy, label_jk1zb_dy - 63);
+		calc(hotspot[label_jk1zb_bg_m].ox, label_jk1zb_dx + 0); calc(hotspot[label_jk1zb_bg_m].oy, label_jk1zb_dy - 63);
+		calc(hotspot[label_jk1zb_bg_r].ox, label_jk1zb_dx + 84); calc(hotspot[label_jk1zb_bg_r].oy, label_jk1zb_dy - 63);
+		calc(hotspot[label_jk1zb_circle].ox, label_jk1zb_dx - 76); calc(hotspot[label_jk1zb_circle].oy, label_jk1zb_dy - 63);
+		calc(hotspot[label_jk1zb_icon].ox, label_jk1zb_dx - 76); calc(hotspot[label_jk1zb_icon].oy, label_jk1zb_dy - 63);
+		calc(hotspot[label_jk1zb_text].ox, label_jk1zb_dx + 15); calc(hotspot[label_jk1zb_text].oy, label_jk1zb_dy - 63);
+	</action>
+
+	<!-- 西安经开第三幼儿园 ·学校 · 渭河南站左下 -->
+	<action name="label_xjk3ye_apply_pos">
+		set(label_xjk3ye_dx, 0); set(label_xjk3ye_dy, 0);
+		set(hotspot[label_xjk3ye_line].ox, 0); set(hotspot[label_xjk3ye_line].oy, 0);
+		calc(hotspot[label_xjk3ye_bg_l].ox, label_xjk3ye_dx - 93); calc(hotspot[label_xjk3ye_bg_l].oy, label_xjk3ye_dy - 63);
+		calc(hotspot[label_xjk3ye_bg_m].ox, label_xjk3ye_dx + 0); calc(hotspot[label_xjk3ye_bg_m].oy, label_xjk3ye_dy - 63);
+		calc(hotspot[label_xjk3ye_bg_r].ox, label_xjk3ye_dx + 93); calc(hotspot[label_xjk3ye_bg_r].oy, label_xjk3ye_dy - 63);
+		calc(hotspot[label_xjk3ye_circle].ox, label_xjk3ye_dx - 85); calc(hotspot[label_xjk3ye_circle].oy, label_xjk3ye_dy - 63);
+		calc(hotspot[label_xjk3ye_icon].ox, label_xjk3ye_dx - 85); calc(hotspot[label_xjk3ye_icon].oy, label_xjk3ye_dy - 63);
+		calc(hotspot[label_xjk3ye_text].ox, label_xjk3ye_dx + 15); calc(hotspot[label_xjk3ye_text].oy, label_xjk3ye_dy - 63);
+	</action>
+
+	<!-- 西安经开第三小学 ·学校 · 第三幼儿园下方 -->
+	<action name="label_xjk3xx_apply_pos">
+		set(label_xjk3xx_dx, 0); set(label_xjk3xx_dy, 0);
+		set(hotspot[label_xjk3xx_line].ox, 0); set(hotspot[label_xjk3xx_line].oy, 0);
+		calc(hotspot[label_xjk3xx_bg_l].ox, label_xjk3xx_dx - 84); calc(hotspot[label_xjk3xx_bg_l].oy, label_xjk3xx_dy - 63);
+		calc(hotspot[label_xjk3xx_bg_m].ox, label_xjk3xx_dx + 0); calc(hotspot[label_xjk3xx_bg_m].oy, label_xjk3xx_dy - 63);
+		calc(hotspot[label_xjk3xx_bg_r].ox, label_xjk3xx_dx + 84); calc(hotspot[label_xjk3xx_bg_r].oy, label_xjk3xx_dy - 63);
+		calc(hotspot[label_xjk3xx_circle].ox, label_xjk3xx_dx - 76); calc(hotspot[label_xjk3xx_circle].oy, label_xjk3xx_dy - 63);
+		calc(hotspot[label_xjk3xx_icon].ox, label_xjk3xx_dx - 76); calc(hotspot[label_xjk3xx_icon].oy, label_xjk3xx_dy - 63);
+		calc(hotspot[label_xjk3xx_text].ox, label_xjk3xx_dx + 15); calc(hotspot[label_xjk3xx_text].oy, label_xjk3xx_dy - 63);
+	</action>
+
+	<!-- 尚稷路 ·公路 · 经开第十一幼儿园上方 -->
+	<action name="label_sjl_apply_pos">
+		set(label_sjl_dx, 0); set(label_sjl_dy, 0);
+		set(hotspot[label_sjl_line].ox, 0); set(hotspot[label_sjl_line].oy, 0);
+		calc(hotspot[label_sjl_bg_l].ox, label_sjl_dx - 47); calc(hotspot[label_sjl_bg_l].oy, label_sjl_dy - 63);
+		calc(hotspot[label_sjl_bg_m].ox, label_sjl_dx + 0); calc(hotspot[label_sjl_bg_m].oy, label_sjl_dy - 63);
+		calc(hotspot[label_sjl_bg_r].ox, label_sjl_dx + 47); calc(hotspot[label_sjl_bg_r].oy, label_sjl_dy - 63);
+		calc(hotspot[label_sjl_circle].ox, label_sjl_dx - 39); calc(hotspot[label_sjl_circle].oy, label_sjl_dy - 63);
+		calc(hotspot[label_sjl_icon].ox, label_sjl_dx - 39); calc(hotspot[label_sjl_icon].oy, label_sjl_dy - 63);
+		calc(hotspot[label_sjl_text].ox, label_sjl_dx + 12); calc(hotspot[label_sjl_text].oy, label_sjl_dy - 63);
+	</action>
+
+	<!-- 河堤路 ·公路 · 尚稷路上方 -->
+	<action name="label_hdl_apply_pos">
+		set(label_hdl_dx, 0); set(label_hdl_dy, 0);
+		set(hotspot[label_hdl_line].ox, 0); set(hotspot[label_hdl_line].oy, 0);
+		calc(hotspot[label_hdl_bg_l].ox, label_hdl_dx - 47); calc(hotspot[label_hdl_bg_l].oy, label_hdl_dy - 63);
+		calc(hotspot[label_hdl_bg_m].ox, label_hdl_dx + 0); calc(hotspot[label_hdl_bg_m].oy, label_hdl_dy - 63);
+		calc(hotspot[label_hdl_bg_r].ox, label_hdl_dx + 47); calc(hotspot[label_hdl_bg_r].oy, label_hdl_dy - 63);
+		calc(hotspot[label_hdl_circle].ox, label_hdl_dx - 39); calc(hotspot[label_hdl_circle].oy, label_hdl_dy - 63);
+		calc(hotspot[label_hdl_icon].ox, label_hdl_dx - 39); calc(hotspot[label_hdl_icon].oy, label_hdl_dy - 63);
+		calc(hotspot[label_hdl_text].ox, label_hdl_dx + 12); calc(hotspot[label_hdl_text].oy, label_hdl_dy - 63);
+	</action>
+
+	<!-- 渭河生态带 ·公园 · 河堤路右边 -->
+	<action name="label_whstb_apply_pos">
+		set(label_whstb_dx, 0); set(label_whstb_dy, 0);
+		set(hotspot[label_whstb_line].ox, 0); set(hotspot[label_whstb_line].oy, 0);
+		calc(hotspot[label_whstb_bg_l].ox, label_whstb_dx - 65); calc(hotspot[label_whstb_bg_l].oy, label_whstb_dy - 63);
+		calc(hotspot[label_whstb_bg_m].ox, label_whstb_dx + 0); calc(hotspot[label_whstb_bg_m].oy, label_whstb_dy - 63);
+		calc(hotspot[label_whstb_bg_r].ox, label_whstb_dx + 65); calc(hotspot[label_whstb_bg_r].oy, label_whstb_dy - 63);
+		calc(hotspot[label_whstb_circle].ox, label_whstb_dx - 57); calc(hotspot[label_whstb_circle].oy, label_whstb_dy - 63);
+		calc(hotspot[label_whstb_icon].ox, label_whstb_dx - 57); calc(hotspot[label_whstb_icon].oy, label_whstb_dy - 63);
+		calc(hotspot[label_whstb_text].ox, label_whstb_dx + 12); calc(hotspot[label_whstb_text].oy, label_whstb_dy - 63);
+	</action>
+
+	<action name="label_cwy_apply_pos">
+		set(label_cwy_dx, 0); set(label_cwy_dy, 0);
+		set(hotspot[label_cwy_line].ox, 0); set(hotspot[label_cwy_line].oy, 0);
+		calc(hotspot[label_cwy_bg_l].ox, label_cwy_dx - 47); calc(hotspot[label_cwy_bg_l].oy, label_cwy_dy - 63);
+		calc(hotspot[label_cwy_bg_m].ox, label_cwy_dx + 0); calc(hotspot[label_cwy_bg_m].oy, label_cwy_dy - 63);
+		calc(hotspot[label_cwy_bg_r].ox, label_cwy_dx + 47); calc(hotspot[label_cwy_bg_r].oy, label_cwy_dy - 63);
+		calc(hotspot[label_cwy_circle].ox, label_cwy_dx - 39); calc(hotspot[label_cwy_circle].oy, label_cwy_dy - 63);
+		calc(hotspot[label_cwy_icon].ox, label_cwy_dx - 39); calc(hotspot[label_cwy_icon].oy, label_cwy_dy - 63);
+		calc(hotspot[label_cwy_text].ox, label_cwy_dx + 12); calc(hotspot[label_cwy_text].oy, label_cwy_dy - 63);
+	</action>
+
+	<action name="label_bwy_apply_pos">
+		set(label_bwy_dx, 0); set(label_bwy_dy, 0);
+		set(hotspot[label_bwy_line].ox, 0); set(hotspot[label_bwy_line].oy, 0);
+		calc(hotspot[label_bwy_bg_l].ox, label_bwy_dx - 47); calc(hotspot[label_bwy_bg_l].oy, label_bwy_dy - 63);
+		calc(hotspot[label_bwy_bg_m].ox, label_bwy_dx + 0); calc(hotspot[label_bwy_bg_m].oy, label_bwy_dy - 63);
+		calc(hotspot[label_bwy_bg_r].ox, label_bwy_dx + 47); calc(hotspot[label_bwy_bg_r].oy, label_bwy_dy - 63);
+		calc(hotspot[label_bwy_circle].ox, label_bwy_dx - 39); calc(hotspot[label_bwy_circle].oy, label_bwy_dy - 63);
+		calc(hotspot[label_bwy_icon].ox, label_bwy_dx - 39); calc(hotspot[label_bwy_icon].oy, label_bwy_dy - 63);
+		calc(hotspot[label_bwy_text].ox, label_bwy_dx + 12); calc(hotspot[label_bwy_text].oy, label_bwy_dy - 63);
+	</action>
+
+	<!-- 延西高速 ·公路 · 未央湖公园左边 -->
+	<action name="label_yxgs_apply_pos">
+		set(label_yxgs_dx, 0); set(label_yxgs_dy, 0);
+		set(hotspot[label_yxgs_line].ox, 0); set(hotspot[label_yxgs_line].oy, 0);
+		calc(hotspot[label_yxgs_bg_l].ox, label_yxgs_dx - 56); calc(hotspot[label_yxgs_bg_l].oy, label_yxgs_dy - 63);
+		calc(hotspot[label_yxgs_bg_m].ox, label_yxgs_dx + 0); calc(hotspot[label_yxgs_bg_m].oy, label_yxgs_dy - 63);
+		calc(hotspot[label_yxgs_bg_r].ox, label_yxgs_dx + 56); calc(hotspot[label_yxgs_bg_r].oy, label_yxgs_dy - 63);
+		calc(hotspot[label_yxgs_circle].ox, label_yxgs_dx - 48); calc(hotspot[label_yxgs_circle].oy, label_yxgs_dy - 63);
+		calc(hotspot[label_yxgs_icon].ox, label_yxgs_dx - 48); calc(hotspot[label_yxgs_icon].oy, label_yxgs_dy - 63);
+		calc(hotspot[label_yxgs_text].ox, label_yxgs_dx + 12); calc(hotspot[label_yxgs_text].oy, label_yxgs_dy - 63);
+	</action>
+
+	<!-- 幸福河生态公园 ·公园 · 延西高速左下 -->
+	<action name="label_xfhstg_apply_pos">
+		set(label_xfhstg_dx, 0); set(label_xfhstg_dy, 0);
+		set(hotspot[label_xfhstg_line].ox, 0); set(hotspot[label_xfhstg_line].oy, 0);
+		calc(hotspot[label_xfhstg_bg_l].ox, label_xfhstg_dx - 84); calc(hotspot[label_xfhstg_bg_l].oy, label_xfhstg_dy - 63);
+		calc(hotspot[label_xfhstg_bg_m].ox, label_xfhstg_dx + 0); calc(hotspot[label_xfhstg_bg_m].oy, label_xfhstg_dy - 63);
+		calc(hotspot[label_xfhstg_bg_r].ox, label_xfhstg_dx + 84); calc(hotspot[label_xfhstg_bg_r].oy, label_xfhstg_dy - 63);
+		calc(hotspot[label_xfhstg_circle].ox, label_xfhstg_dx - 76); calc(hotspot[label_xfhstg_circle].oy, label_xfhstg_dy - 63);
+		calc(hotspot[label_xfhstg_icon].ox, label_xfhstg_dx - 76); calc(hotspot[label_xfhstg_icon].oy, label_xfhstg_dy - 63);
+		calc(hotspot[label_xfhstg_text].ox, label_xfhstg_dx + 15); calc(hotspot[label_xfhstg_text].oy, label_xfhstg_dy - 63);
+	</action>
+
+	<!-- 草滩站 ·地铁 · 幸福河生态公园左边 -->
+	<action name="label_ctz_apply_pos">
+		set(label_ctz_dx, 0); set(label_ctz_dy, 0);
+		set(hotspot[label_ctz_line].ox, 0); set(hotspot[label_ctz_line].oy, 0);
+		calc(hotspot[label_ctz_bg_l].ox, label_ctz_dx - 47); calc(hotspot[label_ctz_bg_l].oy, label_ctz_dy - 63);
+		calc(hotspot[label_ctz_bg_m].ox, label_ctz_dx + 0); calc(hotspot[label_ctz_bg_m].oy, label_ctz_dy - 63);
+		calc(hotspot[label_ctz_bg_r].ox, label_ctz_dx + 47); calc(hotspot[label_ctz_bg_r].oy, label_ctz_dy - 63);
+		calc(hotspot[label_ctz_circle].ox, label_ctz_dx - 39); calc(hotspot[label_ctz_circle].oy, label_ctz_dy - 63);
+		calc(hotspot[label_ctz_icon].ox, label_ctz_dx - 39); calc(hotspot[label_ctz_icon].oy, label_ctz_dy - 63);
+		calc(hotspot[label_ctz_text].ox, label_ctz_dx + 12); calc(hotspot[label_ctz_text].oy, label_ctz_dy - 63);
+	</action>
+
+	<!-- 包茂高速 ·公路 · 未央湖公园右下 -->
+	<action name="label_bmgs_apply_pos">
+		set(label_bmgs_dx, 0); set(label_bmgs_dy, 0);
+		set(hotspot[label_bmgs_line].ox, 0); set(hotspot[label_bmgs_line].oy, 0);
+		calc(hotspot[label_bmgs_bg_l].ox, label_bmgs_dx - 56); calc(hotspot[label_bmgs_bg_l].oy, label_bmgs_dy - 63);
+		calc(hotspot[label_bmgs_bg_m].ox, label_bmgs_dx + 0); calc(hotspot[label_bmgs_bg_m].oy, label_bmgs_dy - 63);
+		calc(hotspot[label_bmgs_bg_r].ox, label_bmgs_dx + 56); calc(hotspot[label_bmgs_bg_r].oy, label_bmgs_dy - 63);
+		calc(hotspot[label_bmgs_circle].ox, label_bmgs_dx - 48); calc(hotspot[label_bmgs_circle].oy, label_bmgs_dy - 63);
+		calc(hotspot[label_bmgs_icon].ox, label_bmgs_dx - 48); calc(hotspot[label_bmgs_icon].oy, label_bmgs_dy - 63);
+		calc(hotspot[label_bmgs_text].ox, label_bmgs_dx + 12); calc(hotspot[label_bmgs_text].oy, label_bmgs_dy - 63);
+	</action>
+
+	<!-- 景家堡站 ·地铁 · 包茂高速上面 -->
+	<action name="label_jjbz_apply_pos">
+		set(label_jjbz_dx, 0); set(label_jjbz_dy, 0);
+		set(hotspot[label_jjbz_line].ox, 0); set(hotspot[label_jjbz_line].oy, 0);
+		calc(hotspot[label_jjbz_bg_l].ox, label_jjbz_dx - 56); calc(hotspot[label_jjbz_bg_l].oy, label_jjbz_dy - 63);
+		calc(hotspot[label_jjbz_bg_m].ox, label_jjbz_dx + 0); calc(hotspot[label_jjbz_bg_m].oy, label_jjbz_dy - 63);
+		calc(hotspot[label_jjbz_bg_r].ox, label_jjbz_dx + 56); calc(hotspot[label_jjbz_bg_r].oy, label_jjbz_dy - 63);
+		calc(hotspot[label_jjbz_circle].ox, label_jjbz_dx - 48); calc(hotspot[label_jjbz_circle].oy, label_jjbz_dy - 63);
+		calc(hotspot[label_jjbz_icon].ox, label_jjbz_dx - 48); calc(hotspot[label_jjbz_icon].oy, label_jjbz_dy - 63);
+		calc(hotspot[label_jjbz_text].ox, label_jjbz_dx + 12); calc(hotspot[label_jjbz_text].oy, label_jjbz_dy - 63);
+	</action>
+
+	<!-- 西安三环大明宫建材市场 ·商场 · 五十八中左上 -->
+	<action name="label_dmgjc_apply_pos">
+		set(label_dmgjc_dx, 0); set(label_dmgjc_dy, 0);
+		set(hotspot[label_dmgjc_line].ox, 0); set(hotspot[label_dmgjc_line].oy, 0);
+		calc(hotspot[label_dmgjc_bg_l].ox, label_dmgjc_dx - 124); calc(hotspot[label_dmgjc_bg_l].oy, label_dmgjc_dy - 63);
+		calc(hotspot[label_dmgjc_bg_m].ox, label_dmgjc_dx + 0); calc(hotspot[label_dmgjc_bg_m].oy, label_dmgjc_dy - 63);
+		calc(hotspot[label_dmgjc_bg_r].ox, label_dmgjc_dx + 124); calc(hotspot[label_dmgjc_bg_r].oy, label_dmgjc_dy - 63);
+		calc(hotspot[label_dmgjc_circle].ox, label_dmgjc_dx - 116); calc(hotspot[label_dmgjc_circle].oy, label_dmgjc_dy - 63);
+		calc(hotspot[label_dmgjc_icon].ox, label_dmgjc_dx - 116); calc(hotspot[label_dmgjc_icon].oy, label_dmgjc_dy - 63);
+		calc(hotspot[label_dmgjc_text].ox, label_dmgjc_dx + 15); calc(hotspot[label_dmgjc_text].oy, label_dmgjc_dy - 63);
+	</action>
+
+	<!-- 太华北路 ·公路 · 科大时代广场上方 · 线卡略抬高贴合 -->
+	<action name="label_thbl_apply_pos">
+		set(label_thbl_dx, 0); set(label_thbl_dy, 0);
+		set(hotspot[label_thbl_line].ox, 0); set(hotspot[label_thbl_line].oy, 0);
+		calc(hotspot[label_thbl_bg_l].ox, label_thbl_dx - 56); calc(hotspot[label_thbl_bg_l].oy, label_thbl_dy - 80);
+		calc(hotspot[label_thbl_bg_m].ox, label_thbl_dx + 0); calc(hotspot[label_thbl_bg_m].oy, label_thbl_dy - 80);
+		calc(hotspot[label_thbl_bg_r].ox, label_thbl_dx + 56); calc(hotspot[label_thbl_bg_r].oy, label_thbl_dy - 80);
+		calc(hotspot[label_thbl_circle].ox, label_thbl_dx - 48); calc(hotspot[label_thbl_circle].oy, label_thbl_dy - 80);
+		calc(hotspot[label_thbl_icon].ox, label_thbl_dx - 48); calc(hotspot[label_thbl_icon].oy, label_thbl_dy - 80);
+		calc(hotspot[label_thbl_text].ox, label_thbl_dx + 12); calc(hotspot[label_thbl_text].oy, label_thbl_dy - 80);
+	</action>
+
+	<!-- 苏席商业中心 ·商场 · 太华北路左上 · 线卡抬高贴合 -->
+	<action name="label_sxsy_apply_pos">
+		set(label_sxsy_dx, 0); set(label_sxsy_dy, 0);
+		set(hotspot[label_sxsy_line].ox, 0); set(hotspot[label_sxsy_line].oy, 0);
+		calc(hotspot[label_sxsy_bg_l].ox, label_sxsy_dx - 70); calc(hotspot[label_sxsy_bg_l].oy, label_sxsy_dy - 105);
+		calc(hotspot[label_sxsy_bg_m].ox, label_sxsy_dx + 0); calc(hotspot[label_sxsy_bg_m].oy, label_sxsy_dy - 105);
+		calc(hotspot[label_sxsy_bg_r].ox, label_sxsy_dx + 70); calc(hotspot[label_sxsy_bg_r].oy, label_sxsy_dy - 105);
+		calc(hotspot[label_sxsy_circle].ox, label_sxsy_dx - 62); calc(hotspot[label_sxsy_circle].oy, label_sxsy_dy - 105);
+		calc(hotspot[label_sxsy_icon].ox, label_sxsy_dx - 62); calc(hotspot[label_sxsy_icon].oy, label_sxsy_dy - 105);
+		calc(hotspot[label_sxsy_text].ox, label_sxsy_dx + 15); calc(hotspot[label_sxsy_text].oy, label_sxsy_dy - 105);
+	</action>
+
+	<!-- 北辰路 ·公路 · 苏席商业中心左上 -->
+	<!-- 北辰路 ·公路 · 线/卡略抬高贴合 -->
+	<action name="label_bcl_apply_pos">
+		set(label_bcl_dx, 0); set(label_bcl_dy, 0);
+		set(hotspot[label_bcl_line].ox, 0); set(hotspot[label_bcl_line].oy, 0);
+		calc(hotspot[label_bcl_bg_l].ox, label_bcl_dx - 47); calc(hotspot[label_bcl_bg_l].oy, label_bcl_dy - 80);
+		calc(hotspot[label_bcl_bg_m].ox, label_bcl_dx + 0); calc(hotspot[label_bcl_bg_m].oy, label_bcl_dy - 80);
+		calc(hotspot[label_bcl_bg_r].ox, label_bcl_dx + 47); calc(hotspot[label_bcl_bg_r].oy, label_bcl_dy - 80);
+		calc(hotspot[label_bcl_circle].ox, label_bcl_dx - 39); calc(hotspot[label_bcl_circle].oy, label_bcl_dy - 80);
+		calc(hotspot[label_bcl_icon].ox, label_bcl_dx - 39); calc(hotspot[label_bcl_icon].oy, label_bcl_dy - 80);
+		calc(hotspot[label_bcl_text].ox, label_bcl_dx + 12); calc(hotspot[label_bcl_text].oy, label_bcl_dy - 80);
+	</action>
+
+	<action name="label_xayxy_apply_pos">
+		set(label_xayxy_dx, 0); set(label_xayxy_dy, 0);
+		set(hotspot[label_xayxy_line].ox, 0); set(hotspot[label_xayxy_line].oy, 0);
+		calc(hotspot[label_xayxy_bg_l].ox, label_xayxy_dx - 56); calc(hotspot[label_xayxy_bg_l].oy, label_xayxy_dy - 63);
+		calc(hotspot[label_xayxy_bg_m].ox, label_xayxy_dx + 0); calc(hotspot[label_xayxy_bg_m].oy, label_xayxy_dy - 63);
+		calc(hotspot[label_xayxy_bg_r].ox, label_xayxy_dx + 56); calc(hotspot[label_xayxy_bg_r].oy, label_xayxy_dy - 63);
+		calc(hotspot[label_xayxy_circle].ox, label_xayxy_dx - 48); calc(hotspot[label_xayxy_circle].oy, label_xayxy_dy - 63);
+		calc(hotspot[label_xayxy_icon].ox, label_xayxy_dx - 48); calc(hotspot[label_xayxy_icon].oy, label_xayxy_dy - 63);
+		calc(hotspot[label_xayxy_text].ox, label_xayxy_dx + 12); calc(hotspot[label_xayxy_text].oy, label_xayxy_dy - 63);
+	</action>
+
+	<action name="label_xagd_apply_pos">
+		set(label_xagd_dx, 0); set(label_xagd_dy, 0);
+		set(hotspot[label_xagd_line].ox, 0); set(hotspot[label_xagd_line].oy, 0);
+		calc(hotspot[label_xagd_bg_l].ox, label_xagd_dx - 65); calc(hotspot[label_xagd_bg_l].oy, label_xagd_dy - 63);
+		calc(hotspot[label_xagd_bg_m].ox, label_xagd_dx + 0); calc(hotspot[label_xagd_bg_m].oy, label_xagd_dy - 63);
+		calc(hotspot[label_xagd_bg_r].ox, label_xagd_dx + 65); calc(hotspot[label_xagd_bg_r].oy, label_xagd_dy - 63);
+		calc(hotspot[label_xagd_circle].ox, label_xagd_dx - 57); calc(hotspot[label_xagd_circle].oy, label_xagd_dy - 63);
+		calc(hotspot[label_xagd_icon].ox, label_xagd_dx - 57); calc(hotspot[label_xagd_icon].oy, label_xagd_dy - 63);
+		calc(hotspot[label_xagd_text].ox, label_xagd_dx + 12); calc(hotspot[label_xagd_text].oy, label_xagd_dy - 63);
+	</action>
+
+	<action name="label_sxkd_apply_pos">
+		set(label_sxkd_dx, 0); set(label_sxkd_dy, 0);
+		set(hotspot[label_sxkd_line].ox, 0); set(hotspot[label_sxkd_line].oy, 0);
+		calc(hotspot[label_sxkd_bg_l].ox, label_sxkd_dx - 65); calc(hotspot[label_sxkd_bg_l].oy, label_sxkd_dy - 63);
+		calc(hotspot[label_sxkd_bg_m].ox, label_sxkd_dx + 0); calc(hotspot[label_sxkd_bg_m].oy, label_sxkd_dy - 63);
+		calc(hotspot[label_sxkd_bg_r].ox, label_sxkd_dx + 65); calc(hotspot[label_sxkd_bg_r].oy, label_sxkd_dy - 63);
+		calc(hotspot[label_sxkd_circle].ox, label_sxkd_dx - 57); calc(hotspot[label_sxkd_circle].oy, label_sxkd_dy - 63);
+		calc(hotspot[label_sxkd_icon].ox, label_sxkd_dx - 57); calc(hotspot[label_sxkd_icon].oy, label_sxkd_dy - 63);
+		calc(hotspot[label_sxkd_text].ox, label_sxkd_dx + 12); calc(hotspot[label_sxkd_text].oy, label_sxkd_dy - 63);
+	</action>
+
+	<!-- 西安未央天街 · 商场 · 开元小学上方 -->
+	<action name="label_wytj_apply_pos">
+		set(label_wytj_dx, 0); set(label_wytj_dy, 0);
+		set(hotspot[label_wytj_line].ox, 0); set(hotspot[label_wytj_line].oy, 0);
+		calc(hotspot[label_wytj_bg_l].ox, label_wytj_dx - 70); calc(hotspot[label_wytj_bg_l].oy, label_wytj_dy - 63);
+		calc(hotspot[label_wytj_bg_m].ox, label_wytj_dx + 0); calc(hotspot[label_wytj_bg_m].oy, label_wytj_dy - 63);
+		calc(hotspot[label_wytj_bg_r].ox, label_wytj_dx + 70); calc(hotspot[label_wytj_bg_r].oy, label_wytj_dy - 63);
+		calc(hotspot[label_wytj_circle].ox, label_wytj_dx - 62); calc(hotspot[label_wytj_circle].oy, label_wytj_dy - 63);
+		calc(hotspot[label_wytj_icon].ox, label_wytj_dx - 62); calc(hotspot[label_wytj_icon].oy, label_wytj_dy - 63);
+		calc(hotspot[label_wytj_text].ox, label_wytj_dx + 15); calc(hotspot[label_wytj_text].oy, label_wytj_dy - 63);
+	</action>
+
+	<!-- 西航医院 · 医院 · 北三环上方 -->
+	<action name="label_xahy_apply_pos">
+		set(label_xahy_dx, 0); set(label_xahy_dy, 0);
+		set(hotspot[label_xahy_line].ox, 0); set(hotspot[label_xahy_line].oy, 0);
+		calc(hotspot[label_xahy_bg_l].ox, label_xahy_dx - 56); calc(hotspot[label_xahy_bg_l].oy, label_xahy_dy - 63);
+		calc(hotspot[label_xahy_bg_m].ox, label_xahy_dx + 0); calc(hotspot[label_xahy_bg_m].oy, label_xahy_dy - 63);
+		calc(hotspot[label_xahy_bg_r].ox, label_xahy_dx + 56); calc(hotspot[label_xahy_bg_r].oy, label_xahy_dy - 63);
+		calc(hotspot[label_xahy_circle].ox, label_xahy_dx - 48); calc(hotspot[label_xahy_circle].oy, label_xahy_dy - 63);
+		calc(hotspot[label_xahy_icon].ox, label_xahy_dx - 48); calc(hotspot[label_xahy_icon].oy, label_xahy_dy - 63);
+		calc(hotspot[label_xahy_text].ox, label_xahy_dx + 12); calc(hotspot[label_xahy_text].oy, label_xahy_dy - 63);
+	</action>
+
+	<!-- 西安市第一实验学校 · 学校 · 北三环右上 -->
+	<action name="label_dysy_apply_pos">
+		set(label_dysy_dx, 0); set(label_dysy_dy, 0);
+		set(hotspot[label_dysy_line].ox, 0); set(hotspot[label_dysy_line].oy, 0);
+		calc(hotspot[label_dysy_bg_l].ox, label_dysy_dx - 100); calc(hotspot[label_dysy_bg_l].oy, label_dysy_dy - 63);
+		calc(hotspot[label_dysy_bg_m].ox, label_dysy_dx + 0); calc(hotspot[label_dysy_bg_m].oy, label_dysy_dy - 63);
+		calc(hotspot[label_dysy_bg_r].ox, label_dysy_dx + 100); calc(hotspot[label_dysy_bg_r].oy, label_dysy_dy - 63);
+		calc(hotspot[label_dysy_circle].ox, label_dysy_dx - 92); calc(hotspot[label_dysy_circle].oy, label_dysy_dy - 63);
+		calc(hotspot[label_dysy_icon].ox, label_dysy_dx - 92); calc(hotspot[label_dysy_icon].oy, label_dysy_dy - 63);
+		calc(hotspot[label_dysy_text].ox, label_dysy_dx + 15); calc(hotspot[label_dysy_text].oy, label_dysy_dy - 63);
+	</action>
+
+	<!-- 风城八路 · 公路 · 西航医院上方 -->
+	<action name="label_fcbl_apply_pos">
+		set(label_fcbl_dx, 0); set(label_fcbl_dy, 0);
+		set(hotspot[label_fcbl_line].ox, 0); set(hotspot[label_fcbl_line].oy, 0);
+		calc(hotspot[label_fcbl_bg_l].ox, label_fcbl_dx - 56); calc(hotspot[label_fcbl_bg_l].oy, label_fcbl_dy - 80);
+		calc(hotspot[label_fcbl_bg_m].ox, label_fcbl_dx + 0); calc(hotspot[label_fcbl_bg_m].oy, label_fcbl_dy - 80);
+		calc(hotspot[label_fcbl_bg_r].ox, label_fcbl_dx + 56); calc(hotspot[label_fcbl_bg_r].oy, label_fcbl_dy - 80);
+		calc(hotspot[label_fcbl_circle].ox, label_fcbl_dx - 48); calc(hotspot[label_fcbl_circle].oy, label_fcbl_dy - 80);
+		calc(hotspot[label_fcbl_icon].ox, label_fcbl_dx - 48); calc(hotspot[label_fcbl_icon].oy, label_fcbl_dy - 80);
+		calc(hotspot[label_fcbl_text].ox, label_fcbl_dx + 12); calc(hotspot[label_fcbl_text].oy, label_fcbl_dy - 80);
+	</action>
+
+	<!-- 开元公园 · 公园 · 西航医院右边 -->
+	<action name="label_kygy_apply_pos">
+		set(label_kygy_dx, 0); set(label_kygy_dy, 0);
+		set(hotspot[label_kygy_line].ox, 0); set(hotspot[label_kygy_line].oy, 0);
+		calc(hotspot[label_kygy_bg_l].ox, label_kygy_dx - 56); calc(hotspot[label_kygy_bg_l].oy, label_kygy_dy - 105);
+		calc(hotspot[label_kygy_bg_m].ox, label_kygy_dx + 0); calc(hotspot[label_kygy_bg_m].oy, label_kygy_dy - 105);
+		calc(hotspot[label_kygy_bg_r].ox, label_kygy_dx + 56); calc(hotspot[label_kygy_bg_r].oy, label_kygy_dy - 105);
+		calc(hotspot[label_kygy_circle].ox, label_kygy_dx - 48); calc(hotspot[label_kygy_circle].oy, label_kygy_dy - 105);
+		calc(hotspot[label_kygy_icon].ox, label_kygy_dx - 48); calc(hotspot[label_kygy_icon].oy, label_kygy_dy - 105);
+		calc(hotspot[label_kygy_text].ox, label_kygy_dx + 12); calc(hotspot[label_kygy_text].oy, label_kygy_dy - 105);
+	</action>
+
+	<!-- 经开第五小学 · 学校 · 开元公园右边 -->
+	<action name="label_jk5x_apply_pos">
+		set(label_jk5x_dx, -12); set(label_jk5x_dy, 0);
+		set(hotspot[label_jk5x_line].ox, 0); set(hotspot[label_jk5x_line].oy, 0);
+		calc(hotspot[label_jk5x_bg_l].ox, label_jk5x_dx - 61); calc(hotspot[label_jk5x_bg_l].oy, label_jk5x_dy - 63);
+		calc(hotspot[label_jk5x_bg_m].ox, label_jk5x_dx + 0); calc(hotspot[label_jk5x_bg_m].oy, label_jk5x_dy - 63);
+		calc(hotspot[label_jk5x_bg_r].ox, label_jk5x_dx + 61); calc(hotspot[label_jk5x_bg_r].oy, label_jk5x_dy - 63);
+		calc(hotspot[label_jk5x_circle].ox, label_jk5x_dx - 53); calc(hotspot[label_jk5x_circle].oy, label_jk5x_dy - 63);
+		calc(hotspot[label_jk5x_icon].ox, label_jk5x_dx - 53); calc(hotspot[label_jk5x_icon].oy, label_jk5x_dy - 63);
+		calc(hotspot[label_jk5x_text].ox, label_jk5x_dx + 12); calc(hotspot[label_jk5x_text].oy, label_jk5x_dy - 63);
+	</action>
+
+	<action name="label_wybsfz_apply_pos">
+		set(label_wybsfz_dx, 0); set(label_wybsfz_dy, 0);
+		set(hotspot[label_wybsfz_line].ox, 0); set(hotspot[label_wybsfz_line].oy, 0);
+		calc(hotspot[label_wybsfz_bg_l].ox, label_wybsfz_dx - 65); calc(hotspot[label_wybsfz_bg_l].oy, label_wybsfz_dy - 63);
+		calc(hotspot[label_wybsfz_bg_m].ox, label_wybsfz_dx + 0); calc(hotspot[label_wybsfz_bg_m].oy, label_wybsfz_dy - 63);
+		calc(hotspot[label_wybsfz_bg_r].ox, label_wybsfz_dx + 65); calc(hotspot[label_wybsfz_bg_r].oy, label_wybsfz_dy - 63);
+		calc(hotspot[label_wybsfz_circle].ox, label_wybsfz_dx - 57); calc(hotspot[label_wybsfz_circle].oy, label_wybsfz_dy - 63);
+		calc(hotspot[label_wybsfz_icon].ox, label_wybsfz_dx - 57); calc(hotspot[label_wybsfz_icon].oy, label_wybsfz_dy - 63);
+		calc(hotspot[label_wybsfz_text].ox, label_wybsfz_dx + 12); calc(hotspot[label_wybsfz_text].oy, label_wybsfz_dy - 63);
+	</action>
+
+	<!-- 未央路 · 公路 · 经开第五小学右边 -->
+	<action name="label_wyl_apply_pos">
+		set(label_wyl_dx, 0); set(label_wyl_dy, 0);
+		set(hotspot[label_wyl_line].ox, 0); set(hotspot[label_wyl_line].oy, 0);
+		calc(hotspot[label_wyl_bg_l].ox, label_wyl_dx - 46); calc(hotspot[label_wyl_bg_l].oy, label_wyl_dy - 105);
+		calc(hotspot[label_wyl_bg_m].ox, label_wyl_dx + 0); calc(hotspot[label_wyl_bg_m].oy, label_wyl_dy - 105);
+		calc(hotspot[label_wyl_bg_r].ox, label_wyl_dx + 46); calc(hotspot[label_wyl_bg_r].oy, label_wyl_dy - 105);
+		calc(hotspot[label_wyl_circle].ox, label_wyl_dx - 38); calc(hotspot[label_wyl_circle].oy, label_wyl_dy - 105);
+		calc(hotspot[label_wyl_icon].ox, label_wyl_dx - 38); calc(hotspot[label_wyl_icon].oy, label_wyl_dy - 105);
+		calc(hotspot[label_wyl_text].ox, label_wyl_dx + 12); calc(hotspot[label_wyl_text].oy, label_wyl_dy - 105);
+	</action>
+
+	<!-- 经开第二学校 · 学校 · 未央路右下 -->
+	<action name="label_jk2xx_apply_pos">
+		set(label_jk2xx_dx, 0); set(label_jk2xx_dy, 0);
+		set(hotspot[label_jk2xx_line].ox, 0); set(hotspot[label_jk2xx_line].oy, 0);
+		calc(hotspot[label_jk2xx_bg_l].ox, label_jk2xx_dx - 70); calc(hotspot[label_jk2xx_bg_l].oy, label_jk2xx_dy - 63);
+		calc(hotspot[label_jk2xx_bg_m].ox, label_jk2xx_dx + 0); calc(hotspot[label_jk2xx_bg_m].oy, label_jk2xx_dy - 63);
+		calc(hotspot[label_jk2xx_bg_r].ox, label_jk2xx_dx + 70); calc(hotspot[label_jk2xx_bg_r].oy, label_jk2xx_dy - 63);
+		calc(hotspot[label_jk2xx_circle].ox, label_jk2xx_dx - 62); calc(hotspot[label_jk2xx_circle].oy, label_jk2xx_dy - 63);
+		calc(hotspot[label_jk2xx_icon].ox, label_jk2xx_dx - 62); calc(hotspot[label_jk2xx_icon].oy, label_jk2xx_dy - 63);
+		calc(hotspot[label_jk2xx_text].ox, label_jk2xx_dx + 15); calc(hotspot[label_jk2xx_text].oy, label_jk2xx_dy - 63);
+	</action>
+
+	<!-- 西安城市运动公园 · 公园 · 经开第二学校上方 -->
+	<action name="label_xacsy_apply_pos">
+		set(label_xacsy_dx, 12); set(label_xacsy_dy, 0);
+		set(hotspot[label_xacsy_line].ox, 0); set(hotspot[label_xacsy_line].oy, 0);
+		calc(hotspot[label_xacsy_bg_l].ox, label_xacsy_dx - 75); calc(hotspot[label_xacsy_bg_l].oy, label_xacsy_dy - 63);
+		calc(hotspot[label_xacsy_bg_m].ox, label_xacsy_dx + 0); calc(hotspot[label_xacsy_bg_m].oy, label_xacsy_dy - 63);
+		calc(hotspot[label_xacsy_bg_r].ox, label_xacsy_dx + 75); calc(hotspot[label_xacsy_bg_r].oy, label_xacsy_dy - 63);
+		calc(hotspot[label_xacsy_circle].ox, label_xacsy_dx - 67); calc(hotspot[label_xacsy_circle].oy, label_xacsy_dy - 63);
+		calc(hotspot[label_xacsy_icon].ox, label_xacsy_dx - 67); calc(hotspot[label_xacsy_icon].oy, label_xacsy_dy - 63);
+		calc(hotspot[label_xacsy_text].ox, label_xacsy_dx + 15); calc(hotspot[label_xacsy_text].oy, label_xacsy_dy - 63);
+	</action>
+
+	<!-- 熙地港 · 商场 · 城市运动公园上方 -->
+	<action name="label_xdg_apply_pos">
+		set(label_xdg_dx, 0); set(label_xdg_dy, 0);
+		set(hotspot[label_xdg_line].ox, 0); set(hotspot[label_xdg_line].oy, 0);
+		calc(hotspot[label_xdg_bg_l].ox, label_xdg_dx - 46); calc(hotspot[label_xdg_bg_l].oy, label_xdg_dy - 105);
+		calc(hotspot[label_xdg_bg_m].ox, label_xdg_dx + 0); calc(hotspot[label_xdg_bg_m].oy, label_xdg_dy - 105);
+		calc(hotspot[label_xdg_bg_r].ox, label_xdg_dx + 46); calc(hotspot[label_xdg_bg_r].oy, label_xdg_dy - 105);
+		calc(hotspot[label_xdg_circle].ox, label_xdg_dx - 38); calc(hotspot[label_xdg_circle].oy, label_xdg_dy - 105);
+		calc(hotspot[label_xdg_icon].ox, label_xdg_dx - 38); calc(hotspot[label_xdg_icon].oy, label_xdg_dy - 105);
+		calc(hotspot[label_xdg_text].ox, label_xdg_dx + 12); calc(hotspot[label_xdg_text].oy, label_xdg_dy - 105);
+	</action>
+
+	<!-- 未央国际 ·商场 · 线/卡整体抬高贴合 -->
+	<action name="label_wygi_apply_pos">
+		set(label_wygi_dx, 0); set(label_wygi_dy, 0);
+		set(hotspot[label_wygi_line].ox, 0); set(hotspot[label_wygi_line].oy, 0);
+		calc(hotspot[label_wygi_bg_l].ox, label_wygi_dx - 54); calc(hotspot[label_wygi_bg_l].oy, label_wygi_dy - 125);
+		calc(hotspot[label_wygi_bg_m].ox, label_wygi_dx + 0); calc(hotspot[label_wygi_bg_m].oy, label_wygi_dy - 125);
+		calc(hotspot[label_wygi_bg_r].ox, label_wygi_dx + 54); calc(hotspot[label_wygi_bg_r].oy, label_wygi_dy - 125);
+		calc(hotspot[label_wygi_circle].ox, label_wygi_dx - 46); calc(hotspot[label_wygi_circle].oy, label_wygi_dy - 125);
+		calc(hotspot[label_wygi_icon].ox, label_wygi_dx - 46); calc(hotspot[label_wygi_icon].oy, label_wygi_dy - 125);
+		calc(hotspot[label_wygi_text].ox, label_wygi_dx + 12); calc(hotspot[label_wygi_text].oy, label_wygi_dy - 125);
+	</action>
+
+	<!-- 大融城 · 商场 · 熙地港左边 -->
+	<action name="label_drc_apply_pos">
+		set(label_drc_dx, 0); set(label_drc_dy, 0);
+		set(hotspot[label_drc_line].ox, 0); set(hotspot[label_drc_line].oy, 0);
+		calc(hotspot[label_drc_bg_l].ox, label_drc_dx - 46); calc(hotspot[label_drc_bg_l].oy, label_drc_dy - 125);
+		calc(hotspot[label_drc_bg_m].ox, label_drc_dx + 0); calc(hotspot[label_drc_bg_m].oy, label_drc_dy - 125);
+		calc(hotspot[label_drc_bg_r].ox, label_drc_dx + 46); calc(hotspot[label_drc_bg_r].oy, label_drc_dy - 125);
+		calc(hotspot[label_drc_circle].ox, label_drc_dx - 38); calc(hotspot[label_drc_circle].oy, label_drc_dy - 125);
+		calc(hotspot[label_drc_icon].ox, label_drc_dx - 38); calc(hotspot[label_drc_icon].oy, label_drc_dy - 125);
+		calc(hotspot[label_drc_text].ox, label_drc_dx + 12); calc(hotspot[label_drc_text].oy, label_drc_dy - 125);
+	</action>
+
+	<!-- 汉神购物广场 · 商场 · 城市运动公园右上 -->
+	<action name="label_hsgw_apply_pos">
+		set(label_hsgw_dx, 0); set(label_hsgw_dy, 0);
+		set(hotspot[label_hsgw_line].ox, 0); set(hotspot[label_hsgw_line].oy, 0);
+		calc(hotspot[label_hsgw_bg_l].ox, label_hsgw_dx - 61); calc(hotspot[label_hsgw_bg_l].oy, label_hsgw_dy - 105);
+		calc(hotspot[label_hsgw_bg_m].ox, label_hsgw_dx + 0); calc(hotspot[label_hsgw_bg_m].oy, label_hsgw_dy - 105);
+		calc(hotspot[label_hsgw_bg_r].ox, label_hsgw_dx + 61); calc(hotspot[label_hsgw_bg_r].oy, label_hsgw_dy - 105);
+		calc(hotspot[label_hsgw_circle].ox, label_hsgw_dx - 53); calc(hotspot[label_hsgw_circle].oy, label_hsgw_dy - 105);
+		calc(hotspot[label_hsgw_icon].ox, label_hsgw_dx - 53); calc(hotspot[label_hsgw_icon].oy, label_hsgw_dy - 105);
+		calc(hotspot[label_hsgw_text].ox, label_hsgw_dx + 12); calc(hotspot[label_hsgw_text].oy, label_hsgw_dy - 105);
+	</action>
+
+	<!-- 首创禧悦里 · 商场 · 经开第二学校右下 -->
+	<action name="label_scxyl_apply_pos">
+		set(label_scxyl_dx, -12); set(label_scxyl_dy, 0);
+		set(hotspot[label_scxyl_line].ox, 0); set(hotspot[label_scxyl_line].oy, 0);
+		calc(hotspot[label_scxyl_bg_l].ox, label_scxyl_dx - 56); calc(hotspot[label_scxyl_bg_l].oy, label_scxyl_dy - 63);
+		calc(hotspot[label_scxyl_bg_m].ox, label_scxyl_dx + 0); calc(hotspot[label_scxyl_bg_m].oy, label_scxyl_dy - 63);
+		calc(hotspot[label_scxyl_bg_r].ox, label_scxyl_dx + 56); calc(hotspot[label_scxyl_bg_r].oy, label_scxyl_dy - 63);
+		calc(hotspot[label_scxyl_circle].ox, label_scxyl_dx - 48); calc(hotspot[label_scxyl_circle].oy, label_scxyl_dy - 63);
+		calc(hotspot[label_scxyl_icon].ox, label_scxyl_dx - 48); calc(hotspot[label_scxyl_icon].oy, label_scxyl_dy - 63);
+		calc(hotspot[label_scxyl_text].ox, label_scxyl_dx + 12); calc(hotspot[label_scxyl_text].oy, label_scxyl_dy - 63);
+	</action>
+
+	<!-- 首创未央里 · 商场 · 首创禧悦里下方 -->
+	<action name="label_scwyl_apply_pos">
+		set(label_scwyl_dx, 0); set(label_scwyl_dy, 0);
+		set(hotspot[label_scwyl_line].ox, 0); set(hotspot[label_scwyl_line].oy, 0);
+		calc(hotspot[label_scwyl_bg_l].ox, label_scwyl_dx - 64); calc(hotspot[label_scwyl_bg_l].oy, label_scwyl_dy - 63);
+		calc(hotspot[label_scwyl_bg_m].ox, label_scwyl_dx + 0); calc(hotspot[label_scwyl_bg_m].oy, label_scwyl_dy - 63);
+		calc(hotspot[label_scwyl_bg_r].ox, label_scwyl_dx + 64); calc(hotspot[label_scwyl_bg_r].oy, label_scwyl_dy - 63);
+		calc(hotspot[label_scwyl_circle].ox, label_scwyl_dx - 56); calc(hotspot[label_scwyl_circle].oy, label_scwyl_dy - 63);
+		calc(hotspot[label_scwyl_icon].ox, label_scwyl_dx - 56); calc(hotspot[label_scwyl_icon].oy, label_scwyl_dy - 63);
+		calc(hotspot[label_scwyl_text].ox, label_scwyl_dx + 15); calc(hotspot[label_scwyl_text].oy, label_scwyl_dy - 63);
+	</action>
+
+	<!-- 文景路 · 公路 · 首创未央里右边 -->
+	<action name="label_wjl_apply_pos">
+		set(label_wjl_dx, 12); set(label_wjl_dy, 0);
+		set(hotspot[label_wjl_line].ox, 0); set(hotspot[label_wjl_line].oy, 0);
+		calc(hotspot[label_wjl_bg_l].ox, label_wjl_dx - 40); calc(hotspot[label_wjl_bg_l].oy, label_wjl_dy - 80);
+		calc(hotspot[label_wjl_bg_m].ox, label_wjl_dx + 0); calc(hotspot[label_wjl_bg_m].oy, label_wjl_dy - 80);
+		calc(hotspot[label_wjl_bg_r].ox, label_wjl_dx + 40); calc(hotspot[label_wjl_bg_r].oy, label_wjl_dy - 80);
+		calc(hotspot[label_wjl_circle].ox, label_wjl_dx - 32); calc(hotspot[label_wjl_circle].oy, label_wjl_dy - 80);
+		calc(hotspot[label_wjl_icon].ox, label_wjl_dx - 32); calc(hotspot[label_wjl_icon].oy, label_wjl_dy - 80);
+		calc(hotspot[label_wjl_text].ox, label_wjl_dx + 12); calc(hotspot[label_wjl_text].oy, label_wjl_dy - 80);
+	</action>
+
+	<!-- 经开第一学校 · 学校 · 文景路上面 -->
+	<action name="label_jk1xx_apply_pos">
+		set(label_jk1xx_dx, 0); set(label_jk1xx_dy, 0);
+		set(hotspot[label_jk1xx_line].ox, 0); set(hotspot[label_jk1xx_line].oy, 0);
+		calc(hotspot[label_jk1xx_bg_l].ox, label_jk1xx_dx - 70); calc(hotspot[label_jk1xx_bg_l].oy, label_jk1xx_dy - 63);
+		calc(hotspot[label_jk1xx_bg_m].ox, label_jk1xx_dx + 0); calc(hotspot[label_jk1xx_bg_m].oy, label_jk1xx_dy - 63);
+		calc(hotspot[label_jk1xx_bg_r].ox, label_jk1xx_dx + 70); calc(hotspot[label_jk1xx_bg_r].oy, label_jk1xx_dy - 63);
+		calc(hotspot[label_jk1xx_circle].ox, label_jk1xx_dx - 62); calc(hotspot[label_jk1xx_circle].oy, label_jk1xx_dy - 63);
+		calc(hotspot[label_jk1xx_icon].ox, label_jk1xx_dx - 62); calc(hotspot[label_jk1xx_icon].oy, label_jk1xx_dy - 63);
+		calc(hotspot[label_jk1xx_text].ox, label_jk1xx_dx + 15); calc(hotspot[label_jk1xx_text].oy, label_jk1xx_dy - 63);
+	</action>
+
+	<!-- 西安经开辅轮学校 · 学校 · 城市中央公园右上 -->
+	<action name="label_jkflx_apply_pos">
+		set(label_jkflx_dx, 0); set(label_jkflx_dy, 0);
+		set(hotspot[label_jkflx_line].ox, 0); set(hotspot[label_jkflx_line].oy, 0);
+		calc(hotspot[label_jkflx_bg_l].ox, label_jkflx_dx - 92); calc(hotspot[label_jkflx_bg_l].oy, label_jkflx_dy - 63);
+		calc(hotspot[label_jkflx_bg_m].ox, label_jkflx_dx + 0); calc(hotspot[label_jkflx_bg_m].oy, label_jkflx_dy - 63);
+		calc(hotspot[label_jkflx_bg_r].ox, label_jkflx_dx + 92); calc(hotspot[label_jkflx_bg_r].oy, label_jkflx_dy - 63);
+		calc(hotspot[label_jkflx_circle].ox, label_jkflx_dx - 84); calc(hotspot[label_jkflx_circle].oy, label_jkflx_dy - 63);
+		calc(hotspot[label_jkflx_icon].ox, label_jkflx_dx - 84); calc(hotspot[label_jkflx_icon].oy, label_jkflx_dy - 63);
+		calc(hotspot[label_jkflx_text].ox, label_jkflx_dx + 15); calc(hotspot[label_jkflx_text].oy, label_jkflx_dy - 63);
+	</action>
+
+	<!-- 合生汇 ·商场 · 西安经开辅轮学校与城市中央公园中间 -->
+	<action name="label_hsh_apply_pos">
+		set(label_hsh_dx, 0); set(label_hsh_dy, 0);
+		set(hotspot[label_hsh_line].ox, 0); set(hotspot[label_hsh_line].oy, 0);
+		calc(hotspot[label_hsh_bg_l].ox, label_hsh_dx - 47); calc(hotspot[label_hsh_bg_l].oy, label_hsh_dy - 63);
+		calc(hotspot[label_hsh_bg_m].ox, label_hsh_dx + 0); calc(hotspot[label_hsh_bg_m].oy, label_hsh_dy - 63);
+		calc(hotspot[label_hsh_bg_r].ox, label_hsh_dx + 47); calc(hotspot[label_hsh_bg_r].oy, label_hsh_dy - 63);
+		calc(hotspot[label_hsh_circle].ox, label_hsh_dx - 39); calc(hotspot[label_hsh_circle].oy, label_hsh_dy - 63);
+		calc(hotspot[label_hsh_icon].ox, label_hsh_dx - 39); calc(hotspot[label_hsh_icon].oy, label_hsh_dy - 63);
+		calc(hotspot[label_hsh_text].ox, label_hsh_dx + 12); calc(hotspot[label_hsh_text].oy, label_hsh_dy - 63);
+	</action>
+
+	<!-- 元鼎路站 · 地铁 · 辅轮学校右上 -->
+	<action name="label_ydlz_apply_pos">
+		set(label_ydlz_dx, 0); set(label_ydlz_dy, 0);
+		set(hotspot[label_ydlz_line].ox, 0); set(hotspot[label_ydlz_line].oy, 0);
+		calc(hotspot[label_ydlz_bg_l].ox, label_ydlz_dx - 56); calc(hotspot[label_ydlz_bg_l].oy, label_ydlz_dy - 105);
+		calc(hotspot[label_ydlz_bg_m].ox, label_ydlz_dx + 0); calc(hotspot[label_ydlz_bg_m].oy, label_ydlz_dy - 105);
+		calc(hotspot[label_ydlz_bg_r].ox, label_ydlz_dx + 56); calc(hotspot[label_ydlz_bg_r].oy, label_ydlz_dy - 105);
+		calc(hotspot[label_ydlz_circle].ox, label_ydlz_dx - 48); calc(hotspot[label_ydlz_circle].oy, label_ydlz_dy - 105);
+		calc(hotspot[label_ydlz_icon].ox, label_ydlz_dx - 48); calc(hotspot[label_ydlz_icon].oy, label_ydlz_dy - 105);
+		calc(hotspot[label_ydlz_text].ox, label_ydlz_dx + 12); calc(hotspot[label_ydlz_text].oy, label_ydlz_dy - 105);
+	</action>
+
+	<!-- 西安市儿童医院 · 医院 · 明光路上方 -->
+	<!-- 儿童医院经开院区 · 线/卡略抬高贴合 -->
+	<action name="label_xsetyy_apply_pos">
+		set(label_xsetyy_dx, 0); set(label_xsetyy_dy, 0);
+		set(hotspot[label_xsetyy_line].ox, 0); set(hotspot[label_xsetyy_line].oy, 0);
+		calc(hotspot[label_xsetyy_bg_l].ox, label_xsetyy_dx - 69); calc(hotspot[label_xsetyy_bg_l].oy, label_xsetyy_dy - 80);
+		calc(hotspot[label_xsetyy_bg_m].ox, label_xsetyy_dx + 0); calc(hotspot[label_xsetyy_bg_m].oy, label_xsetyy_dy - 80);
+		calc(hotspot[label_xsetyy_bg_r].ox, label_xsetyy_dx + 69); calc(hotspot[label_xsetyy_bg_r].oy, label_xsetyy_dy - 80);
+		calc(hotspot[label_xsetyy_circle].ox, label_xsetyy_dx - 61); calc(hotspot[label_xsetyy_circle].oy, label_xsetyy_dy - 80);
+		calc(hotspot[label_xsetyy_icon].ox, label_xsetyy_dx - 61); calc(hotspot[label_xsetyy_icon].oy, label_xsetyy_dy - 80);
+		calc(hotspot[label_xsetyy_text].ox, label_xsetyy_dx + 15); calc(hotspot[label_xsetyy_text].oy, label_xsetyy_dy - 80);
+	</action>
+
+	<!-- 长安大学(渭水校区) · 学校 · 儿童医院左边 -->
+	<action name="label_cady_apply_pos">
+		set(label_cady_dx, 0); set(label_cady_dy, 0);
+		set(hotspot[label_cady_line].ox, 0); set(hotspot[label_cady_line].oy, 0);
+		calc(hotspot[label_cady_bg_l].ox, label_cady_dx - 89); calc(hotspot[label_cady_bg_l].oy, label_cady_dy - 63);
+		calc(hotspot[label_cady_bg_m].ox, label_cady_dx + 0); calc(hotspot[label_cady_bg_m].oy, label_cady_dy - 63);
+		calc(hotspot[label_cady_bg_r].ox, label_cady_dx + 89); calc(hotspot[label_cady_bg_r].oy, label_cady_dy - 63);
+		calc(hotspot[label_cady_circle].ox, label_cady_dx - 81); calc(hotspot[label_cady_circle].oy, label_cady_dy - 63);
+		calc(hotspot[label_cady_icon].ox, label_cady_dx - 81); calc(hotspot[label_cady_icon].oy, label_cady_dy - 63);
+		calc(hotspot[label_cady_text].ox, label_cady_dx + 15); calc(hotspot[label_cady_text].oy, label_cady_dy - 63);
+	</action>
+
+	<!-- 西安大兴医院 · 医院 · 儿童医院右边 -->
+	<action name="label_xadxyy_apply_pos">
+		set(label_xadxyy_dx, 0); set(label_xadxyy_dy, 0);
+		set(hotspot[label_xadxyy_line].ox, 0); set(hotspot[label_xadxyy_line].oy, 0);
+		calc(hotspot[label_xadxyy_bg_l].ox, label_xadxyy_dx - 93); calc(hotspot[label_xadxyy_bg_l].oy, label_xadxyy_dy - 63);
+		calc(hotspot[label_xadxyy_bg_m].ox, label_xadxyy_dx + 0); calc(hotspot[label_xadxyy_bg_m].oy, label_xadxyy_dy - 63);
+		calc(hotspot[label_xadxyy_bg_r].ox, label_xadxyy_dx + 93); calc(hotspot[label_xadxyy_bg_r].oy, label_xadxyy_dy - 63);
+		calc(hotspot[label_xadxyy_circle].ox, label_xadxyy_dx - 85); calc(hotspot[label_xadxyy_circle].oy, label_xadxyy_dy - 63);
+		calc(hotspot[label_xadxyy_icon].ox, label_xadxyy_dx - 85); calc(hotspot[label_xadxyy_icon].oy, label_xadxyy_dy - 63);
+		calc(hotspot[label_xadxyy_text].ox, label_xadxyy_dx + 15); calc(hotspot[label_xadxyy_text].oy, label_xadxyy_dy - 63);
+	</action>
+
+
+	<action name="sandbox_labels_apply_all_pos">
+		label_wjsz_apply_pos();
+		label_wjs_apply_pos();
+		label_hhyy_apply_pos();
+		label_adwjgy_apply_pos();
+		label_jk11_apply_pos();
+		label_dxlsy_apply_pos();
+		label_jk8_apply_pos();
+		label_jk2x_apply_pos();
+		label_qhd_apply_pos();
+		label_cszyg_apply_pos();
+		label_xabz_apply_pos();
+		label_golf_apply_pos();
+		label_ysd_apply_pos();
+		label_wyqzyyy_apply_pos();
+		label_zx58_apply_pos();
+		label_kyxx_apply_pos();
+		label_kd_apply_pos();
+		label_bs3_apply_pos();
+		label_xjwg_apply_pos();
+		label_mgl_apply_pos();
+		label_syl_apply_pos();
+		label_hhbz_apply_pos();
+		label_bcd_apply_pos();
+		label_xah_apply_pos();
+		label_jk1zb_apply_pos();
+		label_xjk3ye_apply_pos();
+		label_xjk3xx_apply_pos();
+		label_sjl_apply_pos();
+		label_hdl_apply_pos();
+		label_whstb_apply_pos();
+		label_yxgs_apply_pos();
+		label_xfhstg_apply_pos();
+		label_ctz_apply_pos();
+		label_bmgs_apply_pos();
+		label_jjbz_apply_pos();
+		label_dmgjc_apply_pos();
+		label_thbl_apply_pos();
+		label_sxsy_apply_pos();
+		label_bcl_apply_pos();
+		label_wytj_apply_pos();
+		label_xahy_apply_pos();
+		label_dysy_apply_pos();
+		label_fcbl_apply_pos();
+		label_kygy_apply_pos();
+		label_jk5x_apply_pos();
+		label_wyl_apply_pos();
+		label_jk2xx_apply_pos();
+		label_xacsy_apply_pos();
+		label_xdg_apply_pos();
+		label_drc_apply_pos();
+		label_hsgw_apply_pos();
+		label_scxyl_apply_pos();
+		label_scwyl_apply_pos();
+		label_wjl_apply_pos();
+		label_jk1xx_apply_pos();
+		label_jkflx_apply_pos();
+		label_hsh_apply_pos();
+		label_ydlz_apply_pos();
+		label_xsetyy_apply_pos();
+		label_cady_apply_pos();
+		label_xadxyy_apply_pos();
+		label_wybsfz_apply_pos();
+		label_cwy_apply_pos();
+		label_bwy_apply_pos();
+		label_xayxy_apply_pos();
+		label_xagd_apply_pos();
+		label_sxkd_apply_pos();
+		label_wygi_apply_pos();
+	</action>
+
+	<!-- ========== 热点：线 tip 固定（edge=bottom, ox/oy=0）========== -->
+
+	<!-- 文景山公园站 ·地铁 -->
+	<hotspot name="label_wjsz_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-38" atv="70" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_wjsz_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-38" atv="70" ox="-75" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wjsz_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-38" atv="70" ox="0" oy="-63" scale="1" width="132" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wjsz_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-38" atv="70" ox="75" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wjsz_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-38" atv="70" ox="-67" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_wjsz_icon" style="sandbox_label_img" url="../../沙盘标签/14号线_圆.png" edge="center" ath="-38" atv="70" ox="-67" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_wjsz_text" style="sandbox_label_text_near" ath="-38" atv="70" ox="15" oy="-63" zorder="14" css="color:#FFFFFF; font-family:Microsoft YaHei,PingFang SC,Arial,sans-serif; font-size:16px; text-align:center; font-weight:bold;" html="文景山公园站" />
+
+	<!-- 文景山公园 ·公园 -->
+	<hotspot name="label_wjs_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-82" atv="27" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_wjs_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-82" atv="27" ox="-65" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wjs_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-82" atv="27" ox="0" oy="-63" scale="1" width="112" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wjs_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-82" atv="27" ox="65" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wjs_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-82" atv="27" ox="-57" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_wjs_icon" style="sandbox_label_img" url="../../沙盘标签/公园标签.png" edge="center" ath="-82" atv="27" ox="-57" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_wjs_text" style="sandbox_label_text" ath="-82" atv="27" ox="12" oy="-63" zorder="14" html="文景山公园" />
+
+	<!-- 红会医院 ·医院 -->
+	<hotspot name="label_hhyy_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-40" atv="26" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_hhyy_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-40" atv="26" ox="-56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_hhyy_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-40" atv="26" ox="0" oy="-63" scale="1" width="95" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_hhyy_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-40" atv="26" ox="56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_hhyy_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-40" atv="26" ox="-48" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_hhyy_icon" style="sandbox_label_img" url="../../沙盘标签/医院标签.png" edge="center" ath="-40" atv="26" ox="-48" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_hhyy_text" style="sandbox_label_text_near" ath="-40" atv="26" ox="12" oy="-63" zorder="14" html="红会医院" />
+
+	<!-- 奥达文景观园 ·公园 · 文景山公园站与红会医院中间 -->
+	<hotspot name="label_adwjgy_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-42" atv="48" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_adwjgy_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-42" atv="48" ox="-65" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_adwjgy_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-42" atv="48" ox="0" oy="-63" scale="1" width="112" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_adwjgy_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-42" atv="48" ox="65" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_adwjgy_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-42" atv="48" ox="-57" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_adwjgy_icon" style="sandbox_label_img" url="../../沙盘标签/公园标签.png" edge="center" ath="-42" atv="48" ox="-57" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_adwjgy_text" style="sandbox_label_text_near" ath="-42" atv="48" ox="12" oy="-63" zorder="14" html="奥达文景观园" />
+
+	<!-- 经开第十一幼儿园 ·学校 · 线加长、卡片抬高并贴合 -->
+	<hotspot name="label_jk11_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-23" atv="22.5" ox="0" oy="0" scale="1" width="4" height="92" zorder="10" />
+	<hotspot name="label_jk11_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-23" atv="22.5" ox="-84" oy="-105" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk11_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-23" atv="22.5" ox="0" oy="-105" scale="1" width="148" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk11_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-23" atv="22.5" ox="84" oy="-105" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk11_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-23" atv="22.5" ox="-76" oy="-105" scale="0.4" zorder="12" />
+	<hotspot name="label_jk11_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="-23" atv="22.5" ox="-76" oy="-105" scale="0.4" zorder="13" />
+	<hotspot name="label_jk11_text" style="sandbox_label_text_near" ath="-23" atv="22.5" ox="15" oy="-105" zorder="14" html="经开第十一幼儿园" />
+
+	<!-- 东兴隆商业 ·商场 · 经开第十一幼儿园下面 -->
+	<hotspot name="label_dxlsy_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-20" atv="24" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_dxlsy_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-20" atv="24" ox="-65" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_dxlsy_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-20" atv="24" ox="0" oy="-63" scale="1" width="112" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_dxlsy_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-20" atv="24" ox="65" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_dxlsy_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-20" atv="24" ox="-57" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_dxlsy_icon" style="sandbox_label_img" url="../../沙盘标签/商场标签.png" edge="center" ath="-20" atv="24" ox="-57" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_dxlsy_text" style="sandbox_label_text_near" ath="-20" atv="24" ox="12" oy="-63" zorder="14" html="东兴隆商业" />
+
+	<!-- 经开第八幼儿园 ·学校 -->
+	<hotspot name="label_jk8_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-13" atv="26.5" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_jk8_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-13" atv="26.5" ox="-75" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk8_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-13" atv="26.5" ox="0" oy="-63" scale="1" width="132" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk8_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-13" atv="26.5" ox="75" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk8_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-13" atv="26.5" ox="-67" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_jk8_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="-13" atv="26.5" ox="-67" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_jk8_text" style="sandbox_label_text_near" ath="-13" atv="26.5" ox="15" oy="-63" zorder="14" html="经开第八幼儿园" />
+
+	<!-- 经开第三小学 ·学校 · ath 左移 20：8 → -12 -->
+	<hotspot name="label_jk2x_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-6" atv="17.5" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_jk2x_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-6" atv="17.5" ox="-70" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk2x_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-6" atv="17.5" ox="0" oy="-63" scale="1" width="122" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk2x_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-6" atv="17.5" ox="70" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk2x_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-6" atv="17.5" ox="-62" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_jk2x_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="-6" atv="17.5" ox="-62" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_jk2x_text" style="sandbox_label_text_near" ath="-6" atv="17.5" ox="15" oy="-63" zorder="14" html="经开第三学校" />
+
+	<!-- 秦汉大道 ·公路 -->
+	<hotspot name="label_qhd_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="15" atv="31" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_qhd_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="15" atv="31" ox="-56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_qhd_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="15" atv="31" ox="0" oy="-63" scale="1" width="95" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_qhd_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="15" atv="31" ox="56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_qhd_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="15" atv="31" ox="-48" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_qhd_icon" style="sandbox_label_img" url="../../沙盘标签/公路标签.png" edge="center" ath="15" atv="31" ox="-48" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_qhd_text" style="sandbox_label_text_near" ath="15" atv="31" ox="12" oy="-63" zorder="14" html="秦汉大道" />
+
+	<!-- 城市中央公园 ·公园 -->
+	<hotspot name="label_cszyg_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-159" atv="17" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_cszyg_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-159" atv="17" ox="-70" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_cszyg_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-159" atv="17" ox="0" oy="-63" scale="1" width="122" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_cszyg_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-159" atv="17" ox="70" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_cszyg_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-159" atv="17" ox="-62" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_cszyg_icon" style="sandbox_label_img" url="../../沙盘标签/公园标签.png" edge="center" ath="-159" atv="17" ox="-62" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_cszyg_text" style="sandbox_label_text" ath="-159" atv="17" ox="15" oy="-63" zorder="14" html="城市中央公园" />
+
+	<!-- 西安北站 ·地铁 -->
+	<hotspot name="label_xabz_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-130" atv="17.5" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_xabz_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-130" atv="17.5" ox="-56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xabz_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-130" atv="17.5" ox="0" oy="-63" scale="1" width="95" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xabz_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-130" atv="17.5" ox="56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xabz_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-130" atv="17.5" ox="-48" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_xabz_icon" style="sandbox_label_img" url="../../沙盘标签/2号线_圆.png" edge="center" ath="-130" atv="17.5" ox="-48" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_xabz_text" style="sandbox_label_text" ath="-130" atv="17.5" ox="12" oy="-63" zorder="14" html="西安北站" />
+
+	<!-- 西安国际高尔夫俱乐部 ·公园 -->
+	<hotspot name="label_golf_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-69" atv="10.5" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_golf_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-69" atv="10.5" ox="-102" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_golf_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-69" atv="10.5" ox="0" oy="-63" scale="1" width="184" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_golf_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-69" atv="10.5" ox="102" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_golf_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-69" atv="10.5" ox="-94" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_golf_icon" style="sandbox_label_img" url="../../沙盘标签/公园标签.png" edge="center" ath="-69" atv="10.5" ox="-94" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_golf_text" style="sandbox_label_text" ath="-69" atv="10.5" ox="15" oy="-63" zorder="14" html="西安国际高尔夫俱乐部" />
+
+
+	<!-- 元朔大道 ·公路 -->
+	<hotspot name="label_ysd_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="126" atv="33" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_ysd_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="126" atv="33" ox="-56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_ysd_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="126" atv="33" ox="0" oy="-63" scale="1" width="95" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_ysd_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="126" atv="33" ox="56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_ysd_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="126" atv="33" ox="-48" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_ysd_icon" style="sandbox_label_img" url="../../沙盘标签/公路标签.png" edge="center" ath="126" atv="33" ox="-48" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_ysd_text" style="sandbox_label_text" ath="126" atv="33" ox="12" oy="-63" zorder="14" html="元朔大道" />
+
+	<!-- 未央区中医医院 · 医院 · 元朔大道左边 -->
+	<hotspot name="label_wyqzyyy_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="109" atv="44" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_wyqzyyy_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="109" atv="44" ox="-64" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wyqzyyy_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="109" atv="44" ox="0" oy="-63" scale="1" width="112" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wyqzyyy_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="109" atv="44" ox="64" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wyqzyyy_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="109" atv="44" ox="-56" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_wyqzyyy_icon" style="sandbox_label_img" url="../../沙盘标签/医院标签.png" edge="center" ath="109" atv="44" ox="-56" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_wyqzyyy_text" style="sandbox_label_text" ath="109" atv="44" ox="15" oy="-63" zorder="14" html="未央区中医医院" />
+
+	<!-- 西安市第五十八中学 ·学校 -->
+	<hotspot name="label_zx58_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="110" atv="17" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_zx58_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="110" atv="17" ox="-93" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_zx58_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="110" atv="17" ox="0" oy="-63" scale="1" width="166" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_zx58_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="110" atv="17" ox="93" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_zx58_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="110" atv="17" ox="-85" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_zx58_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="110" atv="17" ox="-85" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_zx58_text" style="sandbox_label_text" ath="110" atv="17" ox="15" oy="-63" zorder="14" html="西安市第五十八中学" />
+
+	<!-- 开元小学 ·学校 · 线加长但不加粗（定宽拉高，粗细同其它点） -->
+	<hotspot name="label_kyxx_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="120" atv="15" ox="0" oy="0" scale="1" width="4" height="92" zorder="10" />
+	<hotspot name="label_kyxx_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="120" atv="15" ox="-56" oy="-105" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_kyxx_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="120" atv="15" ox="0" oy="-105" scale="1" width="95" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_kyxx_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="120" atv="15" ox="56" oy="-105" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_kyxx_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="120" atv="15" ox="-48" oy="-105" scale="0.4" zorder="12" />
+	<hotspot name="label_kyxx_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="120" atv="15" ox="-48" oy="-105" scale="0.4" zorder="13" />
+	<hotspot name="label_kyxx_text" style="sandbox_label_text" ath="120" atv="15" ox="12" oy="-105" zorder="14" html="开元小学" />
+
+	<!-- 科大时代广场 ·商场 -->
+	<hotspot name="label_kd_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="70" atv="8" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_kd_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="70" atv="8" ox="-70" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_kd_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="70" atv="8" ox="0" oy="-63" scale="1" width="122" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_kd_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="70" atv="8" ox="70" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_kd_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="70" atv="8" ox="-62" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_kd_icon" style="sandbox_label_img" url="../../沙盘标签/商场标签.png" edge="center" ath="70" atv="8" ox="-62" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_kd_text" style="sandbox_label_text" ath="70" atv="8" ox="15" oy="-63" zorder="14" html="科大时代广场" />
+
+	<!-- 北三环 ·公路 -->
+	<hotspot name="label_bs3_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="145" atv="15" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_bs3_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="145" atv="15" ox="-47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_bs3_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="145" atv="15" ox="0" oy="-63" scale="1" width="76" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_bs3_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="145" atv="15" ox="47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_bs3_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="145" atv="15" ox="-39" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_bs3_icon" style="sandbox_label_img" url="../../沙盘标签/公路标签.png" edge="center" ath="145" atv="15" ox="-39" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_bs3_text" style="sandbox_label_text" ath="145" atv="15" ox="12" oy="-63" zorder="14" html="北三环" />
+
+	<!-- 未央湖公园 ·公园 -->
+	<hotspot name="label_xjwg_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="29" atv="7" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_xjwg_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="29" atv="7" ox="-65" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xjwg_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="29" atv="7" ox="0" oy="-63" scale="1" width="112" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xjwg_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="29" atv="7" ox="65" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xjwg_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="29" atv="7" ox="-57" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_xjwg_icon" style="sandbox_label_img" url="../../沙盘标签/公园标签.png" edge="center" ath="29" atv="7" ox="-57" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_xjwg_text" style="sandbox_label_text" ath="29" atv="7" ox="12" oy="-63" zorder="14" html="未央湖公园" />
+
+	<!-- 明光路 ·公路 -->
+	<hotspot name="label_mgl_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-113" atv="12" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_mgl_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-113" atv="12" ox="-47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_mgl_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-113" atv="12" ox="0" oy="-63" scale="1" width="76" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_mgl_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-113" atv="12" ox="47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_mgl_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-113" atv="12" ox="-39" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_mgl_icon" style="sandbox_label_img" url="../../沙盘标签/公路标签.png" edge="center" ath="-113" atv="12" ox="-39" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_mgl_text" style="sandbox_label_text" ath="-113" atv="12" ox="12" oy="-63" zorder="14" html="明光路" />
+
+	<!-- 尚华路 ·公路 -->
+	<hotspot name="label_syl_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-26" atv="25" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_syl_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-26" atv="25" ox="-47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_syl_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-26" atv="25" ox="0" oy="-63" scale="1" width="76" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_syl_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-26" atv="25" ox="47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_syl_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-26" atv="25" ox="-39" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_syl_icon" style="sandbox_label_img" url="../../沙盘标签/公路标签.png" edge="center" ath="-26" atv="25" ox="-39" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_syl_text" style="sandbox_label_text_near" ath="-26" atv="25" ox="12" oy="-63" zorder="14" html="尚华路" />
+
+	<!-- 红会医院北区站 ·地铁 -->
+	<hotspot name="label_hhbz_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-42" atv="16.5" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_hhbz_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-42" atv="16.5" ox="-84" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_hhbz_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-42" atv="16.5" ox="0" oy="-63" scale="1" width="148" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_hhbz_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-42" atv="16.5" ox="84" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_hhbz_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-42" atv="16.5" ox="-76" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_hhbz_icon" style="sandbox_label_img" url="../../沙盘标签/2号线_圆.png" edge="center" ath="-42" atv="16.5" ox="-76" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_hhbz_text" style="sandbox_label_text_near" ath="-42" atv="16.5" ox="15" oy="-63" zorder="14" html="红会医院北区站" />
+
+	<!-- 渭河南站 ·地铁 -->
+	<hotspot name="label_bcd_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-78" atv="8" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_bcd_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-78" atv="8" ox="-56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_bcd_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-78" atv="8" ox="0" oy="-63" scale="1" width="95" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_bcd_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-78" atv="8" ox="56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_bcd_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-78" atv="8" ox="-48" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_bcd_icon" style="sandbox_label_img" url="../../沙盘标签/14号线_圆.png" edge="center" ath="-78" atv="8" ox="-48" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_bcd_text" style="sandbox_label_text" ath="-78" atv="8" ox="12" oy="-63" zorder="14" html="渭河南站" />
+
+	<!-- 西安湖 ·公园 · 渭河南站左上 · 线/卡略抬高贴合 -->
+	<hotspot name="label_xah_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-82" atv="6.5" ox="0" oy="0" scale="1" width="4" height="72" zorder="10" />
+	<hotspot name="label_xah_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-82" atv="6.5" ox="-47" oy="-80" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xah_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-82" atv="6.5" ox="0" oy="-80" scale="1" width="76" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xah_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-82" atv="6.5" ox="47" oy="-80" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xah_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-82" atv="6.5" ox="-39" oy="-80" scale="0.4" zorder="12" />
+	<hotspot name="label_xah_icon" style="sandbox_label_img" url="../../沙盘标签/公园标签.png" edge="center" ath="-82" atv="6.5" ox="-39" oy="-80" scale="0.4" zorder="13" />
+	<hotspot name="label_xah_text" style="sandbox_label_text" ath="-82" atv="6.5" ox="12" oy="-80" zorder="14" html="西安湖" />
+
+	<!-- 经开第一中学部 ·学校 · 渭河南站左边 -->
+	<hotspot name="label_jk1zb_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-95" atv="10" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_jk1zb_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-95" atv="10" ox="-84" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk1zb_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-95" atv="10" ox="0" oy="-63" scale="1" width="148" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk1zb_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-95" atv="10" ox="84" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk1zb_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-95" atv="10" ox="-76" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_jk1zb_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="-95" atv="10" ox="-76" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_jk1zb_text" style="sandbox_label_text" ath="-95" atv="10" ox="15" oy="-63" zorder="14" html="经开第一中学部" />
+
+	<!-- 西安经开第三幼儿园 ·学校 · 渭河南站左下 -->
+	<hotspot name="label_xjk3ye_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-90" atv="14" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_xjk3ye_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-90" atv="14" ox="-93" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xjk3ye_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-90" atv="14" ox="0" oy="-63" scale="1" width="166" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xjk3ye_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-90" atv="14" ox="93" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xjk3ye_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-90" atv="14" ox="-85" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_xjk3ye_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="-90" atv="14" ox="-85" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_xjk3ye_text" style="sandbox_label_text" ath="-90" atv="14" ox="15" oy="-63" zorder="14" html="西安经开第三幼儿园" />
+
+	<!-- 西安经开第三小学 ·学校 · 第三幼儿园下方 -->
+	<hotspot name="label_xjk3xx_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-96" atv="15.5" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_xjk3xx_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-96" atv="17.5" ox="-84" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xjk3xx_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-96" atv="17.5" ox="0" oy="-63" scale="1" width="148" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xjk3xx_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-96" atv="17.5" ox="84" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xjk3xx_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-96" atv="17.5" ox="-76" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_xjk3xx_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="-96" atv="17.5" ox="-76" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_xjk3xx_text" style="sandbox_label_text" ath="-96" atv="17.5" ox="15" oy="-63" zorder="14" html="西安经开第三小学" />
+
+	<!-- 尚稷路 ·公路 · 经开第十一幼儿园上方 -->
+	<hotspot name="label_sjl_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-23" atv="15" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_sjl_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-23" atv="15" ox="-47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_sjl_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-23" atv="15" ox="0" oy="-63" scale="1" width="76" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_sjl_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-23" atv="15" ox="47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_sjl_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-23" atv="15" ox="-39" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_sjl_icon" style="sandbox_label_img" url="../../沙盘标签/2号线_圆.png" edge="center" ath="-23" atv="15" ox="-39" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_sjl_text" style="sandbox_label_text_near" ath="-23" atv="15" ox="12" oy="-63" zorder="14" html="尚稷路" />
+
+	<!-- 河堤路 ·公路 · 尚稷路上方 -->
+	<hotspot name="label_hdl_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-26" atv="10" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_hdl_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-26" atv="10" ox="-47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_hdl_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-26" atv="10" ox="0" oy="-63" scale="1" width="76" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_hdl_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-26" atv="10" ox="47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_hdl_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-26" atv="10" ox="-39" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_hdl_icon" style="sandbox_label_img" url="../../沙盘标签/公路标签.png" edge="center" ath="-26" atv="10" ox="-39" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_hdl_text" style="sandbox_label_text" ath="-26" atv="10" ox="12" oy="-63" zorder="14" html="河堤路" />
+
+	<!-- 渭河生态带 ·公园 · 河堤路右边 -->
+	<hotspot name="label_whstb_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-18" atv="8" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_whstb_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-18" atv="8" ox="-65" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_whstb_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-18" atv="8" ox="0" oy="-63" scale="1" width="112" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_whstb_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-18" atv="8" ox="65" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_whstb_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-18" atv="8" ox="-57" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_whstb_icon" style="sandbox_label_img" url="../../沙盘标签/公园标签.png" edge="center" ath="-18" atv="8" ox="-57" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_whstb_text" style="sandbox_label_text" ath="-18" atv="8" ox="12" oy="-63" zorder="14" html="渭河生态带" />
+
+	<!-- 漕渭驿 ·公园 · 渭河生态带右方 -->
+	<hotspot name="label_cwy_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-9" atv="6.5" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_cwy_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-9" atv="6.5" ox="-47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_cwy_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-9" atv="6.5" ox="0" oy="-63" scale="1" width="76" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_cwy_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-9" atv="6.5" ox="47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_cwy_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-9" atv="6.5" ox="-39" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_cwy_icon" style="sandbox_label_img" url="../../沙盘标签/公园标签.png" edge="center" ath="-9" atv="6.5" ox="-39" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_cwy_text" style="sandbox_label_text" ath="-9" atv="6.5" ox="12" oy="-63" zorder="14" html="漕渭驿" />
+
+	<!-- 灞渭驿 ·公园 · 漕渭驿右方 -->
+	<hotspot name="label_bwy_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="0" atv="5.3" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_bwy_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="0" atv="5.3" ox="-47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_bwy_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="0" atv="5.3" ox="0" oy="-63" scale="1" width="76" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_bwy_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="0" atv="5.3" ox="47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_bwy_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="0" atv="5.3" ox="-39" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_bwy_icon" style="sandbox_label_img" url="../../沙盘标签/公园标签.png" edge="center" ath="0" atv="5.3" ox="-39" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_bwy_text" style="sandbox_label_text" ath="0" atv="5.3" ox="12" oy="-63" zorder="14" html="灞渭驿" />
+
+	<!-- 延西高速 ·公路 · 未央湖公园左边 -->
+	<hotspot name="label_yxgs_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="14" atv="7" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_yxgs_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="14" atv="7" ox="-56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_yxgs_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="14" atv="7" ox="0" oy="-63" scale="1" width="95" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_yxgs_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="14" atv="7" ox="56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_yxgs_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="14" atv="7" ox="-48" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_yxgs_icon" style="sandbox_label_img" url="../../沙盘标签/公路标签.png" edge="center" ath="14" atv="7" ox="-48" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_yxgs_text" style="sandbox_label_text" ath="14" atv="7" ox="12" oy="-63" zorder="14" html="延西高速" />
+
+	<!-- 幸福河生态公园 ·公园 · 延西高速左下 -->
+	<hotspot name="label_xfhstg_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="11" atv="9" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_xfhstg_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="11" atv="9" ox="-84" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xfhstg_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="11" atv="9" ox="0" oy="-63" scale="1" width="148" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xfhstg_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="11" atv="9" ox="84" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xfhstg_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="11" atv="9" ox="-76" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_xfhstg_icon" style="sandbox_label_img" url="../../沙盘标签/公园标签.png" edge="center" ath="11" atv="9" ox="-76" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_xfhstg_text" style="sandbox_label_text" ath="11" atv="9" ox="15" oy="-63" zorder="14" html="幸福河生态公园" />
+
+	<!-- 草滩站 ·地铁 · 幸福河生态公园左边 -->
+	<hotspot name="label_ctz_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="1" atv="11.5" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_ctz_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="1" atv="11.5" ox="-47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_ctz_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="1" atv="11.5" ox="0" oy="-63" scale="1" width="76" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_ctz_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="1" atv="11.5" ox="47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_ctz_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="1" atv="11.5" ox="-39" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_ctz_icon" style="sandbox_label_img" url="../../沙盘标签/2号线_圆.png" edge="center" ath="1" atv="11.5" ox="-39" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_ctz_text" style="sandbox_label_text_near" ath="1" atv="11.5" ox="12" oy="-63" zorder="14" html="草滩站" />
+
+	<!-- 包茂高速 ·公路 · 未央湖公园右下 -->
+	<hotspot name="label_bmgs_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="42" atv="12" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_bmgs_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="42" atv="12" ox="-56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_bmgs_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="42" atv="12" ox="0" oy="-63" scale="1" width="95" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_bmgs_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="42" atv="12" ox="56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_bmgs_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="42" atv="12" ox="-48" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_bmgs_icon" style="sandbox_label_img" url="../../沙盘标签/公路标签.png" edge="center" ath="42" atv="12" ox="-48" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_bmgs_text" style="sandbox_label_text" ath="42" atv="12" ox="12" oy="-63" zorder="14" html="包茂高速" />
+
+	<!-- 景家堡站 ·地铁 · 包茂高速上面 -->
+	<hotspot name="label_jjbz_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="44" atv="8.5" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_jjbz_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="44" atv="8.5" ox="-56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jjbz_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="44" atv="8.5" ox="0" oy="-63" scale="1" width="95" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jjbz_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="44" atv="8.5" ox="56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jjbz_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="44" atv="8.5" ox="-48" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_jjbz_icon" style="sandbox_label_img" url="../../沙盘标签/10号线_圆.png" edge="center" ath="44" atv="8.5" ox="-48" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_jjbz_text" style="sandbox_label_text" ath="44" atv="8.5" ox="12" oy="-63" zorder="14" html="景家堡站" />
+
+	<!-- 西安三环大明宫建材市场 ·商场 · 五十八中左上 -->
+	<hotspot name="label_dmgjc_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="95" atv="11" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_dmgjc_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="95" atv="11" ox="-124" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_dmgjc_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="95" atv="11" ox="0" oy="-63" scale="1" width="230" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_dmgjc_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="95" atv="11" ox="124" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_dmgjc_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="95" atv="11" ox="-116" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_dmgjc_icon" style="sandbox_label_img" url="../../沙盘标签/商场标签.png" edge="center" ath="95" atv="11" ox="-116" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_dmgjc_text" style="sandbox_label_text" ath="95" atv="11" ox="15" oy="-63" zorder="14" html="北三环大明宫建材市场(AB区)" />
+
+	<!-- 太华北路 ·公路 · 科大时代广场上方 · 线卡略抬高贴合 -->
+	<hotspot name="label_thbl_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="73" atv="6.5" ox="0" oy="0" scale="1" width="4" height="72" zorder="10" />
+	<hotspot name="label_thbl_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="73" atv="6.5" ox="-56" oy="-80" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_thbl_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="73" atv="6.5" ox="0" oy="-80" scale="1" width="95" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_thbl_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="73" atv="6.5" ox="56" oy="-80" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_thbl_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="73" atv="6.5" ox="-48" oy="-80" scale="0.4" zorder="12" />
+	<hotspot name="label_thbl_icon" style="sandbox_label_img" url="../../沙盘标签/公路标签.png" edge="center" ath="73" atv="6.5" ox="-48" oy="-80" scale="0.4" zorder="13" />
+	<hotspot name="label_thbl_text" style="sandbox_label_text" ath="73" atv="6.5" ox="12" oy="-80" zorder="14" html="太华北路" />
+
+	<!-- 苏席商业中心 ·商场 · 太华北路左上 · 线卡抬高贴合 -->
+	<hotspot name="label_sxsy_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="65" atv="5.5" ox="0" oy="0" scale="1" width="4" height="92" zorder="10" />
+	<hotspot name="label_sxsy_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="65" atv="5.5" ox="-70" oy="-105" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_sxsy_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="65" atv="5.5" ox="0" oy="-105" scale="1" width="122" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_sxsy_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="65" atv="5.5" ox="70" oy="-105" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_sxsy_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="65" atv="5.5" ox="-62" oy="-105" scale="0.4" zorder="12" />
+	<hotspot name="label_sxsy_icon" style="sandbox_label_img" url="../../沙盘标签/商场标签.png" edge="center" ath="65" atv="5.5" ox="-62" oy="-105" scale="0.4" zorder="13" />
+	<hotspot name="label_sxsy_text" style="sandbox_label_text" ath="65" atv="5.5" ox="15" oy="-105" zorder="14" html="苏席商业中心" />
+
+	<!-- 北辰路 ·公路 · 苏席商业中心左上 · 线/卡略抬高贴合 -->
+	<hotspot name="label_bcl_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="55" atv="5" ox="0" oy="0" scale="1" width="4" height="72" zorder="10" />
+	<hotspot name="label_bcl_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="55" atv="5" ox="-47" oy="-80" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_bcl_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="55" atv="5" ox="0" oy="-80" scale="1" width="76" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_bcl_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="55" atv="5" ox="47" oy="-80" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_bcl_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="55" atv="5" ox="-39" oy="-80" scale="0.4" zorder="12" />
+	<hotspot name="label_bcl_icon" style="sandbox_label_img" url="../../沙盘标签/公路标签.png" edge="center" ath="55" atv="5" ox="-39" oy="-80" scale="0.4" zorder="13" />
+	<hotspot name="label_bcl_text" style="sandbox_label_text" ath="55" atv="5" ox="12" oy="-80" zorder="14" html="北辰路" />
+
+	<!-- 西安医学院 ·学校 · 北辰路下方 -->
+	<hotspot name="label_xayxy_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="50" atv="5.5" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_xayxy_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="50" atv="5.5" ox="-56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xayxy_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="50" atv="5.5" ox="0" oy="-63" scale="1" width="95" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xayxy_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="50" atv="5.5" ox="56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xayxy_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="50" atv="5.5" ox="-48" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_xayxy_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="50" atv="5.5" ox="-48" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_xayxy_text" style="sandbox_label_text" ath="50" atv="5.5" ox="12" oy="-63" zorder="14" html="西安医学院" />
+
+	<!-- 西安工业大学 ·学校 · 西安医学院下方 -->
+	<hotspot name="label_xagd_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="52" atv="7" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_xagd_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="52" atv="7" ox="-65" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xagd_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="52" atv="7" ox="0" oy="-63" scale="1" width="112" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xagd_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="52" atv="7" ox="65" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xagd_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="52" atv="7" ox="-57" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_xagd_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="52" atv="7" ox="-57" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_xagd_text" style="sandbox_label_text" ath="52" atv="7" ox="12" oy="-63" zorder="14" html="西安工业大学" />
+
+	<!-- 陕西科技大学 ·学校 · 西安工业大学下方 -->
+	<hotspot name="label_sxkd_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="50" atv="9.5" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_sxkd_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="50" atv="9.5" ox="-65" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_sxkd_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="50" atv="9.5" ox="0" oy="-63" scale="1" width="112" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_sxkd_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="50" atv="9.5" ox="65" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_sxkd_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="50" atv="9.5" ox="-57" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_sxkd_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="50" atv="9.5" ox="-57" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_sxkd_text" style="sandbox_label_text" ath="50" atv="9.5" ox="12" oy="-63" zorder="14" html="陕西科技大学" />
+
+	<!-- 西安未央天街 · 商场 · 开元小学上方 -->
+	<hotspot name="label_wytj_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="115" atv="7" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_wytj_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="115" atv="7" ox="-70" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wytj_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="115" atv="7" ox="0" oy="-63" scale="1" width="122" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wytj_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="115" atv="7" ox="70" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wytj_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="115" atv="7" ox="-62" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_wytj_icon" style="sandbox_label_img" url="../../沙盘标签/商场标签.png" edge="center" ath="115" atv="7" ox="-62" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_wytj_text" style="sandbox_label_text" ath="115" atv="7" ox="15" oy="-63" zorder="14" html="西安未央天街" />
+
+	<!-- 西航医院 · 医院 · 北三环上方 -->
+	<hotspot name="label_xahy_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="145" atv="9" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_xahy_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="145" atv="9" ox="-56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xahy_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="145" atv="9" ox="0" oy="-63" scale="1" width="95" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xahy_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="145" atv="9" ox="56" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xahy_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="145" atv="9" ox="-48" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_xahy_icon" style="sandbox_label_img" url="../../沙盘标签/医院标签.png" edge="center" ath="145" atv="9" ox="-48" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_xahy_text" style="sandbox_label_text" ath="145" atv="9" ox="12" oy="-63" zorder="14" html="西航医院" />
+
+	<!-- 西安市第一实验学校 · 学校 · 北三环右上 -->
+	<hotspot name="label_dysy_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="152" atv="12" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_dysy_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="152" atv="12" ox="-100" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_dysy_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="152" atv="12" ox="0" oy="-63" scale="1" width="184" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_dysy_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="152" atv="12" ox="100" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_dysy_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="152" atv="12" ox="-92" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_dysy_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="152" atv="12" ox="-92" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_dysy_text" style="sandbox_label_text" ath="152" atv="12" ox="15" oy="-63" zorder="14" html="西安市第一实验学校" />
+
+	<!-- 风城八路 · 公路 · 西航医院上方 -->
+	<hotspot name="label_fcbl_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="147" atv="7.5" ox="0" oy="0" scale="1" width="4" height="72" zorder="10" />
+	<hotspot name="label_fcbl_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="147" atv="7.5" ox="-56" oy="-80" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_fcbl_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="147" atv="7.5" ox="0" oy="-80" scale="1" width="95" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_fcbl_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="147" atv="7.5" ox="56" oy="-80" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_fcbl_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="147" atv="7.5" ox="-48" oy="-80" scale="0.4" zorder="12" />
+	<hotspot name="label_fcbl_icon" style="sandbox_label_img" url="../../沙盘标签/公路标签.png" edge="center" ath="147" atv="7.5" ox="-48" oy="-80" scale="0.4" zorder="13" />
+	<hotspot name="label_fcbl_text" style="sandbox_label_text" ath="147" atv="7.5" ox="12" oy="-80" zorder="14" html="风城八路" />
+
+	<!-- 开元公园 · 公园 · 西航医院右边 -->
+	<hotspot name="label_kygy_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="156" atv="8" ox="0" oy="0" scale="1" width="4" height="92" zorder="10" />
+	<hotspot name="label_kygy_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="156" atv="8" ox="-56" oy="-105" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_kygy_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="156" atv="8" ox="0" oy="-105" scale="1" width="95" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_kygy_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="156" atv="8" ox="56" oy="-105" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_kygy_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="156" atv="8" ox="-48" oy="-105" scale="0.4" zorder="12" />
+	<hotspot name="label_kygy_icon" style="sandbox_label_img" url="../../沙盘标签/公园标签.png" edge="center" ath="156" atv="8" ox="-48" oy="-105" scale="0.4" zorder="13" />
+	<hotspot name="label_kygy_text" style="sandbox_label_text" ath="156" atv="8" ox="12" oy="-105" zorder="14" html="开元公园" />
+
+	<!-- 经开第五小学 · 学校 · 开元公园右边 -->
+	<hotspot name="label_jk5x_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="162" atv="9" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_jk5x_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="162" atv="9" ox="-73" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk5x_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="162" atv="9" ox="-12" oy="-63" scale="1" width="105" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk5x_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="162" atv="9" ox="49" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk5x_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="162" atv="9" ox="-65" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_jk5x_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="162" atv="9" ox="-65" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_jk5x_text" style="sandbox_label_text" ath="162" atv="9" ox="0" oy="-63" zorder="14" html="经开第五小学" />
+
+	<!-- 未央北收费站 ·公路 · 经开第五小学下方 -->
+	<hotspot name="label_wybsfz_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="162" atv="12.5" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_wybsfz_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="162" atv="12.5" ox="-65" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wybsfz_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="162" atv="12.5" ox="0" oy="-63" scale="1" width="112" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wybsfz_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="162" atv="12.5" ox="65" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wybsfz_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="162" atv="12.5" ox="-57" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_wybsfz_icon" style="sandbox_label_img" url="../../沙盘标签/公路标签.png" edge="center" ath="162" atv="12.5" ox="-57" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_wybsfz_text" style="sandbox_label_text" ath="162" atv="12.5" ox="12" oy="-63" zorder="14" html="未央北收费站" />
+
+	<!-- 未央路 · 公路 · 经开第五小学右边 -->
+	<hotspot name="label_wyl_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="166.5" atv="9" ox="0" oy="0" scale="1" width="4" height="92" zorder="10" />
+	<hotspot name="label_wyl_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="166.5" atv="9" ox="-46" oy="-105" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wyl_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="166.5" atv="9" ox="0" oy="-105" scale="1" width="76" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wyl_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="166.5" atv="9" ox="46" oy="-105" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wyl_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="166.5" atv="9" ox="-38" oy="-105" scale="0.4" zorder="12" />
+	<hotspot name="label_wyl_icon" style="sandbox_label_img" url="../../沙盘标签/公路标签.png" edge="center" ath="166.5" atv="9" ox="-38" oy="-105" scale="0.4" zorder="13" />
+	<hotspot name="label_wyl_text" style="sandbox_label_text" ath="166.5" atv="9" ox="12" oy="-105" zorder="14" html="未央路" />
+
+	<!-- 经开第二学校 · 学校 · 未央路右下 -->
+	<hotspot name="label_jk2xx_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="170" atv="12" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_jk2xx_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="170" atv="12" ox="-70" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk2xx_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="170" atv="12" ox="0" oy="-63" scale="1" width="122" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk2xx_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="170" atv="12" ox="70" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk2xx_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="170" atv="12" ox="-62" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_jk2xx_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="170" atv="12" ox="-62" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_jk2xx_text" style="sandbox_label_text" ath="170" atv="12" ox="15" oy="-63" zorder="14" html="经开第二学校" />
+
+	<!-- 西安城市运动公园 · 公园 · 经开第二学校上方 -->
+	<hotspot name="label_xacsy_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="172" atv="8" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_xacsy_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="172" atv="8" ox="-63" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xacsy_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="172" atv="8" ox="12" oy="-63" scale="1" width="132" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xacsy_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="172" atv="8" ox="87" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xacsy_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="172" atv="8" ox="-55" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_xacsy_icon" style="sandbox_label_img" url="../../沙盘标签/公园标签.png" edge="center" ath="172" atv="8" ox="-55" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_xacsy_text" style="sandbox_label_text" ath="172" atv="8" ox="27" oy="-63" zorder="14" html="西安城市运动公园" />
+
+	<!-- 熙地港 · 商场 · 城市运动公园上方 -->
+	<hotspot name="label_xdg_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="168" atv="6.5" ox="0" oy="0" scale="1" width="4" height="92" zorder="10" />
+	<hotspot name="label_xdg_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="168" atv="6.5" ox="-46" oy="-105" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xdg_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="168" atv="6.5" ox="0" oy="-105" scale="1" width="76" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xdg_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="168" atv="6.5" ox="46" oy="-105" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xdg_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="168" atv="6.5" ox="-38" oy="-105" scale="0.4" zorder="12" />
+	<hotspot name="label_xdg_icon" style="sandbox_label_img" url="../../沙盘标签/商场标签.png" edge="center" ath="168" atv="6.5" ox="-38" oy="-105" scale="0.4" zorder="13" />
+	<hotspot name="label_xdg_text" style="sandbox_label_text" ath="168" atv="6.5" ox="12" oy="-105" zorder="14" html="熙地港" />
+
+	<!-- 未央国际 ·商场 · 熙地港右后方 · 线/卡整体抬高贴合 -->
+	<hotspot name="label_wygi_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="170" atv="5" ox="0" oy="0" scale="1" width="4" height="110" zorder="10" />
+	<hotspot name="label_wygi_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="170" atv="5" ox="-54" oy="-125" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wygi_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="170" atv="5" ox="0" oy="-125" scale="1" width="90" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wygi_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="170" atv="5" ox="54" oy="-125" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wygi_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="170" atv="5" ox="-46" oy="-125" scale="0.4" zorder="12" />
+	<hotspot name="label_wygi_icon" style="sandbox_label_img" url="../../沙盘标签/商场标签.png" edge="center" ath="170" atv="5" ox="-46" oy="-125" scale="0.4" zorder="13" />
+	<hotspot name="label_wygi_text" style="sandbox_label_text" ath="170" atv="5" ox="12" oy="-125" zorder="14" html="未央国际" />
+
+	<!-- 大融城 · 商场 · 熙地港左边 · 线/卡整体抬高贴合 -->
+	<hotspot name="label_drc_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="164" atv="4.2" ox="0" oy="0" scale="1" width="4" height="110" zorder="10" />
+	<hotspot name="label_drc_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="164" atv="4.2" ox="-46" oy="-125" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_drc_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="164" atv="4.2" ox="0" oy="-125" scale="1" width="76" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_drc_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="164" atv="4.2" ox="46" oy="-125" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_drc_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="164" atv="4.2" ox="-38" oy="-125" scale="0.4" zorder="12" />
+	<hotspot name="label_drc_icon" style="sandbox_label_img" url="../../沙盘标签/商场标签.png" edge="center" ath="164" atv="4.2" ox="-38" oy="-125" scale="0.4" zorder="13" />
+	<hotspot name="label_drc_text" style="sandbox_label_text" ath="164" atv="4.2" ox="12" oy="-125" zorder="14" html="大融城" />
+
+	<!-- 汉神购物广场 · 商场 · 城市运动公园右上 -->
+	<hotspot name="label_hsgw_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="175" atv="7.5" ox="0" oy="0" scale="1" width="4" height="92" zorder="10" />
+	<hotspot name="label_hsgw_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="175" atv="8.5" ox="-61" oy="-105" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_hsgw_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="175" atv="8.5" ox="0" oy="-105" scale="1" width="105" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_hsgw_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="175" atv="8.5" ox="61" oy="-105" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_hsgw_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="175" atv="8.5" ox="-53" oy="-105" scale="0.4" zorder="12" />
+	<hotspot name="label_hsgw_icon" style="sandbox_label_img" url="../../沙盘标签/商场标签.png" edge="center" ath="175" atv="8.5" ox="-53" oy="-105" scale="0.4" zorder="13" />
+	<hotspot name="label_hsgw_text" style="sandbox_label_text" ath="175" atv="8.5" ox="12" oy="-105" zorder="14" html="汉神购物广场" />
+
+	<!-- 首创禧悦里 · 商场 · 经开第二学校右下 -->
+	<hotspot name="label_scxyl_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="183" atv="10" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_scxyl_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="183" atv="10" ox="-68" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_scxyl_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="183" atv="10" ox="-12" oy="-63" scale="1" width="95" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_scxyl_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="183" atv="10" ox="44" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_scxyl_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="183" atv="10" ox="-60" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_scxyl_icon" style="sandbox_label_img" url="../../沙盘标签/商场标签.png" edge="center" ath="183" atv="10" ox="-60" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_scxyl_text" style="sandbox_label_text" ath="183" atv="10" ox="0" oy="-63" zorder="14" html="首创禧悦里" />
+
+	<!-- 首创未央里 · 商场 · 首创禧悦里下方 -->
+	<hotspot name="label_scwyl_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="188" atv="12" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_scwyl_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="188" atv="12" ox="-64" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_scwyl_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="188" atv="12" ox="0" oy="-63" scale="1" width="112" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_scwyl_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="188" atv="12" ox="64" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_scwyl_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="188" atv="12" ox="-56" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_scwyl_icon" style="sandbox_label_img" url="../../沙盘标签/商场标签.png" edge="center" ath="188" atv="12" ox="-56" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_scwyl_text" style="sandbox_label_text" ath="188" atv="12" ox="15" oy="-63" zorder="14" html="首创未央里" />
+
+	<!-- 文景路 · 公路 · 首创未央里右边 -->
+	<hotspot name="label_wjl_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="190" atv="11" ox="0" oy="0" scale="1" width="4" height="72" zorder="10" />
+	<hotspot name="label_wjl_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="190" atv="11" ox="-28" oy="-80" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wjl_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="190" atv="11" ox="12" oy="-80" scale="1" width="62" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wjl_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="190" atv="11" ox="52" oy="-80" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_wjl_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="190" atv="11" ox="-20" oy="-80" scale="0.4" zorder="12" />
+	<hotspot name="label_wjl_icon" style="sandbox_label_img" url="../../沙盘标签/公路标签.png" edge="center" ath="190" atv="11" ox="-20" oy="-80" scale="0.4" zorder="13" />
+	<hotspot name="label_wjl_text" style="sandbox_label_text" ath="190" atv="11" ox="24" oy="-80" zorder="14" html="文景路" />
+
+	<!-- 经开第一学校 · 学校 · 文景路上面 -->
+	<hotspot name="label_jk1xx_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="189" atv="6" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_jk1xx_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="189" atv="6" ox="-70" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk1xx_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="189" atv="6" ox="0" oy="-63" scale="1" width="122" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk1xx_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="189" atv="6" ox="70" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jk1xx_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="189" atv="6" ox="-62" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_jk1xx_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="189" atv="6" ox="-62" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_jk1xx_text" style="sandbox_label_text" ath="189" atv="6" ox="15" oy="-63" zorder="14" html="经开第一学校" />
+
+	<!-- 西安经开辅轮学校 · 学校 · 城市中央公园右上 -->
+	<hotspot name="label_jkflx_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-150" atv="13" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_jkflx_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-150" atv="13" ox="-92" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jkflx_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-150" atv="13" ox="0" oy="-63" scale="1" width="166" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jkflx_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-150" atv="13" ox="92" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_jkflx_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-150" atv="13" ox="-84" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_jkflx_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="-150" atv="13" ox="-84" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_jkflx_text" style="sandbox_label_text" ath="-150" atv="13" ox="15" oy="-63" zorder="14" html="西安经开辅轮学校" />
+
+	<!-- 合生汇 ·商场 · 西安经开辅轮学校与城市中央公园中间 -->
+	<hotspot name="label_hsh_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-154.5" atv="15" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_hsh_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-154.5" atv="15" ox="-47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_hsh_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-154.5" atv="15" ox="0" oy="-63" scale="1" width="76" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_hsh_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-154.5" atv="15" ox="47" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_hsh_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-154.5" atv="15" ox="-39" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_hsh_icon" style="sandbox_label_img" url="../../沙盘标签/商场标签.png" edge="center" ath="-154.5" atv="15" ox="-39" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_hsh_text" style="sandbox_label_text" ath="-154.5" atv="15" ox="12" oy="-63" zorder="14" html="合生汇" />
+
+	<!-- 元鼎路站 · 地铁 · 辅轮学校右上 -->
+	<hotspot name="label_ydlz_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-146" atv="11" ox="0" oy="0" scale="1" width="4" height="92" zorder="10" />
+	<hotspot name="label_ydlz_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-146" atv="11" ox="-56" oy="-105" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_ydlz_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-146" atv="11" ox="0" oy="-105" scale="1" width="95" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_ydlz_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-146" atv="11" ox="56" oy="-105" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_ydlz_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-146" atv="11" ox="-48" oy="-105" scale="0.4" zorder="12" />
+	<hotspot name="label_ydlz_icon" style="sandbox_label_img" url="../../沙盘标签/地铁标签.png" edge="center" ath="-146" atv="11" ox="-48" oy="-105" scale="0.4" zorder="13" />
+	<hotspot name="label_ydlz_text" style="sandbox_label_text" ath="-146" atv="11" ox="12" oy="-105" zorder="14" html="元鼎路站" />
+
+	<!-- 儿童医院经开院区 · 医院 · 明光路上方 · 线/卡略抬高贴合 -->
+	<hotspot name="label_xsetyy_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-111" atv="6" ox="0" oy="0" scale="1" width="4" height="72" zorder="10" />
+	<hotspot name="label_xsetyy_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-111" atv="6" ox="-69" oy="-80" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xsetyy_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-111" atv="6" ox="0" oy="-80" scale="1" width="120" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xsetyy_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-111" atv="6" ox="69" oy="-80" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xsetyy_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-111" atv="6" ox="-61" oy="-80" scale="0.4" zorder="12" />
+	<hotspot name="label_xsetyy_icon" style="sandbox_label_img" url="../../沙盘标签/医院标签.png" edge="center" ath="-111" atv="6" ox="-61" oy="-80" scale="0.4" zorder="13" />
+	<hotspot name="label_xsetyy_text" style="sandbox_label_text" ath="-111" atv="6" ox="15" oy="-80" zorder="14" html="儿童医院经开院区" />
+
+	<!-- 长安大学(渭水校区) · 学校 · 儿童医院左边 -->
+	<hotspot name="label_cady_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-124" atv="6" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_cady_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-124" atv="6" ox="-89" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_cady_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-124" atv="6" ox="0" oy="-63" scale="1" width="160" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_cady_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-124" atv="6" ox="89" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_cady_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-124" atv="6" ox="-81" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_cady_icon" style="sandbox_label_img" url="../../沙盘标签/学校标签.png" edge="center" ath="-124" atv="6" ox="-81" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_cady_text" style="sandbox_label_text" ath="-124" atv="6" ox="15" oy="-63" zorder="14" html="长安大学(渭水校区)" />
+
+	<!-- 西安大兴医院 · 医院 · 儿童医院右边 -->
+	<hotspot name="label_xadxyy_line" style="sandbox_label_img" url="../../沙盘标签/线.png" edge="bottom" ath="-103" atv="5.8" ox="0" oy="0" scale="0.4" zorder="10" />
+	<hotspot name="label_xadxyy_bg_l" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_左.png" edge="center" ath="-103" atv="6" ox="-93" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xadxyy_bg_m" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_中.png" edge="center" ath="-103" atv="6" ox="0" oy="-63" scale="1" width="168" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xadxyy_bg_r" style="sandbox_label_img" url="../../沙盘标签/标签黑色背景_右.png" edge="center" ath="-103" atv="6" ox="93" oy="-63" scale="1" width="17" height="33" alpha="0.85" zorder="11" />
+	<hotspot name="label_xadxyy_circle" style="sandbox_label_img" url="../../沙盘标签/标签圆形背景.png" edge="center" ath="-103" atv="6" ox="-85" oy="-63" scale="0.4" zorder="12" />
+	<hotspot name="label_xadxyy_icon" style="sandbox_label_img" url="../../沙盘标签/医院标签.png" edge="center" ath="-103" atv="6" ox="-85" oy="-63" scale="0.4" zorder="13" />
+	<hotspot name="label_xadxyy_text" style="sandbox_label_text" ath="-103" atv="6" ox="15" oy="-63" zorder="14" html="西安大兴医院渭水园院区" />
+
+
+
+	<!-- ========== 分类筛选：全部 / 交通 / 生态 / 教育医疗 / 商业（对齐春风） ==========
+	     Vue postMessage → tour.html → sandbox_filter_category(key) -->
+	<action name="sandbox_filter_init" autorun="preinit">
+		set(sandbox_filter_cat, 'all');
+		set(sandbox_filter_cat_prev, 'all');
+		set(flt_spin_dir, 0);
+
+		set(filter_all_h, -4.8);
+		set(filter_all_v, 30.7);
+		set(filter_all_fov, 89);
+
+		set(filter_traffic_h, 18.0);
+		set(filter_traffic_v, 17.0);
+		set(filter_traffic_fov, 110);
+
+		set(filter_ecology_h, -5.0);
+		set(filter_ecology_v, 12.0);
+		set(filter_ecology_fov, 110);
+
+		<!-- 教育医疗 → 经开第八幼儿园 -->
+		set(filter_edumed_h, -13.0);
+		set(filter_edumed_v, 26.5);
+		set(filter_edumed_fov, 110);
+
+		<!-- 商业 → 汉神购物广场 -->
+		set(filter_commerce_h, 175.0);
+		set(filter_commerce_v, 8.5);
+		set(filter_commerce_fov, 110);
+	</action>
+
+	<action name="sandbox_label_set_visible">
+		txtadd(tmp_hs, %1, '_line');   set(hotspot[get(tmp_hs)].visible, %2);
+		txtadd(tmp_hs, %1, '_bg_l');   set(hotspot[get(tmp_hs)].visible, %2);
+		txtadd(tmp_hs, %1, '_bg_m');   set(hotspot[get(tmp_hs)].visible, %2);
+		txtadd(tmp_hs, %1, '_bg_r');   set(hotspot[get(tmp_hs)].visible, %2);
+		txtadd(tmp_hs, %1, '_circle'); set(hotspot[get(tmp_hs)].visible, %2);
+		txtadd(tmp_hs, %1, '_icon');   set(hotspot[get(tmp_hs)].visible, %2);
+		txtadd(tmp_hs, %1, '_text');   set(hotspot[get(tmp_hs)].visible, %2);
+		if(%2 == true,
+			txtadd(tmp_hs, %1, '_line');   set(hotspot[get(tmp_hs)].alpha, 1.0);
+			txtadd(tmp_hs, %1, '_bg_l');   set(hotspot[get(tmp_hs)].alpha, 0.85);
+			txtadd(tmp_hs, %1, '_bg_m');   set(hotspot[get(tmp_hs)].alpha, 0.85);
+			txtadd(tmp_hs, %1, '_bg_r');   set(hotspot[get(tmp_hs)].alpha, 0.85);
+			txtadd(tmp_hs, %1, '_circle'); set(hotspot[get(tmp_hs)].alpha, 1.0);
+			txtadd(tmp_hs, %1, '_icon');   set(hotspot[get(tmp_hs)].alpha, 1.0);
+			txtadd(tmp_hs, %1, '_text');   set(hotspot[get(tmp_hs)].alpha, 1.0);
+		);
+	</action>
+
+	<action name="sandbox_filter_hide_all_labels">
+		sandbox_label_set_visible(label_wjsz, false);
+		sandbox_label_set_visible(label_wjs, false);
+		sandbox_label_set_visible(label_hhyy, false);
+		sandbox_label_set_visible(label_adwjgy, false);
+		sandbox_label_set_visible(label_jk11, false);
+		sandbox_label_set_visible(label_dxlsy, false);
+		sandbox_label_set_visible(label_jk8, false);
+		sandbox_label_set_visible(label_jk2x, false);
+		sandbox_label_set_visible(label_qhd, false);
+		sandbox_label_set_visible(label_cszyg, false);
+		sandbox_label_set_visible(label_xabz, false);
+		sandbox_label_set_visible(label_golf, false);
+		sandbox_label_set_visible(label_ysd, false);
+		sandbox_label_set_visible(label_wyqzyyy, false);
+		sandbox_label_set_visible(label_zx58, false);
+		sandbox_label_set_visible(label_kyxx, false);
+		sandbox_label_set_visible(label_kd, false);
+		sandbox_label_set_visible(label_bs3, false);
+		sandbox_label_set_visible(label_xjwg, false);
+		sandbox_label_set_visible(label_mgl, false);
+		sandbox_label_set_visible(label_syl, false);
+		sandbox_label_set_visible(label_hhbz, false);
+		sandbox_label_set_visible(label_bcd, false);
+		sandbox_label_set_visible(label_xah, false);
+		sandbox_label_set_visible(label_jk1zb, false);
+		sandbox_label_set_visible(label_xjk3ye, false);
+		sandbox_label_set_visible(label_xjk3xx, false);
+		sandbox_label_set_visible(label_sjl, false);
+		sandbox_label_set_visible(label_hdl, false);
+		sandbox_label_set_visible(label_whstb, false);
+		sandbox_label_set_visible(label_yxgs, false);
+		sandbox_label_set_visible(label_xfhstg, false);
+		sandbox_label_set_visible(label_ctz, false);
+		sandbox_label_set_visible(label_bmgs, false);
+		sandbox_label_set_visible(label_jjbz, false);
+		sandbox_label_set_visible(label_dmgjc, false);
+		sandbox_label_set_visible(label_thbl, false);
+		sandbox_label_set_visible(label_sxsy, false);
+		sandbox_label_set_visible(label_bcl, false);
+		sandbox_label_set_visible(label_wytj, false);
+		sandbox_label_set_visible(label_xahy, false);
+		sandbox_label_set_visible(label_dysy, false);
+		sandbox_label_set_visible(label_fcbl, false);
+		sandbox_label_set_visible(label_kygy, false);
+		sandbox_label_set_visible(label_jk5x, false);
+		sandbox_label_set_visible(label_wyl, false);
+		sandbox_label_set_visible(label_jk2xx, false);
+		sandbox_label_set_visible(label_xacsy, false);
+		sandbox_label_set_visible(label_xdg, false);
+		sandbox_label_set_visible(label_drc, false);
+		sandbox_label_set_visible(label_hsgw, false);
+		sandbox_label_set_visible(label_scxyl, false);
+		sandbox_label_set_visible(label_scwyl, false);
+		sandbox_label_set_visible(label_wjl, false);
+		sandbox_label_set_visible(label_jk1xx, false);
+		sandbox_label_set_visible(label_jkflx, false);
+		sandbox_label_set_visible(label_hsh, false);
+		sandbox_label_set_visible(label_ydlz, false);
+		sandbox_label_set_visible(label_xsetyy, false);
+		sandbox_label_set_visible(label_cady, false);
+		sandbox_label_set_visible(label_xadxyy, false);
+		sandbox_label_set_visible(label_wybsfz, false);
+		sandbox_label_set_visible(label_cwy, false);
+		sandbox_label_set_visible(label_bwy, false);
+		sandbox_label_set_visible(label_xayxy, false);
+		sandbox_label_set_visible(label_xagd, false);
+		sandbox_label_set_visible(label_sxkd, false);
+		sandbox_label_set_visible(label_wygi, false);
+	</action>
+
+	<action name="sandbox_filter_show_all_labels">
+		sandbox_label_set_visible(label_wjsz, true);
+		sandbox_label_set_visible(label_wjs, true);
+		sandbox_label_set_visible(label_hhyy, true);
+		sandbox_label_set_visible(label_adwjgy, true);
+		sandbox_label_set_visible(label_jk11, true);
+		sandbox_label_set_visible(label_dxlsy, true);
+		sandbox_label_set_visible(label_jk8, true);
+		sandbox_label_set_visible(label_jk2x, true);
+		sandbox_label_set_visible(label_qhd, true);
+		sandbox_label_set_visible(label_cszyg, true);
+		sandbox_label_set_visible(label_xabz, true);
+		sandbox_label_set_visible(label_golf, true);
+		sandbox_label_set_visible(label_ysd, true);
+		sandbox_label_set_visible(label_wyqzyyy, true);
+		sandbox_label_set_visible(label_zx58, true);
+		sandbox_label_set_visible(label_kyxx, true);
+		sandbox_label_set_visible(label_kd, true);
+		sandbox_label_set_visible(label_bs3, true);
+		sandbox_label_set_visible(label_xjwg, true);
+		sandbox_label_set_visible(label_mgl, true);
+		sandbox_label_set_visible(label_syl, true);
+		sandbox_label_set_visible(label_hhbz, true);
+		sandbox_label_set_visible(label_bcd, true);
+		sandbox_label_set_visible(label_xah, true);
+		sandbox_label_set_visible(label_jk1zb, true);
+		sandbox_label_set_visible(label_xjk3ye, true);
+		sandbox_label_set_visible(label_xjk3xx, true);
+		sandbox_label_set_visible(label_sjl, true);
+		sandbox_label_set_visible(label_hdl, true);
+		sandbox_label_set_visible(label_whstb, true);
+		sandbox_label_set_visible(label_yxgs, true);
+		sandbox_label_set_visible(label_xfhstg, true);
+		sandbox_label_set_visible(label_ctz, true);
+		sandbox_label_set_visible(label_bmgs, true);
+		sandbox_label_set_visible(label_jjbz, true);
+		sandbox_label_set_visible(label_dmgjc, true);
+		sandbox_label_set_visible(label_thbl, true);
+		sandbox_label_set_visible(label_sxsy, true);
+		sandbox_label_set_visible(label_bcl, true);
+		sandbox_label_set_visible(label_wytj, true);
+		sandbox_label_set_visible(label_xahy, true);
+		sandbox_label_set_visible(label_dysy, true);
+		sandbox_label_set_visible(label_fcbl, true);
+		sandbox_label_set_visible(label_kygy, true);
+		sandbox_label_set_visible(label_jk5x, true);
+		sandbox_label_set_visible(label_wyl, true);
+		sandbox_label_set_visible(label_jk2xx, true);
+		sandbox_label_set_visible(label_xacsy, true);
+		sandbox_label_set_visible(label_xdg, true);
+		sandbox_label_set_visible(label_drc, true);
+		sandbox_label_set_visible(label_hsgw, true);
+		sandbox_label_set_visible(label_scxyl, true);
+		sandbox_label_set_visible(label_scwyl, true);
+		sandbox_label_set_visible(label_wjl, true);
+		sandbox_label_set_visible(label_jk1xx, true);
+		sandbox_label_set_visible(label_jkflx, true);
+		sandbox_label_set_visible(label_hsh, true);
+		sandbox_label_set_visible(label_ydlz, true);
+		sandbox_label_set_visible(label_xsetyy, true);
+		sandbox_label_set_visible(label_cady, true);
+		sandbox_label_set_visible(label_xadxyy, true);
+		sandbox_label_set_visible(label_wybsfz, true);
+		sandbox_label_set_visible(label_cwy, true);
+		sandbox_label_set_visible(label_bwy, true);
+		sandbox_label_set_visible(label_xayxy, true);
+		sandbox_label_set_visible(label_xagd, true);
+		sandbox_label_set_visible(label_sxkd, true);
+		sandbox_label_set_visible(label_wygi, true);
+	</action>
+
+	<action name="sandbox_filter_look_to_cat">
+		<!-- 小行星入场期间禁止筛选抢视角 -->
+		if(sandbox_intro_running == true, exit(); );
+		if(%1 == 'all',
+			copy(flt_h, filter_all_h); copy(flt_v, filter_all_v); copy(flt_fov, filter_all_fov);
+		  ,
+			if(%1 == 'traffic',
+				copy(flt_h, filter_traffic_h); copy(flt_v, filter_traffic_v); copy(flt_fov, filter_traffic_fov);
+			  ,
+				if(%1 == 'ecology',
+					copy(flt_h, filter_ecology_h); copy(flt_v, filter_ecology_v); copy(flt_fov, filter_ecology_fov);
+				  ,
+					if(%1 == 'edumed',
+						copy(flt_h, filter_edumed_h); copy(flt_v, filter_edumed_v); copy(flt_fov, filter_edumed_fov);
+					  ,
+						if(%1 == 'commerce',
+							copy(flt_h, filter_commerce_h); copy(flt_v, filter_commerce_v); copy(flt_fov, filter_commerce_fov);
+						  ,
+							copy(flt_h, filter_all_h); copy(flt_v, filter_all_v); copy(flt_fov, filter_all_fov);
+						);
+					);
+				);
+			);
+		);
+		sandbox_filter_look_tween();
+	</action>
+
+	<action name="sandbox_filter_look_tween">
+		stoptween(view.hlookat);
+		stoptween(view.vlookat);
+		stoptween(view.fov);
+
+		calc(flt_dh_signed, flt_h - view.hlookat);
+		if(flt_dh_signed GT 180, calc(flt_dh_signed, flt_dh_signed - 360));
+		if(flt_dh_signed LT -180, calc(flt_dh_signed, flt_dh_signed + 360));
+
+		calc(flt_dh, flt_dh_signed);
+		if(flt_dh LT 0, calc(flt_dh, 0 - flt_dh));
+		calc(flt_dv, flt_v - view.vlookat);
+		if(flt_dv LT 0, calc(flt_dv, 0 - flt_dv));
+		calc(flt_df, flt_fov - view.fov);
+		if(flt_df LT 0, calc(flt_df, 0 - flt_df));
+		calc(flt_dist, flt_dh + flt_dv * 0.6 + flt_df * 0.25);
+
+		set(flt_time_min, 1.4);
+		set(flt_time_max, 5.0);
+		set(flt_time_per_deg, 0.032);
+		calc(flt_t, flt_time_min + flt_dist * flt_time_per_deg);
+		if(flt_t LT flt_time_min, copy(flt_t, flt_time_min));
+		if(flt_t GT flt_time_max, copy(flt_t, flt_time_max));
+
+		tween(view.hlookat, calc(view.hlookat + flt_dh_signed), get(flt_t), easeOutQuad);
+		tween(view.vlookat, get(flt_v), get(flt_t), easeOutQuad);
+		tween(view.fov,     get(flt_fov), get(flt_t), easeOutQuad);
+	</action>
+
+	<action name="sandbox_filter_apply_current">
+		<!-- 区域沙盘项目 logo：各分类都显示（同春风）；进入场景 3 秒内不显示标点 -->
+		if(xml.scene == 'scene_xmgxffyyzzby_0000',
+			if(sandbox_xiqu_markers_ready != true,
+				sandbox_filter_hide_all_labels();
+				if(hotspot[spot_bhly_logo], set(hotspot[spot_bhly_logo].visible, false); set(hotspot[spot_bhly_logo].alpha, 0); );
+			  ,
+				sandbox_filter_hide_all_labels();
+				if(hotspot[spot_bhly_logo], set(hotspot[spot_bhly_logo].visible, true); set(hotspot[spot_bhly_logo].alpha, 1.0); );
+				if(sandbox_filter_cat == 'all',
+					sandbox_filter_show_all_labels();
+				  ,
+					if(sandbox_filter_cat == 'traffic',
+						sandbox_label_set_visible(label_wjsz, true);
+						sandbox_label_set_visible(label_xabz, true);
+						sandbox_label_set_visible(label_hhbz, true);
+						sandbox_label_set_visible(label_bcd, true);
+						sandbox_label_set_visible(label_qhd, true);
+						sandbox_label_set_visible(label_ysd, true);
+						sandbox_label_set_visible(label_mgl, true);
+						sandbox_label_set_visible(label_syl, true);
+						sandbox_label_set_visible(label_sjl, true);
+						sandbox_label_set_visible(label_hdl, true);
+						sandbox_label_set_visible(label_yxgs, true);
+						sandbox_label_set_visible(label_ctz, true);
+						sandbox_label_set_visible(label_bmgs, true);
+						sandbox_label_set_visible(label_jjbz, true);
+						sandbox_label_set_visible(label_thbl, true);
+						sandbox_label_set_visible(label_bcl, true);
+						sandbox_label_set_visible(label_fcbl, true);
+						sandbox_label_set_visible(label_wyl, true);
+						sandbox_label_set_visible(label_wjl, true);
+						sandbox_label_set_visible(label_ydlz, true);
+						sandbox_label_set_visible(label_bs3, true);
+						sandbox_label_set_visible(label_wybsfz, true);
+					  ,
+						if(sandbox_filter_cat == 'ecology',
+							sandbox_label_set_visible(label_wjs, true);
+							sandbox_label_set_visible(label_adwjgy, true);
+							sandbox_label_set_visible(label_cszyg, true);
+							sandbox_label_set_visible(label_golf, true);
+							sandbox_label_set_visible(label_xjwg, true);
+							sandbox_label_set_visible(label_xah, true);
+							sandbox_label_set_visible(label_whstb, true);
+							sandbox_label_set_visible(label_xfhstg, true);
+							sandbox_label_set_visible(label_kygy, true);
+							sandbox_label_set_visible(label_xacsy, true);
+							sandbox_label_set_visible(label_cwy, true);
+							sandbox_label_set_visible(label_bwy, true);
+						  ,
+							if(sandbox_filter_cat == 'edumed',
+								sandbox_label_set_visible(label_jk11, true);
+								sandbox_label_set_visible(label_jk8, true);
+								sandbox_label_set_visible(label_jk2x, true);
+								sandbox_label_set_visible(label_zx58, true);
+								sandbox_label_set_visible(label_kyxx, true);
+								sandbox_label_set_visible(label_jk1zb, true);
+								sandbox_label_set_visible(label_xjk3ye, true);
+								sandbox_label_set_visible(label_xjk3xx, true);
+								sandbox_label_set_visible(label_dysy, true);
+								sandbox_label_set_visible(label_jk5x, true);
+								sandbox_label_set_visible(label_jk2xx, true);
+								sandbox_label_set_visible(label_jk1xx, true);
+								sandbox_label_set_visible(label_jkflx, true);
+								sandbox_label_set_visible(label_cady, true);
+								sandbox_label_set_visible(label_hhyy, true);
+								sandbox_label_set_visible(label_xahy, true);
+								sandbox_label_set_visible(label_xsetyy, true);
+								sandbox_label_set_visible(label_xadxyy, true);
+								sandbox_label_set_visible(label_wyqzyyy, true);
+								sandbox_label_set_visible(label_xayxy, true);
+								sandbox_label_set_visible(label_xagd, true);
+								sandbox_label_set_visible(label_sxkd, true);
+							  ,
+								if(sandbox_filter_cat == 'commerce',
+									sandbox_label_set_visible(label_kd, true);
+									sandbox_label_set_visible(label_dxlsy, true);
+									sandbox_label_set_visible(label_dmgjc, true);
+									sandbox_label_set_visible(label_sxsy, true);
+									sandbox_label_set_visible(label_wytj, true);
+									sandbox_label_set_visible(label_xdg, true);
+									sandbox_label_set_visible(label_hsh, true);
+									sandbox_label_set_visible(label_drc, true);
+									sandbox_label_set_visible(label_hsgw, true);
+									sandbox_label_set_visible(label_scxyl, true);
+									sandbox_label_set_visible(label_scwyl, true);
+									sandbox_label_set_visible(label_wygi, true);
+								);
+							);
+						);
+					);
+				);
+			);
+		);
+	</action>
+
+	<action name="sandbox_filter_category">
+		set(sandbox_filter_cat_prev, get(sandbox_filter_cat));
+		set(sandbox_filter_cat, %1);
+		sandbox_filter_apply_current();
+		sandbox_filter_look_to_cat(%1);
+	</action>
+
+</krpano>
+

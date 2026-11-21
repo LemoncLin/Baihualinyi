@@ -1,0 +1,753 @@
+<krpano version="1.23" title="Virtual Tour">
+
+	<include url="skin/vtourskin.xml" />
+
+	<data name="radar_group">pano</data>
+	<include url="../radar.xml" />
+
+	<!-- customize skin settings -->
+	<skin_settings maps="false"
+	               maps_type="openstreetmaps"
+	               maps_bing_api_key=""
+	               maps_google_api_key=""
+	               maps_zoombuttons="false"
+	               maps_loadonfirstuse="true"
+	               gyro="true"
+	               gyro_keeplookingdirection="false"
+	               webvr="true"
+	               webvr_keeplookingdirection="true"
+	               webvr_prev_next_hotspots="true"
+	               autotour="false"
+	               littleplanetintro="false"
+	               followmousecontrol="false"
+	               title="false"
+	               thumbs="false"
+	               thumbs_width="120" thumbs_height="80" thumbs_padding="10" thumbs_crop="0|40|240|160"
+	               thumbs_opened="false"
+	               thumbs_text="false"
+	               thumbs_dragging="true"
+	               thumbs_onhoverscrolling="false"
+	               thumbs_scrollbuttons="false"
+	               thumbs_scrollindicator="false"
+	               thumbs_loop="false"
+	               tooltips_buttons="false"
+	               tooltips_thumbs="false"
+	               tooltips_hotspots="false"
+	               tooltips_mapspots="false"
+	               deeplinking="false"
+	               loadscene_flags="MERGE"
+	               loadscene_blend="OPENBLEND(0.5, 0.0, 0.75, 0.05, linear)"
+	               loadscene_blend_prev="SLIDEBLEND(0.5, 180, 0.75, linear)"
+	               loadscene_blend_next="SLIDEBLEND(0.5,   0, 0.75, linear)"
+	               loadingtext=""
+	               layout_width="100%"
+	               layout_maxwidth="814"
+	               controlbar_width="-24"
+	               controlbar_height="40"
+	               controlbar_offset="20"
+	               controlbar_offset_closed="-40"
+	               controlbar_overlap.no-fractionalscaling="10"
+	               controlbar_overlap.fractionalscaling="0"
+	               design_skin_images="vtourskin.png"
+	               design_bgcolor="0x2D3E50"
+	               design_bgalpha="0.8"
+	               design_bgborder="0"
+	               design_bgroundedge="1"
+	               design_bgshadow="0 4 10 0x000000 0.3"
+	               design_thumbborder_bgborder="3 0xFFFFFF 1.0"
+	               design_thumbborder_padding="2"
+	               design_thumbborder_bgroundedge="0"
+	               design_text_css="color:#FFFFFF; font-family:Arial;"
+	               design_text_shadow="1"
+	               />
+
+	<!-- 5 秒无操作后缓慢自动旋转 -->
+	<autorotate enabled="true"
+	            waittime="5.0"
+	            accel="0.5"
+	            speed="2.0"
+	            horizon="0.0"
+	            tofov="off"
+	            oneroundrange="360"
+	            />
+
+	<style name="dir_card_style"
+	       type="container"
+	       align="lefttop"
+	       y="8"
+	       y.mobile="5"
+	       width="108"
+	       width.mobile="78"
+	       height="92"
+	       height.mobile="66"
+	       bgcolor="0x000000"
+	       bgalpha="0.92"
+	       bgborder="0"
+	       bgroundedge="2"
+	       bgcapture="true"
+	       handcursor="true"
+	       />
+
+	<style name="dir_card_label_style"
+	       type="text"
+	       align="bottom"
+	       y="4"
+	       y.mobile="2"
+	       width="100%"
+	       height="22"
+	       height.mobile="16"
+	       css="color:#FFFFFF; font-family:Microsoft YaHei,Arial; font-size:11px; text-align:center;"
+	       css.mobile="color:#FFFFFF; font-family:Microsoft YaHei,Arial; font-size:9px; text-align:center;"
+	       background="false"
+	       enabled="false"
+	       />
+
+	<style name="dir_thumb_style"
+	       align="top"
+	       width="100%"
+	       height="66"
+	       height.mobile="46"
+	       enabled="false"
+	       />
+
+	<style name="ui_tool_btn"
+	       type="container"
+	       align="lefttop"
+	       width="44"
+	       width.mobile="40"
+	       height="44"
+	       height.mobile="40"
+	       bgcolor="0x000000"
+	       bgalpha="0.55"
+	       bgroundedge="22"
+	       bgcapture="true"
+	       handcursor="true"
+	       />
+
+	<style name="ui_tool_label"
+	       type="text"
+	       align="center"
+	       width="100%"
+	       height="100%"
+	       vcenter="true"
+	       background="false"
+	       enabled="false"
+	       css="color:#FFFFFF; font-family:Microsoft YaHei,Arial; font-size:12px; text-align:center; font-weight:bold;"
+	       css.mobile="color:#FFFFFF; font-family:Microsoft YaHei,Arial; font-size:11px; text-align:center; font-weight:bold;"
+	       />
+
+	<action name="dir_update_active">
+		set(layer[dir_card_1].bgborder, '0');
+		set(layer[dir_card_2].bgborder, '0');
+		set(layer[dir_card_3].bgborder, '0');
+		set(layer[dir_card_4].bgborder, '0');
+		set(layer[dir_card_5].bgborder, '0');
+		set(layer[dir_card_6].bgborder, '0');
+		if(xml.scene == 'scene_zkixgpxjsxucxflxcg', set(layer[dir_card_1].bgborder, '2 0xFFFFFF 0.95'); );
+		if(xml.scene == 'scene_yexwelwirbxy', set(layer[dir_card_2].bgborder, '2 0xFFFFFF 0.95'); );
+		if(xml.scene == 'scene_ajhywnakxxbt', set(layer[dir_card_3].bgborder, '2 0xFFFFFF 0.95'); );
+		if(xml.scene == 'scene_aqmxugwfqxbt', set(layer[dir_card_4].bgborder, '2 0xFFFFFF 0.95'); );
+		if(xml.scene == 'scene_yiryeebmwxen', set(layer[dir_card_5].bgborder, '2 0xFFFFFF 0.95'); );
+		if(xml.scene == 'scene_yiryeexwkxen', set(layer[dir_card_6].bgborder, '2 0xFFFFFF 0.95'); );
+	</action>
+
+	<!-- 漫游首↔尾 过渡视频（默认视角，播时背后切景） -->
+	<layer name="trans_video_shou_wei"
+	       keep="true"
+	       url.html5="plugins/videoplayer.js"
+	       videourl="media/trans_shou_to_wei.mp4"
+	       align="center"
+	       width="100%"
+	       height="100%"
+	       enabled="false"
+	       visible="false"
+	       alpha="0"
+	       zorder="120"
+	       pausedonstart="true"
+	       loop="false"
+	       muted="false"
+	       volume="1.0"
+	       bgcolor="0x000000"
+	       bgalpha="1.0"
+	       onvideocomplete="trans_finish();"
+	       />
+
+	<layer name="trans_video_wei_shou"
+	       keep="true"
+	       url.html5="plugins/videoplayer.js"
+	       videourl="media/trans_wei_to_shou.mp4"
+	       align="center"
+	       width="100%"
+	       height="100%"
+	       enabled="false"
+	       visible="false"
+	       alpha="0"
+	       zorder="120"
+	       pausedonstart="true"
+	       loop="false"
+	       muted="false"
+	       volume="1.0"
+	       bgcolor="0x000000"
+	       bgalpha="1.0"
+	       onvideocomplete="trans_finish();"
+	       />
+
+	<!-- 过渡视频右下角「跳过」：由 tour.html 叠开屏同款按钮，此处只调显隐 -->
+	<action name="trans_show_skip">
+		js(landscapeShowTransSkip());
+	</action>
+
+	<action name="trans_hide_skip">
+		js(landscapeHideTransSkip());
+	</action>
+
+	<action name="dir_go_1">
+		if(trans_busy == true, exit(); );
+		if(xml.scene == 'scene_zkixgpxjsxucxflxcg', exit(); );
+		loadscene(scene_zkixgpxjsxucxflxcg, null, MERGE, OPENBLEND(0.5, 0.0, 0.75, 0.05, linear));
+	</action>
+
+	<action name="dir_go_2">
+		if(trans_busy == true, exit(); );
+		if(xml.scene == 'scene_yexwelwirbxy', exit(); );
+		loadscene(scene_yexwelwirbxy, null, MERGE, OPENBLEND(0.5, 0.0, 0.75, 0.05, linear));
+	</action>
+
+	<action name="dir_go_3">
+		if(trans_busy == true, exit(); );
+		if(xml.scene == 'scene_ajhywnakxxbt', exit(); );
+		loadscene(scene_ajhywnakxxbt, null, MERGE, OPENBLEND(0.5, 0.0, 0.75, 0.05, linear));
+	</action>
+
+	<action name="dir_go_4">
+		if(trans_busy == true, exit(); );
+		if(xml.scene == 'scene_aqmxugwfqxbt', exit(); );
+		loadscene(scene_aqmxugwfqxbt, null, MERGE, OPENBLEND(0.5, 0.0, 0.75, 0.05, linear));
+	</action>
+
+	<!-- 漫游首帧：桌面从尾帧切入播过渡视频；手机直接混合，不播视频不调视角 -->
+	<action name="dir_go_5">
+		if(trans_busy == true, exit(); );
+		if(xml.scene == 'scene_yiryeebmwxen', exit(); );
+		if(device.mobile,
+			loadscene(scene_yiryeebmwxen, null, MERGE, OPENBLEND(0.5, 0.0, 0.75, 0.05, linear));
+		  ,
+			if(xml.scene == 'scene_yiryeexwkxen',
+				trans_start_wei_to_shou();
+			  ,
+				loadscene(scene_yiryeebmwxen, null, MERGE, OPENBLEND(0.5, 0.0, 0.75, 0.05, linear));
+			);
+		);
+	</action>
+
+	<!-- 漫游尾帧：桌面从首帧切入播过渡视频；手机直接混合 -->
+	<action name="dir_go_6">
+		if(trans_busy == true, exit(); );
+		if(xml.scene == 'scene_yiryeexwkxen', exit(); );
+		if(device.mobile,
+			loadscene(scene_yiryeexwkxen, null, MERGE, OPENBLEND(0.5, 0.0, 0.75, 0.05, linear));
+		  ,
+			if(xml.scene == 'scene_yiryeebmwxen',
+				trans_start_shou_to_wei();
+			  ,
+				loadscene(scene_yiryeexwkxen, null, MERGE, OPENBLEND(0.5, 0.0, 0.75, 0.05, linear));
+			);
+		);
+	</action>
+
+	<!-- 首→尾：先放大到 h0/v0/fov84.63，再播过渡视频 -->
+	<action name="trans_start_shou_to_wei">
+		if(trans_busy == true, exit(); );
+		set(trans_busy, true);
+		set(trans_target, 'scene_yiryeexwkxen');
+		set(trans_reveal_fov, 75.76);
+		set(trans_default_fov, 120);
+		set(autorotate.enabled, false);
+		set(control.usercontrol, off);
+		stopdelayedcall(trans_unlock);
+		stopdelayedcall(trans_behind_load);
+		stopdelayedcall(trans_zoom_done);
+		stopdelayedcall(trans_settle_done);
+		stoptween(view.hlookat);
+		stoptween(view.vlookat);
+		stoptween(view.fov);
+		set(layer[trans_video_wei_shou].visible, false);
+		set(layer[trans_video_wei_shou].enabled, false);
+		set(layer[trans_video_shou_wei].visible, false);
+		set(layer[trans_video_shou_wei].enabled, false);
+		set(layer[trans_video_shou_wei].alpha, 0);
+		<!-- 点击瞬间解锁自动播放 -->
+		set(layer[trans_video_shou_wei].visible, true);
+		set(layer[trans_video_shou_wei].enabled, true);
+		layer[trans_video_shou_wei].seek(0);
+		layer[trans_video_shou_wei].play();
+		delayedcall(trans_unlock, 0.05,
+			layer[trans_video_shou_wei].pause();
+			layer[trans_video_shou_wei].seek(0);
+			set(layer[trans_video_shou_wei].visible, false);
+			set(layer[trans_video_shou_wei].enabled, false);
+		);
+		tween(view.hlookat, 0.0, 1.2, easeInOutQuad);
+		tween(view.vlookat, 0.0, 1.2, easeInOutQuad);
+		tween(view.fov, 84.63, 1.2, easeInOutQuad,
+			delayedcall(trans_zoom_done, 0.05, trans_play_shou_wei(); );
+		);
+	</action>
+
+	<!-- 尾→首：先放大到 h0/v0/fov75.76，再播过渡视频 -->
+	<action name="trans_start_wei_to_shou">
+		if(trans_busy == true, exit(); );
+		set(trans_busy, true);
+		set(trans_target, 'scene_yiryeebmwxen');
+		set(trans_reveal_fov, 84.63);
+		set(trans_default_fov, 120);
+		set(autorotate.enabled, false);
+		set(control.usercontrol, off);
+		stopdelayedcall(trans_unlock);
+		stopdelayedcall(trans_behind_load);
+		stopdelayedcall(trans_zoom_done);
+		stopdelayedcall(trans_settle_done);
+		stoptween(view.hlookat);
+		stoptween(view.vlookat);
+		stoptween(view.fov);
+		set(layer[trans_video_shou_wei].visible, false);
+		set(layer[trans_video_shou_wei].enabled, false);
+		set(layer[trans_video_wei_shou].visible, false);
+		set(layer[trans_video_wei_shou].enabled, false);
+		set(layer[trans_video_wei_shou].alpha, 0);
+		set(layer[trans_video_wei_shou].visible, true);
+		set(layer[trans_video_wei_shou].enabled, true);
+		layer[trans_video_wei_shou].seek(0);
+		layer[trans_video_wei_shou].play();
+		delayedcall(trans_unlock, 0.05,
+			layer[trans_video_wei_shou].pause();
+			layer[trans_video_wei_shou].seek(0);
+			set(layer[trans_video_wei_shou].visible, false);
+			set(layer[trans_video_wei_shou].enabled, false);
+		);
+		tween(view.hlookat, 0.0, 1.2, easeInOutQuad);
+		tween(view.vlookat, 0.0, 1.2, easeInOutQuad);
+		tween(view.fov, 75.76, 1.2, easeInOutQuad,
+			delayedcall(trans_zoom_done, 0.05, trans_play_wei_shou(); );
+		);
+	</action>
+
+	<action name="trans_play_shou_wei">
+		if(trans_busy != true, exit(); );
+		set(layer[trans_video_shou_wei].visible, true);
+		set(layer[trans_video_shou_wei].enabled, true);
+		set(layer[trans_video_shou_wei].alpha, 1.0);
+		set(layer[trans_video_shou_wei].zorder, 120);
+		layer[trans_video_shou_wei].seek(0);
+		layer[trans_video_shou_wei].play();
+		trans_show_skip();
+		stopdelayedcall(trans_behind_load);
+		delayedcall(trans_behind_load, 0.12, trans_load_behind_shou_wei(); );
+	</action>
+
+	<action name="trans_play_wei_shou">
+		if(trans_busy != true, exit(); );
+		set(layer[trans_video_wei_shou].visible, true);
+		set(layer[trans_video_wei_shou].enabled, true);
+		set(layer[trans_video_wei_shou].alpha, 1.0);
+		set(layer[trans_video_wei_shou].zorder, 120);
+		layer[trans_video_wei_shou].seek(0);
+		layer[trans_video_wei_shou].play();
+		trans_show_skip();
+		stopdelayedcall(trans_behind_load);
+		delayedcall(trans_behind_load, 0.12, trans_load_behind_wei_shou(); );
+	</action>
+
+	<action name="trans_load_behind_shou_wei">
+		if(trans_busy != true, exit(); );
+		loadscene(scene_yiryeexwkxen, null, MERGE|NOPREVIEW, NOBLEND);
+		<!-- 视频揭开时尾帧先停在放大视角（延迟一帧避免被场景默认 fov 覆盖） -->
+		lookat(0.0, 0.0, get(trans_reveal_fov));
+		delayedcall(0.02, lookat(0.0, 0.0, get(trans_reveal_fov)); );
+		set(layer[trans_video_shou_wei].visible, true);
+		set(layer[trans_video_shou_wei].enabled, true);
+		set(layer[trans_video_shou_wei].alpha, 1.0);
+		set(layer[trans_video_shou_wei].zorder, 120);
+		trans_show_skip();
+		set(control.usercontrol, off);
+		set(autorotate.enabled, false);
+		hide_skin_controlbar();
+		if(layer[trans_video_shou_wei].ispaused, layer[trans_video_shou_wei].play(); );
+	</action>
+
+	<action name="trans_load_behind_wei_shou">
+		if(trans_busy != true, exit(); );
+		loadscene(scene_yiryeebmwxen, null, MERGE|NOPREVIEW, NOBLEND);
+		lookat(0.0, 0.0, get(trans_reveal_fov));
+		delayedcall(0.02, lookat(0.0, 0.0, get(trans_reveal_fov)); );
+		set(layer[trans_video_wei_shou].visible, true);
+		set(layer[trans_video_wei_shou].enabled, true);
+		set(layer[trans_video_wei_shou].alpha, 1.0);
+		set(layer[trans_video_wei_shou].zorder, 120);
+		trans_show_skip();
+		set(control.usercontrol, off);
+		set(autorotate.enabled, false);
+		hide_skin_controlbar();
+		if(layer[trans_video_wei_shou].ispaused, layer[trans_video_wei_shou].play(); );
+	</action>
+
+	<action name="trans_finish">
+		stopdelayedcall(trans_unlock);
+		stopdelayedcall(trans_behind_load);
+		stopdelayedcall(trans_zoom_done);
+		stopdelayedcall(trans_settle_done);
+		stoptween(view.hlookat);
+		stoptween(view.vlookat);
+		stoptween(view.fov);
+		layer[trans_video_shou_wei].pause();
+		layer[trans_video_wei_shou].pause();
+		set(layer[trans_video_shou_wei].visible, false);
+		set(layer[trans_video_shou_wei].enabled, false);
+		set(layer[trans_video_shou_wei].alpha, 0);
+		set(layer[trans_video_wei_shou].visible, false);
+		set(layer[trans_video_wei_shou].enabled, false);
+		set(layer[trans_video_wei_shou].alpha, 0);
+		trans_hide_skip();
+		if(xml.scene != get(trans_target),
+			loadscene(get(trans_target), null, MERGE|NOPREVIEW, NOBLEND);
+		);
+		<!-- 揭开：目标点位先停在对应放大视角，再慢慢回到默认 fov=120 -->
+		lookat(0.0, 0.0, get(trans_reveal_fov));
+		set(control.usercontrol, off);
+		set(autorotate.enabled, false);
+		hide_skin_controlbar();
+		dir_update_active();
+		tween(view.hlookat, 0.0, 2.0, easeOutQuad);
+		tween(view.vlookat, 0.0, 2.0, easeOutQuad);
+		tween(view.fov, get(trans_default_fov), 2.0, easeOutQuad,
+			delayedcall(trans_settle_done, 0.05,
+				set(control.usercontrol, all);
+				set(autorotate.enabled, true);
+				set(trans_busy, false);
+				hide_skin_controlbar();
+			);
+		);
+	</action>
+
+	<action name="dir_toggle_bar">
+		stopdelayedcall(dir_hits_enable);
+		if(layer[dir_bar].state == 'opened',
+			set(layer[dir_bar].state, 'closed');
+			set(layer[dir_hit_1].enabled, false);
+			set(layer[dir_hit_2].enabled, false);
+			set(layer[dir_hit_3].enabled, false);
+			set(layer[dir_hit_4].enabled, false);
+			set(layer[dir_hit_5].enabled, false);
+			set(layer[dir_hit_6].enabled, false);
+			if(device.mobile,
+				tween(layer[dir_bar].x, -512, 0.45, easeOutCubic);
+			  ,
+				tween(layer[dir_bar].x, -706, 0.45, easeOutCubic);
+			);
+			set(layer[dir_toggle_icon].url, 'skin/dir_chevron_right.png');
+		  ,
+			set(layer[dir_bar].state, 'opened');
+			tween(layer[dir_bar].x, 0, 0.45, easeOutCubic);
+			set(layer[dir_toggle_icon].url, 'skin/dir_chevron_left.png');
+			delayedcall(dir_hits_enable, 0.45,
+				set(layer[dir_hit_1].enabled, true);
+				set(layer[dir_hit_2].enabled, true);
+				set(layer[dir_hit_3].enabled, true);
+				set(layer[dir_hit_4].enabled, true);
+				set(layer[dir_hit_5].enabled, true);
+				set(layer[dir_hit_6].enabled, true);
+			);
+		);
+	</action>
+
+	<action name="hide_skin_controlbar">
+		skin_hideskin(instant);
+		set(layer[skin_layer].visible, false);
+		set(layer[skin_layer].enabled, false);
+		set(layer[skin_btn_show].visible, false);
+		set(layer[skin_btn_show].enabled, false);
+		set(layer[skin_btn_prev_fs].visible, false);
+		set(layer[skin_btn_prev_fs].enabled, false);
+		set(layer[skin_btn_next_fs].visible, false);
+		set(layer[skin_btn_next_fs].enabled, false);
+		if(layer[webvr_enterbutton],
+			set(layer[webvr_enterbutton].visible, false);
+			set(layer[webvr_enterbutton].enabled, false);
+		);
+	</action>
+
+	<action name="ui_enter_vr">
+		if(device.fullscreensupport AND fullscreen == false, set(fullscreen, true); );
+		webvr.enterVR();
+	</action>
+
+	<action name="ui_toggle_fs">
+		if(device.fullscreensupport,
+			switch(fullscreen);
+		  ,
+			set(display.iphonefullscreen, 1);
+		);
+	</action>
+
+	<action name="ui_sync_fs_icon">
+		if(fullscreen,
+			set(layer[ui_btn_fs_label].html, '退出');
+		  ,
+			set(layer[ui_btn_fs_label].html, '全屏');
+		);
+	</action>
+
+	<!-- 入场：小行星开场（无左右旋转）平滑展开 -->
+	<action name="play_intro">
+		if(intro_played == true, exit(); );
+		set(intro_played, true);
+		set(autorotate.enabled, false);
+		set(control.usercontrol, off);
+
+		set(intro_h, get(view.hlookat));
+		set(intro_v, get(view.vlookat));
+		set(intro_fov, get(view.fov));
+		set(intro_fovmax, get(view.fovmax));
+
+		set(view.fovmax, 170);
+		set(view.limitview, off);
+		set(view.architectural, 0.0);
+		set(view.pannini, 0.0);
+		lookat(get(intro_h), 90, 150, 1.0, 0, 0);
+
+		delayedcall(intro_expand, 0.5,
+			tween(view.vlookat, get(intro_v), 3.0, easeOutQuad);
+			tween(view.fov, get(intro_fov), 3.0, easeOutQuad);
+			tween(view.distortion, 0.0, 3.0, easeOutQuad);
+			delayedcall(intro_done, 3.0,
+				set(view.fovmax, get(intro_fovmax));
+				set(view.limitview, auto);
+				set(control.usercontrol, all);
+				set(autorotate.enabled, true);
+				hide_skin_controlbar();
+			);
+		);
+	</action>
+
+	<events name="dir_events" keep="true"
+	        onxmlcomplete="delayedcall(0.05, hide_skin_controlbar()); dir_update_active();"
+	        onnewscene="hide_skin_controlbar(); dir_update_active();"
+	        onloadcomplete="if(intro_played != true, play_intro(); );"
+	        onenterfullscreen="ui_sync_fs_icon();"
+	        onexitfullscreen="ui_sync_fs_icon();"
+	        />
+
+	<layer name="ui_tools"
+	       keep="true"
+	       type="container"
+	       align="righttop"
+	       x="12"
+	       x.mobile="8"
+	       y="12"
+	       y.mobile="8"
+	       width="100"
+	       width.mobile="90"
+	       height="100"
+	       height.mobile="90"
+	       bgcapture="false"
+	       zorder="70"
+	       vr="false"
+	       visible="false"
+	       >
+
+		<layer name="ui_btn_vr" style="ui_tool_btn" x="48" x.mobile="44" y="0" onclick="ui_enter_vr();">
+			<layer style="ui_tool_label" html="VR" />
+		</layer>
+
+		<layer name="ui_btn_fs" style="ui_tool_btn" x="48" x.mobile="44" y="52" y.mobile="48" onclick="ui_toggle_fs();">
+			<layer name="ui_btn_fs_label" style="ui_tool_label" html="全屏" />
+		</layer>
+	</layer>
+
+	<layer name="dir_root"
+	       keep="true"
+	       type="container"
+	       align="leftbottom"
+	       x="0"
+	       y="40"
+	       y.mobile="28"
+	       width="770"
+	       width.mobile="560"
+	       height="110"
+	       height.mobile="80"
+	       scale.handheld="0.55"
+	       bgcapture="false"
+	       zorder="60"
+	       vr="false"
+	       >
+
+		<layer name="dir_bar"
+		       type="container"
+		       state="opened"
+		       align="lefttop"
+		       x="0"
+		       y="0"
+		       width="760"
+		       width.mobile="550"
+		       height="110"
+		       height.mobile="80"
+		       alpha="1.0"
+		       bgcolor="0x000000"
+		       bgalpha="0.45"
+		       bgroundedge="0 55 55 0"
+		       bgroundedge.mobile="0 40 40 0"
+		       bgcapture="true"
+		       >
+
+			<layer name="dir_card_1" style="dir_card_style" x="10" x.mobile="8">
+				<layer url="panos/zkixgpxjsxucxflxcg.tiles/thumb.jpg" style="dir_thumb_style" />
+				<layer style="dir_card_label_style" html="礼序归家" />
+				<layer name="dir_hit_1" type="container" align="lefttop" width="100%" height="100%" bgcolor="0x000000" bgalpha="0" bgcapture="true" handcursor="true" zorder="20" onclick="dir_go_1();" />
+			</layer>
+			<layer name="dir_card_2" style="dir_card_style" x="126" x.mobile="92">
+				<layer url="panos/yexwelwirbxy.tiles/thumb.jpg" style="dir_thumb_style" />
+				<layer style="dir_card_label_style" html="林下休闲" />
+				<layer name="dir_hit_2" type="container" align="lefttop" width="100%" height="100%" bgcolor="0x000000" bgalpha="0" bgcapture="true" handcursor="true" zorder="20" onclick="dir_go_2();" />
+			</layer>
+			<layer name="dir_card_3" style="dir_card_style" x="242" x.mobile="176">
+				<layer url="panos/ajhywnakxxbt.tiles/thumb.jpg" style="dir_thumb_style" />
+				<layer style="dir_card_label_style" html="轻氧花园" />
+				<layer name="dir_hit_3" type="container" align="lefttop" width="100%" height="100%" bgcolor="0x000000" bgalpha="0" bgcapture="true" handcursor="true" zorder="20" onclick="dir_go_3();" />
+			</layer>
+			<layer name="dir_card_4" style="dir_card_style" x="358" x.mobile="260">
+				<layer url="panos/aqmxugwfqxbt.tiles/thumb.jpg" style="dir_thumb_style" />
+				<layer style="dir_card_label_style" html="萌宠乐园" />
+				<layer name="dir_hit_4" type="container" align="lefttop" width="100%" height="100%" bgcolor="0x000000" bgalpha="0" bgcapture="true" handcursor="true" zorder="20" onclick="dir_go_4();" />
+			</layer>
+			<layer name="dir_card_5" style="dir_card_style" x="474" x.mobile="344">
+				<layer url="panos/yiryeebmwxen.tiles/thumb.jpg" style="dir_thumb_style" />
+				<layer style="dir_card_label_style" html="漫游首帧" html.mobile="摩卡艺廊" />
+				<layer name="dir_hit_5" type="container" align="lefttop" width="100%" height="100%" bgcolor="0x000000" bgalpha="0" bgcapture="true" handcursor="true" zorder="20" onclick="dir_go_5();" />
+			</layer>
+			<layer name="dir_card_6" style="dir_card_style" x="590" x.mobile="428">
+				<layer url="panos/yiryeexwkxen.tiles/thumb.jpg" style="dir_thumb_style" />
+				<layer style="dir_card_label_style" html="漫游尾帧" html.mobile="去野营地" />
+				<layer name="dir_hit_6" type="container" align="lefttop" width="100%" height="100%" bgcolor="0x000000" bgalpha="0" bgcapture="true" handcursor="true" zorder="20" onclick="dir_go_6();" />
+			</layer>
+
+			<layer name="dir_toggle"
+			       type="container"
+			       align="lefttop"
+			       x="706"
+			       x.mobile="512"
+			       y="12"
+			       y.mobile="8"
+			       width="36"
+			       width.mobile="28"
+			       height="86"
+			       height.mobile="64"
+			       bgcolor="0x000000"
+			       bgalpha="0"
+			       bgroundedge="0"
+			       bgcapture="true"
+			       handcursor="true"
+			       zorder="5"
+			       maskchildren="true"
+			       onclick="dir_toggle_bar();"
+			       >
+				<layer name="dir_toggle_icon"
+				       url="skin/dir_chevron_left.png"
+				       align="center"
+				       width="26"
+				       width.mobile="20"
+				       height="32"
+				       height.mobile="24"
+				       enabled="false"
+				       />
+			</layer>
+
+		</layer>
+	</layer>
+
+	<!-- 默认首场景：礼序归家广场 -->
+
+	<scene name="scene_zkixgpxjsxucxflxcg" title="礼序归家广场" onstart="" thumburl="panos/zkixgpxjsxucxflxcg.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" fov.mobile="95" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/zkixgpxjsxucxflxcg.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/zkixgpxjsxucxflxcg.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+
+	</scene>
+
+<scene name="scene_yexwelwirbxy" title="林下休闲" onstart="" thumburl="panos/yexwelwirbxy.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" fov.mobile="95" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/yexwelwirbxy.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/yexwelwirbxy.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+
+	</scene>
+
+	<scene name="scene_ajhywnakxxbt" title="轻氧花园" onstart="" thumburl="panos/ajhywnakxxbt.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" fov.mobile="95" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/ajhywnakxxbt.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/ajhywnakxxbt.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+
+	</scene>
+
+<scene name="scene_aqmxugwfqxbt" title="萌宠乐园" onstart="" thumburl="panos/aqmxugwfqxbt.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" fov.mobile="95" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/aqmxugwfqxbt.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/aqmxugwfqxbt.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+
+	</scene>
+
+<scene name="scene_yiryeebmwxen" title="漫游首帧" onstart="" thumburl="panos/yiryeebmwxen.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" fov.mobile="95" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/yiryeebmwxen.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/yiryeebmwxen.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+
+	</scene>
+
+<scene name="scene_yiryeexwkxen" title="漫游尾帧" onstart="" thumburl="panos/yiryeexwkxen.tiles/thumb.jpg" lat="" lng="" alt="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" fov.mobile="95" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/yiryeexwkxen.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/yiryeexwkxen.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+
+	</scene>
+
+</krpano>

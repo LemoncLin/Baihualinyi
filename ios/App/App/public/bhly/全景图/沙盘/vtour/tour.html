@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>krpano - 项目沙盘_0000</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<style>
+		html { height:100%; }
+		body { height:100%; overflow:hidden; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#FFFFFF; background-color:#000000; }
+	</style>
+</head>
+<body>
+
+<script src="tour.js"></script>
+
+<div style="width:100%;height:100%;">
+	<noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;text-align:center;"><td>ERROR:<br><br>Javascript not activated<br><br></td></tr></table></noscript>
+	<script>
+		var sandboxKrpano = null;
+		var sandboxLastFilter = 'all';
+		var sandboxLastSceneKey = '';
+		var sandboxViewDebugTimer = null;
+
+		/**
+		 * 【代码开关】显示当前视角（每 2 秒打 Console，对齐春风区位沙盘）
+		 * true  = 开启
+		 * false = 关闭
+		 * 运行时也可：sandboxSetViewDebugEnabled(true/false)
+		 */
+		var SANDBOX_DEBUG_VIEW = false;
+
+		function sandboxNotifyScene(key) {
+			if (!key || key === sandboxLastSceneKey) return;
+			sandboxLastSceneKey = key;
+			if (window.parent && window.parent !== window) {
+				window.parent.postMessage({ type: 'sandbox-scene', scene: key }, '*');
+			}
+		}
+
+		function sandboxSyncSceneFromKrpano() {
+			if (!sandboxKrpano) return;
+			var scene = String(sandboxKrpano.get('xml.scene') || '');
+			var key = (scene === 'scene_bhfzbuyyzzby_0000') ? 'xiangmu' : 'xiqu';
+			sandboxNotifyScene(key);
+		}
+
+		function sandboxApplyFilter(category) {
+			if (!sandboxKrpano || !category) return;
+			sandboxLastFilter = category;
+			sandboxKrpano.set('flt_spin_dir', 0);
+			sandboxKrpano.call("sandbox_filter_category('" + category + "');");
+		}
+
+		function sandboxLogCurrentView() {
+			if (!sandboxKrpano) return;
+			var h = Number(sandboxKrpano.get('view.hlookat'));
+			var v = Number(sandboxKrpano.get('view.vlookat'));
+			var fov = Number(sandboxKrpano.get('view.fov'));
+			var line =
+				'[sandbox view] h=' + h.toFixed(2) +
+				'  v=' + v.toFixed(2) +
+				'  fov=' + fov.toFixed(2) +
+				'   → set(filter_xxx_h, ' + h.toFixed(1) + '); set(filter_xxx_v, ' + v.toFixed(1) + '); set(filter_xxx_fov, ' + fov.toFixed(0) + ');';
+			console.log(line);
+			if (window.parent && window.parent !== window) {
+				try { window.parent.console.log(line); } catch (e) { /* ignore */ }
+			}
+		}
+
+		function sandboxStopViewDebug() {
+			if (sandboxViewDebugTimer) {
+				clearInterval(sandboxViewDebugTimer);
+				sandboxViewDebugTimer = null;
+			}
+		}
+
+		function sandboxStartViewDebug() {
+			sandboxStopViewDebug();
+			sandboxLogCurrentView();
+			sandboxViewDebugTimer = setInterval(sandboxLogCurrentView, 2000);
+		}
+
+		function sandboxSetViewDebugEnabled(enabled) {
+			SANDBOX_DEBUG_VIEW = !!enabled;
+			if (SANDBOX_DEBUG_VIEW) sandboxStartViewDebug();
+			else sandboxStopViewDebug();
+		}
+
+		window.sandboxSetViewDebugEnabled = sandboxSetViewDebugEnabled;
+
+		window.addEventListener('message', function (ev) {
+			var data = ev && ev.data;
+			if (!data) return;
+			if (data.type === 'sandbox-filter') {
+				sandboxApplyFilter(data.category);
+				return;
+			}
+			if (data.type === 'sandbox-view-debug') {
+				sandboxSetViewDebugEnabled(!!data.enabled);
+			}
+		});
+
+		embedpano({
+			// 必须带版本：否则微信会缓存旧 tour.xml，导致 sandbox_labels 改了也不生效
+			xml: 'tour.xml?v=' + (new URLSearchParams(location.search).get('v') || '76'),
+			id: 'krpanoSWFObject',
+			passQueryParameters: 'startscene,startlookat,sb_intro,sb_auto',
+			onready: function (krpano) {
+				sandboxKrpano = krpano;
+				window.sandboxKrpano = krpano;
+				if (SANDBOX_DEBUG_VIEW) sandboxStartViewDebug();
+				sandboxSyncSceneFromKrpano();
+				setInterval(sandboxSyncSceneFromKrpano, 300);
+				if (window.parent && window.parent !== window) {
+					window.parent.postMessage({ type: 'sandbox-krpano-ready' }, '*');
+				}
+			}
+		});
+	</script>
+</div>
+
+</body>
+</html>

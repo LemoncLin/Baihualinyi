@@ -1,0 +1,60 @@
+<krpano>
+	<!--
+	  项目沙盘楼栋号（图自带气泡+锚点）
+	  【可调·落点】改各 bldg_XX 的 ath(左右) / atv(上下)
+	  【可调·大小】改 style scale
+	  素材：../楼栋号/01.png … 10.png
+	-->
+
+	<style name="sandbox_building_num"
+	       edge="bottom"
+	       distorted="false"
+	       zoom="false"
+	       depth="1000"
+	       scale="0.45"
+	       enabled="false"
+	       capture="false"
+	       handcursor="false"
+	       visible="false"
+	       alpha="0"
+	       />
+
+	<action name="sandbox_buildings_set_visible">
+		if(%1 == true,
+			set(hotspot[bldg_01].visible, true); set(hotspot[bldg_01].alpha, 1);
+			set(hotspot[bldg_02].visible, true); set(hotspot[bldg_02].alpha, 1);
+			set(hotspot[bldg_03].visible, true); set(hotspot[bldg_03].alpha, 1);
+			set(hotspot[bldg_04].visible, true); set(hotspot[bldg_04].alpha, 1);
+			set(hotspot[bldg_05].visible, true); set(hotspot[bldg_05].alpha, 1);
+			set(hotspot[bldg_06].visible, true); set(hotspot[bldg_06].alpha, 1);
+			set(hotspot[bldg_07].visible, true); set(hotspot[bldg_07].alpha, 1);
+			set(hotspot[bldg_08].visible, true); set(hotspot[bldg_08].alpha, 1);
+			set(hotspot[bldg_09].visible, true); set(hotspot[bldg_09].alpha, 1);
+			set(hotspot[bldg_10].visible, true); set(hotspot[bldg_10].alpha, 1);
+		  ,
+			set(hotspot[bldg_01].visible, false); set(hotspot[bldg_01].alpha, 0);
+			set(hotspot[bldg_02].visible, false); set(hotspot[bldg_02].alpha, 0);
+			set(hotspot[bldg_03].visible, false); set(hotspot[bldg_03].alpha, 0);
+			set(hotspot[bldg_04].visible, false); set(hotspot[bldg_04].alpha, 0);
+			set(hotspot[bldg_05].visible, false); set(hotspot[bldg_05].alpha, 0);
+			set(hotspot[bldg_06].visible, false); set(hotspot[bldg_06].alpha, 0);
+			set(hotspot[bldg_07].visible, false); set(hotspot[bldg_07].alpha, 0);
+			set(hotspot[bldg_08].visible, false); set(hotspot[bldg_08].alpha, 0);
+			set(hotspot[bldg_09].visible, false); set(hotspot[bldg_09].alpha, 0);
+			set(hotspot[bldg_10].visible, false); set(hotspot[bldg_10].alpha, 0);
+		);
+	</action>
+
+	<!-- 落点按图一楼号相对位置初排，可再微调 -->
+	<hotspot name="bldg_01" style="sandbox_building_num" url="../楼栋号/01.png" ath="-16" atv="33" />
+	<hotspot name="bldg_02" style="sandbox_building_num" url="../楼栋号/02.png" ath="-5" atv="32" />
+	<hotspot name="bldg_03" style="sandbox_building_num" url="../楼栋号/03.png" ath="1" atv="28" />
+	<hotspot name="bldg_04" style="sandbox_building_num" url="../楼栋号/04.png" ath="7" atv="30" />
+	<hotspot name="bldg_05" style="sandbox_building_num" url="../楼栋号/05.png" ath="12" atv="34" />
+	<hotspot name="bldg_06" style="sandbox_building_num" url="../楼栋号/06.png" ath="19" atv="35" />
+	<hotspot name="bldg_07" style="sandbox_building_num" url="../楼栋号/07.png" ath="8" atv="41" />
+	<hotspot name="bldg_08" style="sandbox_building_num" url="../楼栋号/08.png" ath="-1" atv="47" />
+	<hotspot name="bldg_09" style="sandbox_building_num" url="../楼栋号/09.png" ath="-7" atv="43" />
+	<hotspot name="bldg_10" style="sandbox_building_num" url="../楼栋号/10.png" ath="-10" atv="38" />
+
+</krpano>

@@ -1,0 +1,52 @@
+{
+  "canvas": [
+    3840,
+    2160
+  ],
+  "orbit": {
+    "x": 59.9,
+    "y": 50.7
+  },
+  "items": {
+    "光效-597bcdc50617a.png": {
+      "file": "光效-597bcdc50617a-裁切.png",
+      "leftPct": 51.7969,
+      "topPct": 36.713,
+      "widthPct": 12.4219,
+      "heightPct": 24.5833,
+      "originXPct": 65.2327,
+      "originYPct": 56.8964,
+      "bbox": [
+        1989,
+        793,
+        2466,
+        1324
+      ],
+      "size": [
+        477,
+        531
+      ],
+      "bytes": 68139
+    },
+    "光效-597bcdc50617a-拷贝.png": {
+      "file": "光效-597bcdc50617a-拷贝-裁切.png",
+      "leftPct": 55.651,
+      "topPct": 40.0926,
+      "widthPct": 12.3698,
+      "heightPct": 24.537,
+      "originXPct": 34.3495,
+      "originYPct": 43.2302,
+      "bbox": [
+        2137,
+        866,
+        2612,
+        1396
+      ],
+      "size": [
+        475,
+        530
+      ],
+      "bytes": 68578
+    }
+  }
+}

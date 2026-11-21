@@ -1,0 +1,97 @@
+<!--
+  雷达图点位（每个场景只显示当前这一个）
+  x / y：点在雷达图上的位置，相对雷达图宽高的百分比（左上角是 0%，向右、向下增大）
+  heading：画面正中（view.hlookat = 0）时扇形的朝向。0 = 朝上，顺时针增大
+  扇形用 krpano 的 radar 插件：跟着视角转，放大缩小时张角跟着 view.hfov 变
+-->
+<krpano>
+
+	<action name="radar_place">
+		set(layer[radar_spot_lx].visible, false);
+		set(layer[radar_spot_xx].visible, false);
+		set(layer[radar_spot_qy].visible, false);
+		set(layer[radar_spot_mc].visible, false);
+		set(layer[radar_spot_rs].visible, false);
+		set(layer[radar_spot_rw].visible, false);
+		set(layer[%1].visible, true);
+		set(layer[radar_cone].x, get(layer[%1].x));
+		set(layer[radar_cone].y, get(layer[%1].y));
+		set(layer[radar_cone].heading, get(layer[%1].heading));
+		set(layer[radar_cone].visible, true);
+	</action>
+
+	<action name="radar_show_current">
+		set(layer[radar_cone].visible, false);
+		if(xml.scene == 'scene_zkixgpxjsxucxflxcg', radar_place(radar_spot_lx); );
+		if(xml.scene == 'scene_yexwelwirbxy', radar_place(radar_spot_xx); );
+		if(xml.scene == 'scene_ajhywnakxxbt', radar_place(radar_spot_qy); );
+		if(xml.scene == 'scene_aqmxugwfqxbt', radar_place(radar_spot_mc); );
+		if(xml.scene == 'scene_yiryeebmwxen', radar_place(radar_spot_rs); );
+		if(xml.scene == 'scene_yiryeexwkxen', radar_place(radar_spot_rw); );
+	</action>
+
+	<events name="radar_events" keep="true"
+	        onxmlcomplete="delayedcall(0.05, radar_show_current(););"
+	        onnewscene="radar_show_current();"
+	        />
+
+	<style name="radar_spot_style"
+	       url="map_spot_active.png"
+	       align="lefttop" edge="center"
+	       scale="0.42"
+	       scale.mobile="0.32"
+	       visible="false" enabled="false" zorder="6"
+	       heading="0"
+	       />
+
+	<layer name="radar_root" keep="true" type="container"
+	       align="lefttop" x="16" y="16"
+	       width="260" height="167"
+	       width.mobile="168" height.mobile="108"
+	       bgcapture="false" enabled="false" zorder="80" vr="false"
+	       >
+		<layer name="radar_map"
+		       url="雷达图.png"
+		       align="lefttop" width="100%" height="100%"
+		       enabled="false"
+		       />
+
+		<layer name="radar_compass"
+		       url="指南针.png?v=2"
+		       align="righttop" x="4" y="4"
+		       width="40" height="45"
+		       width.mobile="26" height.mobile="30"
+		       enabled="false" zorder="3"
+		       />
+
+		<layer name="radar_cone"
+		       url="plugins/radar.js"
+		       align="lefttop" edge="center"
+		       x="50%" y="50%"
+		       scale="0.48"
+		       scale.mobile="0.32"
+		       visible="false" enabled="false"
+		       zorder="4"
+		       heading="0"
+		       headingoffset="0"
+		       fillcolor="0x8FD3F0"
+		       fillalpha="0.5"
+		       linewidth="0"
+		       />
+
+		<!-- 园林全景：礼序归家 -->
+		<layer name="radar_spot_lx" style="radar_spot_style" x="20%" y="49%" heading="90" />
+		<!-- 园林全景：林下休闲 -->
+		<layer name="radar_spot_xx" style="radar_spot_style" x="53%" y="38%" heading="90" />
+		<!-- 园林全景：轻氧花园 -->
+		<layer name="radar_spot_qy" style="radar_spot_style" x="70%" y="47%" heading="40" />
+		<!-- 园林全景：萌宠乐园 -->
+		<layer name="radar_spot_mc" style="radar_spot_style" x="55%" y="76%" heading="95" />
+
+		<!-- 园林漫游：漫游首帧 -->
+		<layer name="radar_spot_rs" style="radar_spot_style" x="49%" y="50%" heading="80" />
+		<!-- 园林漫游：漫游尾帧 -->
+		<layer name="radar_spot_rw" style="radar_spot_style" x="60%" y="47%" heading="-60" />
+	</layer>
+
+</krpano>
