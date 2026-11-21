@@ -67,7 +67,14 @@ jobs:
       # -----------------------------------------------------------------------
       - name: 选择 Xcode 并打印环境
         run: |
-          sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer || true
+          # 动态选择已安装的最高版本 Xcode，避免硬编码 Xcode_16.app 在镜像更新后失效
+          LATEST_XCODE=$(ls -d /Applications/Xcode_*.app 2>/dev/null | sort -V | tail -1)
+          if [ -n "$LATEST_XCODE" ]; then
+            echo "选用 Xcode: $LATEST_XCODE"
+            sudo xcode-select -s "$LATEST_XCODE/Contents/Developer"
+          else
+            echo "未找到多版本 Xcode，使用系统默认"
+          fi
           xcodebuild -version
           swift --version
 
@@ -101,8 +108,12 @@ jobs:
           echo "==> 按 manifest 校验 SHA256"
           cd ios
           if [ -f "../$ASSET_DIR/large-assets.manifest.txt" ]; then
-            # sha256sum -c 逐个比对，任一不符立即失败
-            sha256sum -c "../$ASSET_DIR/large-assets.manifest.txt"
+            # macOS 用 shasum，Linux 用 sha256sum，二者均支持 -c 校验清单
+            if command -v sha256sum >/dev/null 2>&1; then
+              sha256sum -c "../$ASSET_DIR/large-assets.manifest.txt"
+            else
+              shasum -a 256 -c "../$ASSET_DIR/large-assets.manifest.txt"
+            fi
           else
             echo "::warning::未找到 manifest，跳过校验（建议提交 large-assets.manifest.txt）"
           fi
@@ -166,7 +177,7 @@ jobs:
             -xcconfig /tmp/ci-override.xcconfig \
             -destination "generic/platform=iOS" \
             CODE_SIGN_STYLE=Manual \
-            CODE_SIGN_IDENTITY="iPhone Distribution" \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
             PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE_SPECIFIER" \
             DEVELOPMENT_TEAM="$DEVELOPMENT_TEAM" \
             clean archive

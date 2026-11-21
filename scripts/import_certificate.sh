@@ -32,12 +32,18 @@ P12_PATH="$CERT_DIR/distribution.p12"
 PP_PATH="$CERT_DIR/profile.mobileprovision"
 
 echo "==> [1/5] 解码 Base64 证书与描述文件"
-echo "$BUILD_CERTIFICATE_BASE64" | base64 --decode > "$P12_PATH"
-echo "$PROVISION_PROFILE_BASE64" | base64 --decode > "$PP_PATH"
+# 用 -d 短选项，同时兼容 macOS(macOS base64 -d) 与 Linux(GNU base64 -d)
+echo "$BUILD_CERTIFICATE_BASE64" | base64 -d > "$P12_PATH"
+echo "$PROVISION_PROFILE_BASE64" | base64 -d > "$PP_PATH"
 
-# 校验解码结果是否为有效文件，防止 Secret 粘贴错误
-file "$P12_PATH" | grep -qi "PKCS\|data" || { echo "证书解码失败"; exit 1; }
-file "$PP_PATH" | grep -qi "data" || { echo "描述文件解码失败"; exit 1; }
+# 校验解码结果：文件非空且为有效二进制（PKCS12 以 0x30 ASN.1 序列开头；
+# mobileprovision 为 CMS 签名数据）。用大小+魔数判断，避免依赖 file 命令的跨平台文案
+[ -s "$P12_PATH" ] || { echo "证书解码失败：文件为空"; exit 1; }
+[ -s "$PP_PATH" ]  || { echo "描述文件解码失败：文件为空"; exit 1; }
+# PKCS12 文件首字节应为 ASN.1 SEQUENCE(0x30)
+P12_MAGIC=$(head -c1 "$P12_PATH" | od -An -tx1 | tr -d ' \n')
+[ "$P12_MAGIC" = "30" ] || { echo "证书解码失败：不是有效的 PKCS12 结构(首字节=$P12_MAGIC)"; exit 1; }
+echo "解码校验通过（p12: $(wc -c < "$P12_PATH") 字节, profile: $(wc -c < "$PP_PATH") 字节）"
 
 echo "==> [2/5] 创建临时钥匙串 $KEYCHAIN_NAME"
 # 若同名钥匙串已存在则先删除，保证流程幂等
@@ -45,8 +51,9 @@ security delete-keychain "$KEYCHAIN_NAME" 2>/dev/null || true
 security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME"
 # 设置较长的自动锁定时间，构建过程中避免钥匙串锁定导致签名失败
 security set-keychain-settings -lut 21600 "$KEYCHAIN_NAME"
-# 将临时钥匙串加入搜索列表
-security list-keychains -d user -s "$KEYCHAIN_NAME"
+# 将临时钥匙串加入搜索列表（保留系统原有钥匙串，避免根证书/系统项丢失）
+security list-keychains -d user -s "$KEYCHAIN_NAME" \
+  $(security list-keychains -d user | sed 's/[" ]//g' | grep -v "$KEYCHAIN_NAME" | tr '\n' ' ')
 
 echo "==> [3/5] 导入 .p12 证书到临时钥匙串"
 # -T /usr/bin/codesign: 允许 codesign 访问私钥而不弹出授权框
@@ -57,8 +64,9 @@ security import "$P12_PATH" \
   -T /usr/bin/security
 
 # 解锁钥匙串并设置分区列表，避免 xcodebuild 签名时再次要求授权
+# 授权列表包含 apple-tool、apple、codesign，覆盖完整签名调用链
 security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME"
-security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME" >/dev/null
+security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME" >/dev/null
 
 echo "==> [4/5] 安装描述文件到系统目录"
 # 描述文件必须放入 ~/Library/MobileDevice/Provisioning Profiles/，
