@@ -211,10 +211,11 @@ jobs:
             | security cms -D -d 2>/dev/null | /usr/libexec/PlistBuddy -c "Print Entitlements:application-identifier" /dev/stdin || true
 
       # -----------------------------------------------------------------------
-      # 7.5 前置校验：扫描 IPA 内是否混入独立可执行文件/库
-      #      Apple 规定 .app 内除主程序(Info.plist 的 CFBundleExecutable)外，
-      #      不允许出现独立 Mach-O 可执行或库，否则上传报 409 Invalid bundle structure。
-      #      典型元凶是 krpano 的 tour_testingserver_macos。
+      # 7.5 前置校验：扫描 IPA 内是否混入“非法位置”的独立可执行文件
+      #      Apple 允许的 Mach-O 仅限：主程序、Frameworks/ 内的 .framework/.dylib、
+      #      PlugIns/ 内的 .appex 扩展；散落在资源目录(如 public)的独立可执行文件
+      #      会触发 409 Invalid bundle structure（典型: krpano tour_testingserver_macos）。
+      #      注意: Capacitor 的 Cordova.framework/Capacitor.framework 属合法内嵌框架，必须放行。
       # -----------------------------------------------------------------------
       - name: 校验包内无违规可执行文件
         run: |
@@ -224,22 +225,35 @@ jobs:
           APP_BUNDLE="$(find "$TMP" -maxdepth 2 -name '*.app' | head -1)"
           MAIN_EXEC=$(/usr/libexec/PlistBuddy -c 'Print CFBundleExecutable' "$APP_BUNDLE/Info.plist")
           echo "主程序可执行文件: $MAIN_EXEC"
-          echo "扫描包内所有 Mach-O 文件 ..."
-          # 找出全部 Mach-O，排除主程序与系统 Frameworks（本工程无内嵌框架）
-          VIOLATIONS=0
+          echo "扫描包内所有 Mach-O 文件并按合法位置白名单判定 ..."
+          VIOLATIONS=0; TOTAL=0
           while IFS= read -r f; do
-            name="$(basename "$f")"
-            if [ "$name" != "$MAIN_EXEC" ]; then
-              echo "::error::发现违规可执行文件: ${f#$APP_BUNDLE/}"
+            TOTAL=$((TOTAL+1))
+            rel="${f#$APP_BUNDLE/}"   # 相对 .app 的路径
+            legal=0
+            if [[ "$rel" == "$MAIN_EXEC" ]]; then
+              legal=1   # .app 根目录下的主程序
+            elif [[ "$rel" == Frameworks/*.framework/* ]]; then
+              legal=1   # 内嵌动态框架二进制（Capacitor/Cordova 等）
+            elif [[ "$rel" == Frameworks/*.dylib ]]; then
+              legal=1   # 内嵌动态库
+            elif [[ "$rel" == PlugIns/*.appex/* ]]; then
+              legal=1   # 应用扩展
+            fi
+            if [ "$legal" -eq 0 ]; then
+              echo "::error::发现非法位置的可执行文件: $rel"
               VIOLATIONS=$((VIOLATIONS+1))
+            else
+              echo "  合法: $rel"
             fi
           done < <(find "$APP_BUNDLE" -type f -exec sh -c 'file -b "$1" | grep -q "Mach-O" && echo "$1"' _ {} \;)
           rm -rf "$TMP"
+          echo "共扫描到 $TOTAL 个 Mach-O 文件，其中违规 $VIOLATIONS 个。"
           if [ "$VIOLATIONS" -ne 0 ]; then
-            echo "共发现 $VIOLATIONS 个违规可执行文件，请在源头清理后重新构建。"
+            echo "请在源头清理上述资源目录中的独立可执行文件后重新构建。"
             exit 1
           fi
-          echo "校验通过：包内仅含主程序一个可执行文件。"
+          echo "校验通过：所有可执行文件均位于主程序或合法框架/扩展内。"
 
       # -----------------------------------------------------------------------
       # 8. 上传 IPA 到 App Store Connect（TestFlight）
