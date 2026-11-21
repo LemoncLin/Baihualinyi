@@ -21,7 +21,7 @@
 name: 构建并上传 TestFlight
 
 on:
-  # 仅允许在 Actions 页面手动触发，并可选择是否真正上传
+  # 触发方式一：在 Actions 页面手动触发，并可选择是否真正上传
   workflow_dispatch:
     inputs:
       skip_upload:
@@ -32,6 +32,12 @@ on:
         description: "可选：覆盖营销版本号(如 1.1.0)，留空则沿用工程内设置"
         required: false
         default: ""
+  # 触发方式二：每季度定时自动续期 TestFlight（单个构建有效期仅 90 天）
+  # GitHub cron 为 UTC 时间，下面表示 UTC 1月/4月/7月/10月 1日 01:00，
+  # 即北京时间每季度首月 1 日 09:00，间隔约 90 天并预留安全余量。
+  # 定时任务默认执行完整上传（skip_upload 不生效），构建号自动取 run_number。
+  schedule:
+    - cron: "0 1 1 1,4,7,10 *"
 
 # 同分支并发时取消旧任务，避免重复上传
 concurrency:
@@ -212,7 +218,8 @@ jobs:
       #    两种方式都基于 xcrun altool；个人密钥(Individual Key)不被 altool 支持，请勿使用
       # -----------------------------------------------------------------------
       - name: 上传 TestFlight
-        if: ${{ inputs.skip_upload == false }}
+        # 仅手动触发且显式勾选 skip_upload 时才跳过；定时(schedule)触发默认上传
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.skip_upload == false }}
         env:
           # 方式一：团队 API 密钥（拿到后配置，留空则自动走方式二）
           APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
