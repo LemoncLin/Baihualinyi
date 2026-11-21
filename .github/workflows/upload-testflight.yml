@@ -4,12 +4,19 @@
 #            自动 +1，避免 TestFlight 因重复构建号拒收。
 # 运行环境 : GitHub 托管的 macOS Runner（自带 Xcode）
 # 前置 Secret（在仓库 Settings → Secrets and variables → Actions 配置）:
+#   签名相关（必填）:
 #   BUILD_CERTIFICATE_BASE64   Base64 编码的发布证书 .p12
 #   P12_PASSWORD               .p12 导出密码
 #   PROVISION_PROFILE_BASE64   Base64 编码的 App Store 描述文件 .mobileprovision
-#   APP_STORE_CONNECT_API_KEY  App Store Connect API 私钥文件 .p8 的内容
-#   APP_STORE_CONNECT_KEY_ID   上述密钥的 Key ID
-#   APP_STORE_CONNECT_ISSUER_ID  Issuer ID
+#   上传认证（二选一，优先方式一）:
+#   方式一 团队 API 密钥（需 Account Holder/Admin 生成，长期规范）:
+#     APP_STORE_CONNECT_API_KEY    团队密钥 .p8 的文本内容
+#     APP_STORE_CONNECT_KEY_ID     密钥 Key ID
+#     APP_STORE_CONNECT_ISSUER_ID  Issuer ID
+#   方式二 App 专用密码（App Manager/Developer 可自行生成，当前采用）:
+#     APPLE_ID                    用于上传的 Apple ID 邮箱
+#     APPLE_APP_SPECIFIC_PASSWORD 在 appleid.apple.com 生成的 App 专用密码
+#   注意: 个人 API 密钥(Individual Key)不被 altool 支持，无法用于本工作流
 # =============================================================================
 name: 构建并上传 TestFlight
 
@@ -185,27 +192,62 @@ jobs:
 
       # -----------------------------------------------------------------------
       # 8. 上传 IPA 到 App Store Connect（TestFlight）
-      #    使用官方 xcrun altool/API Key 认证，无需 Apple ID 双因素密码
+      #    双认证方式，按配置的 Secret 自动选择：
+      #    方式一（长期规范）：团队 API 密钥 .p8 + Key ID + Issuer ID
+      #    方式二（当前可用）：Apple ID + App 专用密码（Developer/App Manager 即可）
+      #    两种方式都基于 xcrun altool；个人密钥(Individual Key)不被 altool 支持，请勿使用
       # -----------------------------------------------------------------------
       - name: 上传 TestFlight
         if: ${{ inputs.skip_upload == false }}
         env:
+          # 方式一：团队 API 密钥（拿到后配置，留空则自动走方式二）
           APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
           APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          # 方式二：Apple ID + App 专用密码（在 appleid.apple.com 生成）
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+          # 可选：一个 Apple ID 隶属多个团队时，指定 ASC 提供商短名（通常无需）
+          ASC_PROVIDER: ${{ vars.ASC_PROVIDER }}
         run: |
-          # App Store Connect API 私钥需放入固定文件名目录
-          KEY_DIR="$HOME/.appstoreconnect/private_keys"
-          mkdir -p "$KEY_DIR"
-          echo "$APP_STORE_CONNECT_API_KEY" > "$KEY_DIR/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8"
+          set -e
+          IPA="$EXPORT_PATH/App.ipa"
 
-          # xcrun altool 通过 --apiKey/--apiIssuer 自动查找上述私钥
-          xcrun altool --upload-app \
-            --type ios \
-            --file "$EXPORT_PATH/App.ipa" \
-            --apiKey "$APP_STORE_CONNECT_KEY_ID" \
-            --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID" \
-            --verbose
+          if [ -n "$APP_STORE_CONNECT_API_KEY" ] && [ -n "$APP_STORE_CONNECT_KEY_ID" ]; then
+            # ============ 方式一：团队 API 密钥认证 ============
+            echo "==> 使用 App Store Connect 团队 API 密钥上传"
+            KEY_DIR="$HOME/.appstoreconnect/private_keys"
+            mkdir -p "$KEY_DIR"
+            # altool 按固定文件名 AuthKey_<KeyID>.p8 查找私钥
+            printf '%s' "$APP_STORE_CONNECT_API_KEY" \
+              > "$KEY_DIR/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8"
+
+            xcrun altool --upload-app \
+              --type ios \
+              --file "$IPA" \
+              --apiKey "$APP_STORE_CONNECT_KEY_ID" \
+              --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID" \
+              --verbose
+          elif [ -n "$APPLE_ID" ] && [ -n "$APPLE_APP_SPECIFIC_PASSWORD" ]; then
+            # ============ 方式二：Apple ID + App 专用密码 ============
+            echo "==> 使用 Apple ID + App 专用密码上传"
+            ALTOOL_ARGS=(
+              --upload-app
+              --type ios
+              --file "$IPA"
+              --username "$APPLE_ID"
+              --password "$APPLE_APP_SPECIFIC_PASSWORD"
+            )
+            # 仅当显式配置了提供商短名时才追加，避免空参数报错
+            [ -n "$ASC_PROVIDER" ] && ALTOOL_ARGS+=( --ascProvider "$ASC_PROVIDER" )
+
+            xcrun altool "${ALTOOL_ARGS[@]}" --verbose
+          else
+            echo "::error::未配置任何上传凭证。请二选一配置 Secret："
+            echo "  方式一: APP_STORE_CONNECT_API_KEY / KEY_ID / ISSUER_ID（团队密钥）"
+            echo "  方式二: APPLE_ID / APPLE_APP_SPECIFIC_PASSWORD（App 专用密码）"
+            exit 1
+          fi
 
       # -----------------------------------------------------------------------
       # 9. 无论成功失败都上传 IPA 作为构建产物，方便手动下载验证

@@ -48,7 +48,7 @@ GitHub Actions（手动触发）                     │
 | 发布证书 `.p12` + 导出密码 | CI 代码签名 | 钥匙串导出，见下方步骤 A |
 | App Store 描述文件 `.mobileprovision` | 关联 Bundle ID 的发布授权 | Apple Developer 网站，见步骤 B |
 | **Team ID**（10 位） | 标识开发团队 | 本项目团队 ID 为 `99289A3HF5`（深圳 Megmt） |
-| App Store Connect API 密钥 `.p8` + Key ID + Issuer ID | 上传 IPA 的鉴权 | App Store Connect → 用户和访问 → 密钥，见步骤 C |
+| 上传认证凭证（二选一） | 上传 IPA 的鉴权 | 方式一团队密钥 .p8（需管理员），或方式二 Apple ID + App 专用密码，见步骤 C |
 
 ### 2. GitHub 侧
 
@@ -77,14 +77,31 @@ GitHub Actions（手动触发）                     │
 4. 下载得到 `.mobileprovision` 文件
 5. **记下描述文件的名称**，后面要填进 `ExportOptions.plist`
 
-### 步骤 C：创建 App Store Connect API 密钥
+### 步骤 C：配置上传认证（二选一）
+
+CI 上传 IPA 到 App Store Connect 有两种认证方式，工作流已同时兼容，按配置的 Secret 自动选择。
+
+#### 方式一：团队 API 密钥（长期规范，需 Admin/账户持有人）
+
+> 仅 **Account Holder（账户持有人）或 Admin（管理员）** 能创建「团队密钥」。
+> App Manager/Developer 在后台看到的是「个人密钥」，**个人密钥不被 altool 支持，无法用于本工作流**。
 
 1. 登录 [App Store Connect](https://appstoreconnect.apple.com) →「用户和访问」→「集成」→「App Store Connect API」→「团队密钥」
-2. 点击「生成 API 密钥」，名称随意，访问权限选 **管理员（Admin）** 或「App 管理」
-3. 生成后记录：
-   - **Key ID**（如 `ABC1234DE5`）
-   - **Issuer ID**（页面顶部的 UUID）
-4. 下载 API 私钥（`.p8` 文件，**只能下载一次，务必妥善保存**）
+2. 点击「生成 API 密钥」，名称随意，访问权限选 **App 管理（App Manager）**
+3. 记录 **Key ID**、页面顶部的 **Issuer ID**
+4. 下载私钥（`.p8`，**只能下载一次，妥善保存**）
+
+#### 方式二：App 专用密码（App Manager/Developer 可自行生成，当前采用）
+
+无需管理员权限，用自己的 Apple ID 即可：
+
+1. 登录 [appleid.apple.com](https://appleid.apple.com)（用你加入了该 App 团队的 Apple ID）
+2. 「登录与安全」→ **App 专用密码（App-Specific Passwords）** → 生成一个
+3. 按提示输入标签（如 `github-actions`），得到形如 `abcd-efgh-ijkl-mnop` 的密码
+4. 前提：该 Apple ID 已开启双因素认证（当前均强制开启）
+5. 记下：**Apple ID 邮箱** + **App 专用密码**
+
+> 注意区分：App Store Connect 里 App 信息页的「共享密钥（Shared Secret）」仅用于内购收据验证，**不能**用于上传，请勿混淆。
 
 ---
 
@@ -92,14 +109,30 @@ GitHub Actions（手动触发）                     │
 
 ### 4.1 配置 Secrets（仓库 Settings → Secrets and variables → Actions → New secret）
 
+**签名相关（3 个，必填）：**
+
 | Secret 名称 | 填入内容 |
 |---|---|
-| `BUILD_CERTIFICATE_BASE64` | .p12 文件的 Base64 字符串 |
+| `BUILD_CERTIFICATE_BASE64` | 发布证书 .p12 的 Base64 字符串 |
 | `P12_PASSWORD` | 导出 .p12 时设置的密码 |
-| `PROVISION_PROFILE_BASE64` | .mobileprovision 文件的 Base64 字符串 |
-| `APP_STORE_CONNECT_API_KEY` | .p8 文件的**完整文本内容** |
-| `APP_STORE_CONNECT_KEY_ID` | 步骤 C 的 Key ID |
-| `APP_STORE_CONNECT_ISSUER_ID` | 步骤 C 的 Issuer ID |
+| `PROVISION_PROFILE_BASE64` | App Store 描述文件 .mobileprovision 的 Base64 字符串 |
+
+**上传认证（二选一，推荐先用方式二跑通，日后补方式一自动切换）：**
+
+方式二（App 专用密码，当前用这 2 个）：
+
+| Secret 名称 | 填入内容 |
+|---|---|
+| `APPLE_ID` | 你的 Apple ID 邮箱 |
+| `APPLE_APP_SPECIFIC_PASSWORD` | 步骤 C 方式二生成的 App 专用密码 |
+
+方式一（团队 API 密钥，日后拿到管理员给的 .p8 再配，配好后优先于方式二）：
+
+| Secret 名称 | 填入内容 |
+|---|---|
+| `APP_STORE_CONNECT_API_KEY` | 团队密钥 .p8 的**完整文本内容** |
+| `APP_STORE_CONNECT_KEY_ID` | 步骤 C 方式一的 Key ID |
+| `APP_STORE_CONNECT_ISSUER_ID` | 步骤 C 方式一的 Issuer ID |
 
 > Base64 字符串可用本仓库脚本生成：
 > `./scripts/make_secrets.sh distribution.p12 profile.mobileprovision`
@@ -111,6 +144,7 @@ GitHub Actions（手动触发）                     │
 |---|---|
 | `DEVELOPMENT_TEAM` | 固定填 `99289A3HF5` |
 | `ASSET_RELEASE_TAG` | 大文件资产包所在 Release 的 tag，默认 `v1.0-assets` |
+| `ASC_PROVIDER`（可选） | 仅当 Apple ID 隶属多个团队、上传报提供商错误时才填 ASC 提供商短名 |
 
 ### 4.3 修改 ExportOptions.plist
 
@@ -169,6 +203,18 @@ gh release create v1.0-assets \
 ---
 
 ## 八、常见问题与排查
+
+**Q: 我是 App Manager/Developer，建不了团队 API 密钥怎么办？**
+A: 团队密钥仅 Account Holder/Admin 可建；你能建的「个人密钥」不被 altool 支持。请改用步骤 C 的方式二：Apple ID + App 专用密码，在 appleid.apple.com 自助生成即可，无需管理员。
+
+**Q: 上传报 `-26000 Failure to authenticate`？**
+A: 常见原因：① 误用了个人 API 密钥（altool 不支持），请改用团队密钥或 App 专用密码；② App 专用密码填错或已失效，重新生成一个；③ Apple ID 未加入该 App 的 ASC 团队。
+
+**Q: 一个 Apple ID 加入了多个开发者团队，上传报提供商（provider）错误？**
+A: 在仓库 Variables 配置 `ASC_PROVIDER`（App Store Connect 提供商短名），工作流会自动追加 `--ascProvider` 参数。
+
+**Q: 「共享密钥（Shared Secret）」能用来上传吗？**
+A: 不能。共享密钥只用于内购收据验证；上传要用 App 专用密码或团队 API 密钥，二者完全不同。
 
 **Q: 构建报 `No profiles for com.megmt.baihualinyi`？**
 A: 描述文件的 Bundle ID 与工程不一致，或 `ExportOptions.plist` 中的描述文件名称填错。用 `make_secrets.sh` 查看正确名称。
