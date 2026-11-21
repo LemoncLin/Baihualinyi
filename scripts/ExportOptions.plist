@@ -28,9 +28,9 @@
     <string>manual</string>
     <key>provisioningProfiles</key>
     <dict>
-        <!-- key 为 Bundle ID，value 为描述文件名称（非 UUID），生成发布描述文件后替换名称 -->
+        <!-- key 为 Bundle ID，value 为描述文件名称（已根据实际描述文件填入 baihualinyi） -->
         <key>com.megmt.baihualinyi</key>
-        <string>YOUR_PROVISIONING_PROFILE_NAME</string>
+        <string>baihualinyi</string>
     </dict>
 
     <!-- 剥离调试符号，减小 IPA 体积（符号仍在 xcarchive 的 dSYM 中） -->

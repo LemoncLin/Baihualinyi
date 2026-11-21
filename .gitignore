@@ -35,6 +35,8 @@ ios/App/App.xcworkspace/xcuserdata/
 *.fig
 
 # ---- 签名敏感材料（严禁入库，一律走 GitHub Secrets）----
+# 整个证书目录忽略，覆盖 .p12/.cer/.mobileprovision/.p8 及生成的 Base64 .txt
+/证书/
 *.p12
 *.mobileprovision
 *.cer
