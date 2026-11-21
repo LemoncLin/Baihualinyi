@@ -211,6 +211,37 @@ jobs:
             | security cms -D -d 2>/dev/null | /usr/libexec/PlistBuddy -c "Print Entitlements:application-identifier" /dev/stdin || true
 
       # -----------------------------------------------------------------------
+      # 7.5 前置校验：扫描 IPA 内是否混入独立可执行文件/库
+      #      Apple 规定 .app 内除主程序(Info.plist 的 CFBundleExecutable)外，
+      #      不允许出现独立 Mach-O 可执行或库，否则上传报 409 Invalid bundle structure。
+      #      典型元凶是 krpano 的 tour_testingserver_macos。
+      # -----------------------------------------------------------------------
+      - name: 校验包内无违规可执行文件
+        run: |
+          set -e
+          TMP="$(mktemp -d)"
+          unzip -q "$EXPORT_PATH/App.ipa" -d "$TMP"
+          APP_BUNDLE="$(find "$TMP" -maxdepth 2 -name '*.app' | head -1)"
+          MAIN_EXEC=$(/usr/libexec/PlistBuddy -c 'Print CFBundleExecutable' "$APP_BUNDLE/Info.plist")
+          echo "主程序可执行文件: $MAIN_EXEC"
+          echo "扫描包内所有 Mach-O 文件 ..."
+          # 找出全部 Mach-O，排除主程序与系统 Frameworks（本工程无内嵌框架）
+          VIOLATIONS=0
+          while IFS= read -r f; do
+            name="$(basename "$f")"
+            if [ "$name" != "$MAIN_EXEC" ]; then
+              echo "::error::发现违规可执行文件: ${f#$APP_BUNDLE/}"
+              VIOLATIONS=$((VIOLATIONS+1))
+            fi
+          done < <(find "$APP_BUNDLE" -type f -exec sh -c 'file -b "$1" | grep -q "Mach-O" && echo "$1"' _ {} \;)
+          rm -rf "$TMP"
+          if [ "$VIOLATIONS" -ne 0 ]; then
+            echo "共发现 $VIOLATIONS 个违规可执行文件，请在源头清理后重新构建。"
+            exit 1
+          fi
+          echo "校验通过：包内仅含主程序一个可执行文件。"
+
+      # -----------------------------------------------------------------------
       # 8. 上传 IPA 到 App Store Connect（TestFlight）
       #    双认证方式，按配置的 Secret 自动选择：
       #    方式一（长期规范）：团队 API 密钥 .p8 + Key ID + Issuer ID
@@ -231,8 +262,27 @@ jobs:
           # 可选：一个 Apple ID 隶属多个团队时，指定 ASC 提供商短名（通常无需）
           ASC_PROVIDER: ${{ vars.ASC_PROVIDER }}
         run: |
-          set -e
+          set -uo pipefail
           IPA="$EXPORT_PATH/App.ipa"
+          LOG="$(mktemp)/altool.log"
+
+          # 统一的结果判定：altool 在校验失败(如 bundle 结构非法)时可能仍返回 0，
+          # 不能只看退出码，必须解析输出中的成功/失败关键词，避免“假绿”。
+          judge_result() {
+            echo "----- altool 输出尾部 -----"; tail -40 "$LOG"
+            if grep -qiE "No errors uploading|No errors validating" "$LOG"; then
+              echo "==> altool 判定成功"
+              return 0
+            fi
+            # 命中任一失败特征即明确报错并让步骤红叉
+            if grep -qiE "Validation failed|Failed to upload|error:|STATE_ERROR|Unable to authenticate|No suitable application records" "$LOG"; then
+              echo "::error::altool 上传/校验失败，详见上方日志"
+              return 1
+            fi
+            # 既无成功标志也无已知失败标志，保守判定为失败，避免误报成功
+            echo "::error::未能从 altool 输出中确认成功（缺少 'No errors uploading' 标志）"
+            return 1
+          }
 
           if [ -n "$APP_STORE_CONNECT_API_KEY" ] && [ -n "$APP_STORE_CONNECT_KEY_ID" ]; then
             # ============ 方式一：团队 API 密钥认证 ============
@@ -244,25 +294,24 @@ jobs:
               > "$KEY_DIR/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8"
 
             xcrun altool --upload-app \
-              --type ios \
-              --file "$IPA" \
+              --type ios --file "$IPA" \
               --apiKey "$APP_STORE_CONNECT_KEY_ID" \
               --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID" \
-              --verbose
+              --verbose 2>&1 | tee "$LOG" || true
+            judge_result
           elif [ -n "$APPLE_ID" ] && [ -n "$APPLE_APP_SPECIFIC_PASSWORD" ]; then
             # ============ 方式二：Apple ID + App 专用密码 ============
             echo "==> 使用 Apple ID + App 专用密码上传"
             ALTOOL_ARGS=(
-              --upload-app
-              --type ios
-              --file "$IPA"
+              --upload-app --type ios --file "$IPA"
               --username "$APPLE_ID"
               --password "$APPLE_APP_SPECIFIC_PASSWORD"
             )
             # 仅当显式配置了提供商短名时才追加，避免空参数报错
             [ -n "$ASC_PROVIDER" ] && ALTOOL_ARGS+=( --ascProvider "$ASC_PROVIDER" )
 
-            xcrun altool "${ALTOOL_ARGS[@]}" --verbose
+            xcrun altool "${ALTOOL_ARGS[@]}" --verbose 2>&1 | tee "$LOG" || true
+            judge_result
           else
             echo "::error::未配置任何上传凭证。请二选一配置 Secret："
             echo "  方式一: APP_STORE_CONNECT_API_KEY / KEY_ID / ISSUER_ID（团队密钥）"

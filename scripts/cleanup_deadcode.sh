@@ -31,7 +31,8 @@ DEAD_DIRS=(
 
 # 待删除的文件匹配模式（工具残留 / 系统垃圾 / 备份文件）
 DEAD_FILE_PATTERNS=(
-  "*.exe"          # krpano 本地测试服务器，App 运行不需要
+  "*.exe"          # krpano Windows 本地测试服务器，App 运行不需要
+  "tour_testingserver_macos"  # krpano macOS 本地测试服务器(Mach-O 可执行)
   "*.bak_stock"    # 备份残留
   ".DS_Store"      # macOS 目录垃圾
   "Thumbs.db"      # Windows 目录垃圾
