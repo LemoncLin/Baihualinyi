@@ -15,9 +15,9 @@
     <key>method</key>
     <string>app-store</string>
 
-    <!-- 开发者团队 ID（替换为你自己的 Team ID） -->
+    <!-- 开发者团队 ID（已根据描述文件解析填入） -->
     <key>teamID</key>
-    <string>YOUR_TEAM_ID</string>
+    <string>99289A3HF5</string>
 
     <!-- 上传到 App Store Connect 时允许联网自动补全描述文件 -->
     <key>allowProvisioningUpdates</key>
@@ -28,8 +28,8 @@
     <string>manual</string>
     <key>provisioningProfiles</key>
     <dict>
-        <!-- key 为 Bundle ID，value 为描述文件名称（非 UUID） -->
-        <key>com.baihualin.yi</key>
+        <!-- key 为 Bundle ID，value 为描述文件名称（非 UUID），生成发布描述文件后替换名称 -->
+        <key>com.megmt.baihualinyi</key>
         <string>YOUR_PROVISIONING_PROFILE_NAME</string>
     </dict>
 

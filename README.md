@@ -32,7 +32,7 @@ GitHub Actions（手动触发）                     │
 |---|---|
 | 工程路径 | `ios/App/App.xcodeproj` |
 | Scheme / Target | `App` |
-| Bundle ID | `com.baihualin.yi` |
+| Bundle ID | `com.megmt.baihualinyi` |
 | 应用名称 | 白桦林奕 |
 | 依赖管理 | 本地 SPM 包 `CapApp-SPM`（远程拉取 capacitor-swift-pm 8.6.2），无 CocoaPods |
 | 部署目标 | iOS 15.0 |
@@ -47,7 +47,7 @@ GitHub Actions（手动触发）                     │
 |---|---|---|
 | 发布证书 `.p12` + 导出密码 | CI 代码签名 | 钥匙串导出，见下方步骤 A |
 | App Store 描述文件 `.mobileprovision` | 关联 Bundle ID 的发布授权 | Apple Developer 网站，见步骤 B |
-| **Team ID**（10 位） | 标识开发团队 | 开发者账号 Membership 页 |
+| **Team ID**（10 位） | 标识开发团队 | 本项目团队 ID 为 `99289A3HF5`（深圳 Megmt） |
 | App Store Connect API 密钥 `.p8` + Key ID + Issuer ID | 上传 IPA 的鉴权 | App Store Connect → 用户和访问 → 密钥，见步骤 C |
 
 ### 2. GitHub 侧
@@ -71,7 +71,7 @@ GitHub Actions（手动触发）                     │
 
 ### 步骤 B：创建 App Store 描述文件
 
-1. Apple Developer 网站 → Identifiers，确认存在 App ID：`com.baihualin.yi`（没有就新建）
+1. Apple Developer 网站 → Identifiers，确认存在 App ID：`com.megmt.baihualinyi`（没有就新建）
 2. Profiles → 「+」→ 选择 **App Store**（在 Distribution 分组下）
 3. 选择上一步的 App ID → 选择步骤 A 的证书 → 命名（例如 `Baihualin_AppStore`）
 4. 下载得到 `.mobileprovision` 文件
@@ -109,14 +109,13 @@ GitHub Actions（手动触发）                     │
 
 | Variable 名称 | 填入内容 |
 |---|---|
-| `DEVELOPMENT_TEAM` | 你的 10 位 Team ID |
+| `DEVELOPMENT_TEAM` | 固定填 `99289A3HF5` |
 | `ASSET_RELEASE_TAG` | 大文件资产包所在 Release 的 tag，默认 `v1.0-assets` |
 
 ### 4.3 修改 ExportOptions.plist
 
-编辑 `scripts/ExportOptions.plist`，替换两处占位：
+编辑 `scripts/ExportOptions.plist`，Team ID 已填好（`99289A3HF5`），只需替换一处占位：
 
-- `YOUR_TEAM_ID` → 你的 Team ID
 - `YOUR_PROVISIONING_PROFILE_NAME` → 步骤 B 记下的描述文件名称
 
 ---
@@ -171,7 +170,7 @@ gh release create v1.0-assets \
 
 ## 八、常见问题与排查
 
-**Q: 构建报 `No profiles for com.baihualin.yi`？**
+**Q: 构建报 `No profiles for com.megmt.baihualinyi`？**
 A: 描述文件的 Bundle ID 与工程不一致，或 `ExportOptions.plist` 中的描述文件名称填错。用 `make_secrets.sh` 查看正确名称。
 
 **Q: 报 `Code Signing Failed` / 钥匙串相关错误？**
