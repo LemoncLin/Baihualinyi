@@ -105,6 +105,25 @@ if grep -q "^App/App/public$" "$GI" 2>/dev/null; then
 fi
 
 # -----------------------------------------------------------------------------
+# 3.1 补回出口合规豁免声明：新 rar 会整体覆盖 Info.plist，导致该 key 丢失，
+#     缺失后每次 TestFlight 构建都要在网页手动回答加密合规问题。
+#     顶格的 </dict> 即根字典结束标签（内层 </dict> 均有缩进），在其前幂等插入。
+# -----------------------------------------------------------------------------
+PLIST="$ROOT_DIR/ios/App/App/Info.plist"
+if ! grep -q "ITSAppUsesNonExemptEncryption" "$PLIST" 2>/dev/null; then
+  warn "Info.plist 缺少加密豁免 key，自动补回 ITSAppUsesNonExemptEncryption=false"
+  awk '
+    /^<\/dict>/ && !done {
+      print "\t<!-- 出口合规: 声明未使用非豁免加密, 免去 TestFlight 每次构建的合规问询 -->"
+      print "\t<key>ITSAppUsesNonExemptEncryption</key>"
+      print "\t<false/>"
+      done=1
+    }
+    { print }
+  ' "$PLIST" > "$PLIST.tmp" && robust_mv "$PLIST.tmp" "$PLIST"
+fi
+
+# -----------------------------------------------------------------------------
 # 4. 清理死代码（自动应用，规则与首次一致，可在 cleanup-manifest.log 追溯）
 # -----------------------------------------------------------------------------
 info "清理死代码 ..."

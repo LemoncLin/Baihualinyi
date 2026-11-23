@@ -22,10 +22,6 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<!-- 出口合规声明: App 仅使用系统标准 HTTPS/TLS, 不含自研或专有加密,
-	     声明为非豁免加密=false, 可让 TestFlight 构建自动通过合规询问, 无需每次手动确认 -->
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>
@@ -71,6 +67,9 @@
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<!-- 出口合规: 声明 App 未使用非豁免加密, 免去 TestFlight 每次构建的合规问询 -->
+	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 </dict>
 </plist>

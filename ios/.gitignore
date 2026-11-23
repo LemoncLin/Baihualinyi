@@ -1,8 +1,7 @@
 App/build
 App/Pods
 App/output
-# 注意：本方案 Web 资源固定、不跑 npm build，public 必须纳入 Git 供 CI 打包。
-# 原 Capacitor 默认规则 "App/App/public" 已移除（大文件由 Release 资产包托管）。
+# App/App/public  # 本项目资源固定，需入库
 DerivedData
 xcuserdata
 
@@ -10,6 +9,5 @@ xcuserdata
 capacitor-cordova-ios-plugins
 
 # Generated Config files
-# config 与 capacitor.config.json 已随工程固定，同样需要提交，故不再忽略
-# App/App/capacitor.config.json
-# App/App/config.xml
+App/App/capacitor.config.json
+App/App/config.xml

@@ -18,6 +18,7 @@ release-assets/*.tar.gz
 *.rar
 *.zip
 .setup-tmp/
+.update-backup/
 *.backup.*
 ios.backup.*/
 
