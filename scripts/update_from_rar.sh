@@ -20,6 +20,22 @@ info()  { echo -e "${GREEN}[INFO]${NC} $*"; }
 warn()  { echo -e "${YELLOW}[WARN]${NC} $*"; }
 error() { echo -e "${RED}[ERROR]${NC} $*" >&2; }
 
+# WSL 挂载 NTFS(/mnt 下 drvfs) 时，目录刚创建就 mv 偶发 "Permission denied"，
+# 这是文件系统元数据尚未稳定的瞬时错误。封装带重试的 mv 提升健壮性。
+# 用法: robust_mv <源> <目标>
+robust_mv() {
+  local src="$1" dst="$2" attempt
+  for attempt in 1 2 3 4 5; do
+    if mv "$src" "$dst" 2>/dev/null; then
+      return 0
+    fi
+    warn "mv 失败(第 ${attempt} 次)，2 秒后重试: $src -> $dst"
+    sleep 2
+  done
+  error "mv 连续 5 次失败: $src -> $dst"
+  return 1
+}
+
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ARCHIVE="${1:-$ROOT_DIR/ios.rar}"
 SCRIPTS="$ROOT_DIR/scripts"
@@ -46,7 +62,7 @@ info "备份目录: $BACKUP_DIR"
 # -----------------------------------------------------------------------------
 # 1. 备份当前 ios/ 与旧资产包（仅当存在时）
 # -----------------------------------------------------------------------------
-[ -d "$ROOT_DIR/ios" ] && { info "备份当前 ios/ ..."; mv "$ROOT_DIR/ios" "$BACKUP_DIR/ios"; }
+[ -d "$ROOT_DIR/ios" ] && { info "备份当前 ios/ ..."; robust_mv "$ROOT_DIR/ios" "$BACKUP_DIR/ios"; }
 [ -f "$ROOT_DIR/release-assets/large-assets.tar.gz" ] && \
   cp "$ROOT_DIR/release-assets/large-assets.tar.gz" "$BACKUP_DIR/large-assets.tar.gz"
 
@@ -65,7 +81,7 @@ fi
 NEW_IOS="$(find "$WORK" -maxdepth 3 -type d -name ios | head -1)"
 [ -n "$NEW_IOS" ] || { error "压缩包内未找到 ios/ 目录，已保留备份，可回滚"; exit 1; }
 [ -d "$NEW_IOS/App/App.xcodeproj" ] || { error "未找到 App.xcodeproj，工程结构异常"; exit 1; }
-mv "$NEW_IOS" "$ROOT_DIR/ios"
+robust_mv "$NEW_IOS" "$ROOT_DIR/ios"
 info "新工程已就位"
 
 # -----------------------------------------------------------------------------
