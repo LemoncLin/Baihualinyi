@@ -14,7 +14,9 @@ release-assets/*.tar.gz
 .large-assets-stash/
 
 # ---- 原始压缩包与临时工作区 ----
-ios.rar
+# 所有原始压缩包一律忽略（含 ios.rar / ios1123.rar 等版本包），不入库
+*.rar
+*.zip
 .setup-tmp/
 *.backup.*
 ios.backup.*/
